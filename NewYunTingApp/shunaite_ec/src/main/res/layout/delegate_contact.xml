@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/bar_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/app_main_background">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="联系我们"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar"
+        android:layout_below="@+id/bar_top"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/tv_contact_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_circle"
+            android:gravity="center|left"
+            android:hint="您的姓名*"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/tv_contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_circle"
+            android:gravity="center|left"
+            android:hint="您的手机号*"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/tv_contact_email"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_circle"
+            android:gravity="center|left"
+            android:hint="您的邮箱*"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/tv_contact_message"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="5"
+            android:background="@drawable/edit_circle"
+            android:gravity="center|left|top"
+            android:hint="您的留言*"
+            android:paddingLeft="2dp"
+            android:paddingTop="2dp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_contact_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/app_main_background"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="5dp"
+            android:text="提交"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="8dp">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="电话/传真:0571-88026920"
+                android:textSize="12sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="联系地址:浙江金恒德国际汽配城A区21幢21-22号"
+                android:textSize="12sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text="网         址:www.shunaite.com"
+                android:textSize="12sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</RelativeLayout>
