@@ -1,0 +1,1 @@
+include ':app', ':yunting-annotations', ':yunting-compiler', ':shunaite_ec', ':yunting-core'
