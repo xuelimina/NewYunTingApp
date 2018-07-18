@@ -1,5 +1,7 @@
 package com.yuanting.newyuntingapp;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
@@ -18,7 +20,18 @@ public class NewYunTingApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Latte.init(getApplicationContext()).withApiHost("https://d.carbros.cn:4433/ShuNaite/")
+        String server_url = "";
+        try {
+            ApplicationInfo appInfo = getPackageManager()
+                    .getApplicationInfo(getPackageName(),
+                            PackageManager.GET_META_DATA);
+            server_url = appInfo.metaData.getString("server_url");
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+
+        }
+        Latte.init(getApplicationContext()).withApiHost(server_url)
                 .withIcons(new FontAwesomeModule())
                 .withLoaderDelayed(500)
                 .withWeChatAppID("微信AppKey").withWeChatAppSecret("微信AppSecret")
