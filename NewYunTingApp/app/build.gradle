@@ -72,4 +72,5 @@ dependencies {
     implementation project(':shunaite_ec')
     implementation project(':yunting-annotations')
     implementation project(':yunting-compiler')
+    implementation project(':nomisdun')
 }

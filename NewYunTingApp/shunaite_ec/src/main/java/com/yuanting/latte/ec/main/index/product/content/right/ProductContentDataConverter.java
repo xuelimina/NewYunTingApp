@@ -78,15 +78,16 @@ public class ProductContentDataConverter extends DataConverter {
         if (entities != null && entities.size() > 0) {
             for (MultipleItemEntity entity : entities) {
                 String year = entity.getField(ProductRightItemFields.YEAR);
-                if (yearsMap.containsKey(year)) {
-                    yearsMap.get(year).add(entity);
-                } else {
-                    entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_YEAR_ITEM);
-                    ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
-                    entities1.add(entity);
-                    yearsEntities.add(entity);
-                    yearsMap.put(year, entities1);
-                }
+                if (!year.isEmpty())
+                    if (yearsMap.containsKey(year)) {
+                        yearsMap.get(year).add(entity);
+                    } else {
+                        entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_YEAR_ITEM);
+                        ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
+                        entities1.add(entity);
+                        yearsEntities.add(entity);
+                        yearsMap.put(year, entities1);
+                    }
             }
             entity1.setField(ProductRightItemFields.IS_LAST, false);
         } else {
@@ -109,15 +110,16 @@ public class ProductContentDataConverter extends DataConverter {
         if (entities != null && entities.size() > 0) {
             for (MultipleItemEntity entity : entities) {
                 String subModel = entity.getField(ProductRightItemFields.SUB_MODEL);
-                if (subModelMap.containsKey(subModel)) {
-                    subModelMap.get(subModel).add(entity);
-                } else {
-                    entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_SUB_MODEL_ITEM);
-                    ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
-                    entities1.add(entity);
-                    subModelEntities.add(entity);
-                    subModelMap.put(subModel, entities1);
-                }
+                if (!subModel.isEmpty())
+                    if (subModelMap.containsKey(subModel)) {
+                        subModelMap.get(subModel).add(entity);
+                    } else {
+                        entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_SUB_MODEL_ITEM);
+                        ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
+                        entities1.add(entity);
+                        subModelEntities.add(entity);
+                        subModelMap.put(subModel, entities1);
+                    }
             }
             entity1.setField(ProductRightItemFields.IS_LAST, false);
         } else {
@@ -142,15 +144,16 @@ public class ProductContentDataConverter extends DataConverter {
         if (entities != null && entities.size() > 0) {
             for (MultipleItemEntity entity : entities) {
                 String series = entity.getField(ProductRightItemFields.SERIES);
-                if (seriesMap.containsKey(series)) {
-                    seriesMap.get(series).add(entity);
-                } else {
-                    entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_SERIES_ITEM);
-                    ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
-                    entities1.add(entity);
-                    seriesEntities.add(entity);
-                    seriesMap.put(series, entities1);
-                }
+                if (!series.isEmpty())
+                    if (seriesMap.containsKey(series)) {
+                        seriesMap.get(series).add(entity);
+                    } else {
+                        entity.setField(MultipleFields.ITEM_TYPE, ProductRightItemType.PRODUCT_RIGHT_SERIES_ITEM);
+                        ArrayList<MultipleItemEntity> entities1 = new ArrayList<>();
+                        entities1.add(entity);
+                        seriesEntities.add(entity);
+                        seriesMap.put(series, entities1);
+                    }
             }
             entity1.setField(ProductRightItemFields.IS_LAST, false);
         } else {

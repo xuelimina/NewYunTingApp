@@ -84,25 +84,34 @@ public class ProductAdapter extends MultipleRecyclerAdapter {
                 imageView1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProductImageOnClick.startProductContent(entities.get(0));
+                        if (entities.size() >= 1) {
+                            mProductImageOnClick.startProductContent(entities.get(0));
+                        }
+
                     }
                 });
                 imageView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProductImageOnClick.startProductContent(entities.get(1));
+                        if (entities.size() >= 2) {
+                            mProductImageOnClick.startProductContent(entities.get(1));
+                        }
                     }
                 });
                 imageView3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProductImageOnClick.startProductContent(entities.get(2));
+                        if (entities.size() >= 3) {
+                            mProductImageOnClick.startProductContent(entities.get(2));
+                        }
                     }
                 });
                 imageView4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProductImageOnClick.startProductContent(entities.get(3));
+                        if (entities.size() >= 4) {
+                            mProductImageOnClick.startProductContent(entities.get(3));
+                        }
                     }
                 });
                 break;

@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 
 import com.yuanting.latte.ec.main.ShuNaiTeBottomDelegate;
 import com.yuanting.latte.ec.sign.SignInDelegate;
+import com.yuanting.nomisdun.main.NoMisDunIndexDelegate;
 import com.yuanting.yunting_core.activites.ProxyActivity;
 import com.yuanting.yunting_core.app.Latte;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
@@ -14,7 +15,7 @@ import com.yuanting.yunting_core.ui.laucher.OnLauncherFinishTag;
 
 import qiu.niorgai.StatusBarCompat;
 
-public class MainActivity extends ProxyActivity implements  ILauncherListener {
+public class MainActivity extends ProxyActivity implements ILauncherListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,13 @@ public class MainActivity extends ProxyActivity implements  ILauncherListener {
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new ShuNaiTeBottomDelegate();
+        final String applicationId = getApplication().getPackageName();
+        if (applicationId.equals(PackageType.SHUNAITE)) {
+            return new ShuNaiTeBottomDelegate();
+        } else if (applicationId.equals(PackageType.NOMISDUN)) {
+            return new NoMisDunIndexDelegate();
+        }
+        return null;
     }
 
     @Override
