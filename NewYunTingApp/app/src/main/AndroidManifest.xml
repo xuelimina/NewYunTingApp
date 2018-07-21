@@ -14,17 +14,13 @@
         <meta-data
             android:name="server_url"
             android:value="${server_url}" />
-        <!-- 版本号-->
-        <meta-data
-            android:name="version_code"
-            android:value="${version_code}" />
         <meta-data
             android:name="CHANNEL_VALUE"
             android:value="${CHANNEL_VALUE}" />
         <!-- 高德地图key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1d4de23a53fc2259a6f38fb15ad0110c" />
+            android:value="${gaode_key}" />
         <!--高德地图配置END-->
         <activity android:name=".MainActivity">
             <intent-filter>

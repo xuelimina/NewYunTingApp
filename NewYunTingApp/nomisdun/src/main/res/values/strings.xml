@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">纳米斯顿</string>
+    <!--登录布局-->
+    <string name="btn_sign_in">登录</string>
+    <string name="tv_link_sign_up">还未注册，去注册</string>
+    <string name="sign_up_delegate_email_error">错误的邮箱格式</string>
+    <string name="sign_up_delegate_phone_error">错误的电话号码</string>
+    <string name="sign_up_delegate_password_error">请填写至少6位数字</string>
+    <string name="sign_up_delegate_re_password_error">密码验证错误</string>
     <string name="tv_order_prompt_one">尊敬的客户：感谢您选择舒耐特汽车漆面透明保护膜，舒耐特漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
     <string name="tv_order_prompt_two">尊敬的客户：感谢您选择舒耐特汽车漆面透明保护膜，舒耐特漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
 

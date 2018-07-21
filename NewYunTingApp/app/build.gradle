@@ -6,8 +6,6 @@ android {
         applicationId "com.yuanting.newyuntingapp"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -23,15 +21,19 @@ android {
     productFlavors {
         nomistdun {
             applicationId 'com.yunting.nomisdun'
+            versionCode 1
+            versionName "1.0"
             manifestPlaceholders = [CHANNEL_VALUE: "nomisdun ",
                                     server_url   : "https://d.carbros.cn:4433/Nomisdun/",
-                                    version_code   : 1.0]
+                                    gaode_key    : "dd0062970415df30ca53059884511f85"]
         }
         shunaite {
             applicationId 'com.yunting.shunaite'
+            versionCode 1
+            versionName "1.0"
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
-                                    version_code   : 1.0]
+                                    gaode_key    : "17ba8168f054dfc78b40589f26276f0c"]
         }
 
     }
@@ -46,8 +48,8 @@ android {
             assets.srcDirs = ['src/main/assets']
             jniLibs.srcDir 'src/main/jniLibs'
         }
-        nomistdun.res.srcDirs=['src/main/res-nomisdun'] //指定编译的目录
-        shunaite.res.srcDirs=['src/main/res-shunaite']
+        nomistdun.res.srcDirs = ['src/main/res-nomisdun'] //指定编译的目录
+        shunaite.res.srcDirs = ['src/main/res-shunaite']
     }
 
     buildTypes {

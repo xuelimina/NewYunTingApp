@@ -9,6 +9,7 @@ import com.yuanting.nomisdun.R2;
 import com.yuanting.nomisdun.main.about.AboutDelegate;
 import com.yuanting.nomisdun.main.orderQuery.OrderQueryDelegate;
 import com.yuanting.nomisdun.main.product.SelectProductDelegate;
+import com.yuanting.nomisdun.main.shopQuery.ShopQueryDelegate;
 import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
 
 import butterknife.OnClick;
@@ -41,7 +42,7 @@ public class NoMisDunIndexDelegate extends BottomItemDelegate {
 
     @OnClick(R2.id.btn_shop_query)
     void onClickShopQuery() {
-
+        getSupportDelegate().start(new ShopQueryDelegate());
     }
 
     @OnClick(R2.id.btn_order_query)

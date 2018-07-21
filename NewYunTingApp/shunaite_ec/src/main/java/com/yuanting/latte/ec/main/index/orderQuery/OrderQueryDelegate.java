@@ -102,7 +102,7 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
 
     @Override
     public void onError(int code, String msg) {
-        Toast.makeText(getContext(), "此二维码为查询到质保单" + msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "此二维码未查询到质保单" + msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -113,6 +113,7 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
     @Override
     public void onSuccess(final String response) {
         JSONObject object = JSONObject.parseObject(response);
+        if (object != null && object.containsKey("IsSale")) {
         final boolean IsSale = object.getBoolean("IsSale");
         //TODO 检查用户是否已经登录
         AccountManager.checkAccount(new IUserChecker() {
@@ -144,6 +145,9 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
                 }
             }
         });
+        }else {
+            Toast.makeText(getContext(), "此号未查询到质保单" , Toast.LENGTH_LONG).show();
+        }
     }
 
     private void startOrderDetailsDelegate(String response) {
