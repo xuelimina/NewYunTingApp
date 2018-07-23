@@ -7,5 +7,6 @@ package com.yuanting.yunting_core.net.callback;
  */
 public interface IRequest {
     void onRequestStart();
+    void onRequestDowning(int process);
     void onRequestEnd();
 }

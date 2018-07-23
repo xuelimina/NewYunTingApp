@@ -41,6 +41,7 @@ public class SaveFileTask extends AsyncTask<Object, Void, File> {
         if (extension == null || extension.equals("")) {
             extension = "";
         }
+        FileUtil.setRequest(REQUEST);
         if (name == null) {
             return FileUtil.writeToDisk(is, downloadDir, extension.toUpperCase(), extension);
         } else {

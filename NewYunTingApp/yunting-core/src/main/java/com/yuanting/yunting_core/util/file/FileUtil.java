@@ -16,6 +16,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 
 import com.yuanting.yunting_core.app.Latte;
+import com.yuanting.yunting_core.net.callback.IRequest;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -38,7 +39,7 @@ import java.util.Locale;
 public class FileUtil {
     //格式化的模板
     private static final String TIME_FORMAT = "_yyyyMMdd_HHmmss";
-
+    private static IRequest REQUEST;
     private static final String SDCARD_DIR =
             Environment.getExternalStorageDirectory().getPath();
 
@@ -53,6 +54,10 @@ public class FileUtil {
     //系统相机目录
     public static final String CAMERA_PHOTO_DIR =
             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath() + "/Camera/";
+
+    public static void setRequest(IRequest request) {
+        REQUEST = request;
+    }
 
     private static String getTimeFormatName(String timeFormatHeader) {
         final Date date = new Date(System.currentTimeMillis());
@@ -169,9 +174,13 @@ public class FileUtil {
             bos = new BufferedOutputStream(fos);
 
             byte data[] = new byte[1024 * 4];
-
+            int process=0;
             int count;
             while ((count = bis.read(data)) != -1) {
+                if (REQUEST!=null){
+                    process += count;
+                    REQUEST.onRequestDowning(process);
+                }
                 bos.write(data, 0, count);
             }
 
@@ -213,10 +222,14 @@ public class FileUtil {
             bos = new BufferedOutputStream(fos);
 
             byte data[] = new byte[1024 * 4];
-
+            int process=0;
             int count;
             while ((count = bis.read(data)) != -1) {
                 bos.write(data, 0, count);
+                if (REQUEST!=null){
+                    process += count;
+                    REQUEST.onRequestDowning(process);
+                }
             }
 
             bos.flush();

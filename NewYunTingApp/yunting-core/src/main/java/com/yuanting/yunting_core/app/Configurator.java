@@ -64,6 +64,14 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appID);
         return this;
     }
+    public final Configurator withFirAppID(String appID) {
+        LATTE_CONFIGS.put(ConfigKeys.FIR_APP_ID, appID);
+        return this;
+    }
+    public final Configurator withFirApiToken(String token) {
+        LATTE_CONFIGS.put(ConfigKeys.FIR_API_TOKEN, token);
+        return this;
+    }
 
     public final Configurator withWeChatAppSecret(String appSecret) {
         LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_SECRET, appSecret);

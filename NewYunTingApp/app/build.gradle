@@ -25,7 +25,9 @@ android {
             versionName "1.0"
             manifestPlaceholders = [CHANNEL_VALUE: "nomisdun ",
                                     server_url   : "https://d.carbros.cn:4433/Nomisdun/",
-                                    gaode_key    : "dd0062970415df30ca53059884511f85"]
+                                    gaode_key    : "dd0062970415df30ca53059884511f85",
+                                    fir_appid:"5b520673ca87a831f4b4050f",
+                                    fir_api_token:"dc4f939e27daebe8ede80a1a12fbbee3"]
         }
         shunaite {
             applicationId 'com.yunting.shunaite'
@@ -33,7 +35,9 @@ android {
             versionName "1.0"
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
-                                    gaode_key    : "17ba8168f054dfc78b40589f26276f0c"]
+                                    gaode_key    : "17ba8168f054dfc78b40589f26276f0c",
+                                    fir_appid:"5b520673ca87a831f4b4050f",
+                                    fir_api_token:"dc4f939e27daebe8ede80a1a12fbbee3"]
         }
 
     }
