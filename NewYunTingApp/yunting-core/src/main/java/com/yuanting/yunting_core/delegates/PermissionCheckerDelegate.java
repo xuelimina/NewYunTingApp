@@ -35,13 +35,15 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this,requestCode,grantResults);
+        PermissionCheckerDelegatePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
-    //这个是真正调用的方法
+
+    //不是直接调用方法
     @NeedsPermission(Manifest.permission.CAMERA)
     void startCamera() {
         LatteCamera.start(this);
     }
+
     //这个是真正调用的方法
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithCheck(this);
@@ -57,9 +59,22 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         PermissionCheckerDelegatePermissionsDispatcher.startScanWithCheck(this, delegate);
     }
 
-    @OnPermissionDenied(Manifest.permission.CAMERA)
-    void onCameraDenied() {
-        Toast.makeText(getContext(), "不允许拍照", Toast.LENGTH_LONG).show();
+    @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void readFile() {
+    }
+
+    public void readFileWithCheck() {
+        PermissionCheckerDelegatePermissionsDispatcher.readFileWithCheck(this);
+    }
+
+    @OnPermissionDenied({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onReadAndWriteDenied() {
+        Toast.makeText(getContext(), "不允许存储", Toast.LENGTH_LONG).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void onReadAndWriteNever() {
+        Toast.makeText(getContext(), "永久拒绝存储权限", Toast.LENGTH_LONG).show();
     }
 
     @OnNeverAskAgain(Manifest.permission.CAMERA)
@@ -67,12 +82,17 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         Toast.makeText(getContext(), "永久拒绝权限", Toast.LENGTH_LONG).show();
     }
 
-    @OnShowRationale(Manifest.permission.CAMERA)
-    void onCameraRationale(PermissionRequest request) {
-        showRationaleDialog(request);
+    @OnPermissionDenied(Manifest.permission.CAMERA)
+    void onCameraDenied() {
+        Toast.makeText(getContext(), "不允许拍照", Toast.LENGTH_LONG).show();
     }
 
-    private void showRationaleDialog(final PermissionRequest request) {
+    @OnShowRationale(Manifest.permission.CAMERA)
+    void onCameraRationale(PermissionRequest request) {
+        showRationaleDialog("需要拍照权限", request);
+    }
+
+    private void showRationaleDialog(String messageResId, final PermissionRequest request) {
         new AlertDialog.Builder(getContext())
                 .setPositiveButton("同意使用", new DialogInterface.OnClickListener() {
                     @Override
@@ -87,9 +107,10 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                     }
                 })
                 .setCancelable(false)
-                .setMessage("权限管理")
+                .setMessage(messageResId)
                 .show();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -114,8 +135,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-                    @SuppressWarnings("unchecked")
-                    final IGlobalCallback<Uri> callback = CallbackManager
+                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
                     if (callback != null) {
