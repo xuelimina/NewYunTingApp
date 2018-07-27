@@ -21,14 +21,10 @@ public class ShuNaiTeBottomDelegate extends BaseBottomDelegate {
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
-        items.put(new BottomTabBean(R.drawable.index,R.drawable.index_select,"首页"), new IndexDelegate());
-        items.put(new BottomTabBean(R.drawable.service,R.drawable.service_select,"联系我们"), new ContactUsDelegate());
-        items.put(new BottomTabBean(R.drawable.vip,R.drawable.vip_select,"VIP客户"), new PersonalDelegate());
-        items.put(new BottomTabBean(R.drawable.about,R.drawable.about_select,"关于我们"), new AboutDelegate());
-//        items.put(new BottomTabBean(R.drawable.server_select), new SortDelegate());
-//        items.put(new BottomTabBean(R.drawable.vip_select), new DiscoverDelegate());
-//        items.put(new BottomTabBean(R.drawable.about_select), new ShopCartDelegate());
-//        items.put(new BottomTabBean("{fa-user}", "我的"), new PersonalDelegate());
+        items.put(new BottomTabBean(R.drawable.index, R.drawable.index_select, "首页"), new IndexDelegate());
+        items.put(new BottomTabBean(R.drawable.service, R.drawable.service_select, "联系我们"), new ContactUsDelegate());
+        items.put(new BottomTabBean(R.drawable.vip, R.drawable.vip_select, "VIP客户"), new PersonalDelegate());
+        items.put(new BottomTabBean(R.drawable.about, R.drawable.about_select, "关于我们"), new AboutDelegate());
         return builder.addItems(items).build();
     }
 
@@ -37,8 +33,5 @@ public class ShuNaiTeBottomDelegate extends BaseBottomDelegate {
         return 0;
     }
 
-//    @Override
-//    public int setClickedColor() {
-//        return Color.parseColor("#ffff8800");
-//    }
+
 }

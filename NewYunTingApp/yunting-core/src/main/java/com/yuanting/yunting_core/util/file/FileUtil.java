@@ -41,7 +41,7 @@ public class FileUtil {
     private static final String TIME_FORMAT = "_yyyyMMdd_HHmmss";
     private static IRequest REQUEST;
     private static final String SDCARD_DIR =
-            Environment.getExternalStorageDirectory().getPath();
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath()+"/" + "AutoUpdate" +"/";
 
     //默认本地上传图片目录
     public static final String UPLOAD_PHOTO_DIR =
@@ -163,7 +163,8 @@ public class FileUtil {
     }
 
     public static File writeToDisk(InputStream is, String dir, String name) {
-        final File file = FileUtil.createFile(dir, name);
+//        final File file = FileUtil.createFile(dir, name);
+        File file = new File(Environment.getExternalStorageDirectory()+"/msc/" + name);
         BufferedInputStream bis = null;
         FileOutputStream fos = null;
         BufferedOutputStream bos = null;

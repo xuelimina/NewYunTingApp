@@ -18,5 +18,6 @@ public enum ConfigKeys {
     HANDLER, ACTIVITY,
     JAVASCRIPT_INTERFACE,
     FIR_APP_ID,
-    FIR_API_TOKEN
+    FIR_API_TOKEN,
+    APP_CODE
 }

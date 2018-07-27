@@ -1,6 +1,7 @@
 package com.yuanting.newyuntingapp;
 
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.multidex.MultiDexApplication;
 
@@ -21,17 +22,23 @@ public class NewYunTingApp extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         String server_url = "";
+        String fir_appid = "";
+        String fir_api_token = "";
+        int appCode = 0;
         try {
-            ApplicationInfo appInfo = getPackageManager()
-                    .getApplicationInfo(getPackageName(),
-                            PackageManager.GET_META_DATA);
+            ApplicationInfo appInfo = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             server_url = appInfo.metaData.getString("server_url");
-
+            fir_appid = appInfo.metaData.getString("fir_appid");
+            fir_api_token = appInfo.metaData.getString("fir_api_token");
+            appCode = packageInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-
         }
         Latte.init(getApplicationContext()).withApiHost(server_url)
+                .withFirAppID(fir_appid)
+                .withFirApiToken(fir_api_token)
+                .withAppCode(appCode)
                 .withIcons(new FontAwesomeModule())
                 .withLoaderDelayed(500)
                 .withWeChatAppID("微信AppKey").withWeChatAppSecret("微信AppSecret")

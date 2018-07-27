@@ -26,6 +26,7 @@ public class Configurator {
     //OKhttp中的拦截器集合
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
     private static final Handler HANDLER = new Handler();
+
     private Configurator() {
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
         LATTE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
@@ -64,10 +65,17 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.WE_CHAT_APP_ID, appID);
         return this;
     }
+
     public final Configurator withFirAppID(String appID) {
         LATTE_CONFIGS.put(ConfigKeys.FIR_APP_ID, appID);
         return this;
     }
+
+    public final Configurator withAppCode(int appCode) {
+        LATTE_CONFIGS.put(ConfigKeys.APP_CODE, appCode);
+        return this;
+    }
+
     public final Configurator withFirApiToken(String token) {
         LATTE_CONFIGS.put(ConfigKeys.FIR_API_TOKEN, token);
         return this;
@@ -113,10 +121,12 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
+
     public final Configurator withJavascriptInterface(@NonNull String name) {
         LATTE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE, name);
         return this;
     }
+
     public final Configurator withLoaderDelayed(long delayed) {
         LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;

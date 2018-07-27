@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
+    android:background="@android:color/white">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/bar_top"
@@ -56,6 +56,8 @@
                     android:background="@drawable/edit_circle"
                     android:gravity="center"
                     android:hint="请输入牌照号/手机号/车架号/膜卷号"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"
                     android:textSize="18sp" />
 
                 <android.support.v7.widget.AppCompatButton
@@ -84,7 +86,8 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="或" />
+                        android:text="或"
+                        android:textColor="@android:color/darker_gray" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:layout_width="0dp"
@@ -113,6 +116,7 @@
                     android:gravity="center"
                     android:lineSpacingExtra="3dp"
                     android:text="(上传质保/验证防伪码信息)"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
 
                 <RelativeLayout
@@ -127,6 +131,7 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
                         android:text="注："
+                        android:textColor="@android:color/darker_gray"
                         android:textSize="14sp" />
 
                     <android.support.v7.widget.LinearLayoutCompat
@@ -140,6 +145,7 @@
                             android:layout_height="wrap_content"
                             android:lineSpacingExtra="3dp"
                             android:text="每个标签上的二维码都是唯一的，而且在扫码注册后。二维码将被锁定，避免被恶意造访及使用！"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="14sp" />
 
                         <android.support.v7.widget.AppCompatTextView
@@ -147,6 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:text="标签触摸时有凹凸感觉，45°角斜视可以明显观察到凹凸面。"
+                            android:textColor="@android:color/darker_gray"
                             android:textSize="14sp" />
                     </android.support.v7.widget.LinearLayoutCompat>
                 </RelativeLayout>
@@ -170,6 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tv_order_prompt_one"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="13sp" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -186,6 +194,7 @@
                     android:layout_marginTop="2dp"
                     android:lineSpacingExtra="3dp"
                     android:text="1：由于膜胶层完全粘固需要时间，所以施工完毕一星期内不可高压水洗车，可用软布湿洗表面。"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="13sp" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -194,6 +203,7 @@
                     android:layout_marginTop="2dp"
                     android:lineSpacingExtra="3dp"
                     android:text="2：由于车身各部分弧度大小各异，弧度大造成膜面层粘附力低，边角容易二次气泡，请施工完毕后一周内返回施工店进行复查，确保完美施工质量"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="13sp" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -202,6 +212,7 @@
                     android:layout_marginTop="2dp"
                     android:lineSpacingExtra="3dp"
                     android:text="3：若作婚车用途，婚车装饰时，禁止使用强力吸盘附膜表面层，遇到雨雪天气时或有鞭炮、礼花弹等物质洒落在车漆表面请立即清除防止雨水长时间浸泡导致膜面染色。"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="13sp" />
             </android.support.v7.widget.LinearLayoutCompat>
         </android.support.v7.widget.LinearLayoutCompat>

@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background">
-
+    android:background="@android:color/white">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/bar_top"
@@ -57,6 +56,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/black"
                     android:text="省份" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -66,6 +66,7 @@
                     android:layout_toRightOf="@+id/tv_province_title"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/darker_gray"
                     android:text="请选择省份" />
 
                 <com.joanzapata.iconify.widget.IconTextView
@@ -74,6 +75,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
                     android:text="{fa-chevron-down}"
                     android:textSize="20sp" />
             </RelativeLayout>
@@ -92,6 +94,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/black"
                     android:text="城市" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -100,6 +103,7 @@
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@+id/tv_city_title"
                     android:gravity="center"
+                    android:textColor="@android:color/darker_gray"
                     android:padding="3dp"
                     android:text="请选择城市" />
 
@@ -109,6 +113,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
                     android:text="{fa-chevron-down}"
                     android:textSize="20sp" />
             </RelativeLayout>
@@ -127,6 +132,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/black"
                     android:text="区县" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -135,6 +141,7 @@
                     android:layout_height="match_parent"
                     android:layout_toRightOf="@+id/tv_district_title"
                     android:gravity="center"
+                    android:textColor="@android:color/darker_gray"
                     android:padding="3dp"
                     android:text="请选择区县" />
 
@@ -144,6 +151,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
                     android:text="{fa-chevron-down}"
                     android:textSize="20sp" />
             </RelativeLayout>
@@ -162,6 +170,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/black"
                     android:text="门店" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -171,6 +180,7 @@
                     android:layout_toRightOf="@+id/tv_shop_title"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:textColor="@android:color/darker_gray"
                     android:text="请选择门店" />
 
                 <com.joanzapata.iconify.widget.IconTextView
@@ -179,6 +189,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:gravity="center"
+                    android:textColor="@android:color/black"
                     android:text="{fa-chevron-down}"
                     android:textSize="20sp" />
             </RelativeLayout>
@@ -194,6 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|left"
+                    android:textColor="@android:color/black"
                     android:padding="3dp" />
 
             </android.support.v7.widget.LinearLayoutCompat>

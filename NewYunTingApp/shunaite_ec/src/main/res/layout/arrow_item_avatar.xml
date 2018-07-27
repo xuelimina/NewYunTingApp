@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
+        android:textColor="@android:color/darker_gray"
         android:gravity="center"
         android:text="{fa-chevron-right}" />
 

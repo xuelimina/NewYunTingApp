@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -39,7 +40,9 @@
             android:gravity="center|left"
             android:hint="您的姓名*"
             android:paddingLeft="2dp"
-            android:paddingTop="2dp" />
+            android:paddingTop="2dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/tv_contact_number"
@@ -52,7 +55,9 @@
             android:gravity="center|left"
             android:hint="您的手机号*"
             android:paddingLeft="2dp"
-            android:paddingTop="2dp" />
+            android:paddingTop="2dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/tv_contact_email"
@@ -66,7 +71,9 @@
             android:gravity="center|left"
             android:hint="您的邮箱*"
             android:paddingLeft="2dp"
-            android:paddingTop="2dp" />
+            android:paddingTop="2dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/tv_contact_message"
@@ -78,7 +85,9 @@
             android:gravity="center|left|top"
             android:hint="您的留言*"
             android:paddingLeft="2dp"
-            android:paddingTop="2dp" />
+            android:paddingTop="2dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_contact_sub"
@@ -114,6 +123,7 @@
                 android:layout_weight="1"
                 android:gravity="center|left"
                 android:text="电话/传真:0571-88026920"
+                android:textColor="@android:color/black"
                 android:textSize="12sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -122,6 +132,7 @@
                 android:layout_weight="1"
                 android:gravity="center|left"
                 android:text="联系地址:浙江金恒德国际汽配城A区21幢21-22号"
+                android:textColor="@android:color/black"
                 android:textSize="12sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -130,6 +141,7 @@
                 android:layout_weight="1"
                 android:gravity="center|left"
                 android:text="网         址:www.shunaite.com"
+                android:textColor="@android:color/black"
                 android:textSize="12sp" />
         </android.support.v7.widget.LinearLayoutCompat>
 

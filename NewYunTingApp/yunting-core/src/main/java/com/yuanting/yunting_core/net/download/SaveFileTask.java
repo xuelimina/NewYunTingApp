@@ -3,6 +3,8 @@ package com.yuanting.yunting_core.net.download;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
 
 import com.yuanting.yunting_core.app.Latte;
 import com.yuanting.yunting_core.net.callback.IRequest;
@@ -61,13 +63,21 @@ public class SaveFileTask extends AsyncTask<Object, Void, File> {
         autoInstallApk(file);
     }
 
-    private void autoInstallApk(File file) {
+    private static void autoInstallApk(File file) {
         if (FileUtil.getExtension(file.getPath()).equals("apk")) {
-            final Intent install = new Intent();
-            install.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            install.setAction(Intent.ACTION_VIEW);
-            install.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-            Latte.getApplicationContext().startActivity(install);
+            Intent intent = new Intent();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Uri apkUri = FileProvider.getUriForFile(Latte.getApplicationContext(),
+                        Latte.getApplicationContext().getPackageName() + ".fileprovider", file);
+                intent.setAction(Intent.ACTION_INSTALL_PACKAGE);
+                intent.setData(apkUri);
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            } else {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+            }
+            Latte.getApplicationContext().startActivity(intent);
         }
     }
 }

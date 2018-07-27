@@ -37,7 +37,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="经销查询" />
+                android:text="经销查询"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -63,7 +64,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="舒耐特产品" />
+                android:text="舒耐特产品"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -89,7 +91,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="产品报价" />
+                android:text="产品报价"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -122,7 +125,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="精彩活动" />
+                android:text="精彩活动"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -148,7 +152,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="在线订购" />
+                android:text="在线订购"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -174,7 +179,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="真伪鉴定" />
+                android:text="真伪鉴定"
+                android:textColor="@android:color/black" />
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v7.widget.LinearLayoutCompat>
 </android.support.v7.widget.LinearLayoutCompat>

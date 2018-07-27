@@ -153,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/darker_gray"
-                    android:text="@string/tv_order_prompt_one"
+                    android:text="@string/tv_nomisdun_order_prompt_one"
                     android:textSize="13sp" />
 
                 <android.support.v7.widget.AppCompatTextView

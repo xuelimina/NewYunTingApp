@@ -7,7 +7,7 @@
     <string name="sign_up_delegate_phone_error">错误的电话号码</string>
     <string name="sign_up_delegate_password_error">请填写至少6位数字</string>
     <string name="sign_up_delegate_re_password_error">密码验证错误</string>
-    <string name="tv_order_prompt_one">尊敬的客户：感谢您选择舒耐特汽车漆面透明保护膜，舒耐特漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
-    <string name="tv_order_prompt_two">尊敬的客户：感谢您选择舒耐特汽车漆面透明保护膜，舒耐特漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
+    <string name="tv_nomisdun_order_prompt_one">尊敬的客户：感谢您选择纳米斯顿汽车漆面透明保护膜，纳米斯顿漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
+    <string name="tv__nomisdun_order_prompt_two">尊敬的客户：感谢您选择纳米斯顿汽车漆面透明保护膜，纳米斯顿漆面保护膜以其卓越的产品性能，保持您的爱车光亮如新，最大极限保护您的漆面免受划痕之忧，尊享驾驶新车每一天。</string>
 
 </resources>

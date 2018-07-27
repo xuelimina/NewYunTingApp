@@ -1,5 +1,6 @@
 package com.yuanting.latte.ec.main.index;
 
+import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.yuanting.yunting_core.ui.recycler.DataConverter;
 import com.yuanting.yunting_core.ui.recycler.ItemType;
 import com.yuanting.yunting_core.ui.recycler.MultipleFields;
@@ -16,6 +18,7 @@ import com.yuanting.yunting_core.ui.recycler.MultipleRecyclerAdapter;
 import com.yuanting.yunting_core.ui.recycler.MultipleViewHolder;
 import com.yuanting.yunting_ec.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +95,7 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
             case ItemType.PICTURE:
                 final RecyclerView recyclerView = holder.getView(R.id.ry_picture);
                 final PictureAdapter adapter = new PictureAdapter(new PictureConverter().convert());
-                final GridLayoutManager manager = new GridLayoutManager(mContext,1);
+                final GridLayoutManager manager = new GridLayoutManager(mContext, 1);
                 manager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 recyclerView.setLayoutManager(manager);
                 recyclerView.setAdapter(adapter);
@@ -115,7 +118,7 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
             switch (entity.getItemType()) {
                 case ItemType.ITEM_PICTURE:
                     final AppCompatImageView itemPicture = holder.getView(R.id.image_view_picture);
-                    itemPicture.setImageResource((Integer) entity.getField(MultipleFields.IMAGE_URL));
+                    Glide.with(mContext).load(entity.getField(MultipleFields.IMAGE_URL)).apply(RECYCLER_OPTIONS).into(itemPicture);
                     break;
                 default:
                     break;
@@ -124,29 +127,20 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
     }
 
     class PictureConverter extends DataConverter {
-
         @Override
         public ArrayList<MultipleItemEntity> convert() {
-            ENTITIES.add(MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
-                    .setField(MultipleFields.IMAGE_URL, R.raw.picture_1)
-                    .setField(MultipleFields.SPAN_SIZE, 1).build());
-            ENTITIES.add(MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
-                    .setField(MultipleFields.IMAGE_URL, R.raw.picture_2)
-                    .setField(MultipleFields.SPAN_SIZE, 1).build());
-            ENTITIES.add(MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
-                    .setField(MultipleFields.IMAGE_URL, R.raw.picture_3)
-                    .setField(MultipleFields.SPAN_SIZE, 1).build());
-            ENTITIES.add(MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
-                    .setField(MultipleFields.IMAGE_URL, R.raw.picture_4)
-                    .setField(MultipleFields.SPAN_SIZE, 1).build());
-            ENTITIES.add(MultipleItemEntity.builder()
-                    .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
-                    .setField(MultipleFields.IMAGE_URL, R.raw.picture_5)
-                    .setField(MultipleFields.SPAN_SIZE, 1).build());
+            try {
+                final AssetManager assets = mContext.getAssets();
+                final String[] paths = assets.list("picture");
+                for (String path : paths) {
+                    ENTITIES.add(MultipleItemEntity.builder()
+                            .setField(MultipleFields.ITEM_TYPE, ItemType.ITEM_PICTURE)
+                            .setField(MultipleFields.IMAGE_URL, "file:///android_asset/picture/" + path)
+                            .setField(MultipleFields.SPAN_SIZE, 1).build());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return ENTITIES;
         }
     }

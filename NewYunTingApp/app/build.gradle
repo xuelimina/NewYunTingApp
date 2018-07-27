@@ -36,7 +36,7 @@ android {
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
                                     gaode_key    : "17ba8168f054dfc78b40589f26276f0c",
-                                    fir_appid:"5b520673ca87a831f4b4050f",
+                                    fir_appid:"5b581216cb2a0f437f2fc0f6",
                                     fir_api_token:"dc4f939e27daebe8ede80a1a12fbbee3"]
         }
 

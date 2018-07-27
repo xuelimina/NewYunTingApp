@@ -23,7 +23,6 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     private final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);
 
     public abstract LatteDelegate setRootDelegate();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
