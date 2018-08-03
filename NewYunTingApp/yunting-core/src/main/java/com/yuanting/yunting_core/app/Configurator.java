@@ -111,7 +111,7 @@ public class Configurator {
     }
 
     /*添加自定义字体*/
-    public final Configurator withIcons(IconFontDescriptor descriptor) {
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
         return this;
     }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
+import com.yuanting.dpfppu.main.DpfppuBottomDelegate;
 import com.yuanting.latte.ec.main.ShuNaiTeBottomDelegate;
 import com.yuanting.latte.ec.sign.SignInDelegate;
 import com.yuanting.nomisdun.main.NoMisDunIndexDelegate;
@@ -30,10 +31,13 @@ public class MainActivity extends ProxyActivity implements ILauncherListener {
     @Override
     public LatteDelegate setRootDelegate() {
         final String applicationId = getApplication().getPackageName();
-        if (applicationId.equals(PackageType.SHUNAITE)) {
-            return new ShuNaiTeBottomDelegate();
-        } else if (applicationId.equals(PackageType.NOMISDUN)) {
-            return new NoMisDunIndexDelegate();
+        switch (applicationId) {
+            case PackageType.SHUNAITE:
+                return new ShuNaiTeBottomDelegate();
+            case PackageType.NOMISDUN:
+                return new NoMisDunIndexDelegate();
+            case PackageType.DPFPPU:
+                return new DpfppuBottomDelegate();
         }
         return null;
     }

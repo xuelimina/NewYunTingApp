@@ -19,25 +19,35 @@ android {
     }
     flavorDimensions "default"
     productFlavors {
-        nomistdun {
-            applicationId 'com.yunting.nomisdun'
+        dpfppu {
+            applicationId 'com.yunting.dpfppu'
             versionCode 1
             versionName "1.0"
+            manifestPlaceholders = [CHANNEL_VALUE: "dpfppu ",
+                                    server_url   : "https://d.carbros.cn:4433/Nomisdun/",
+                                    gaode_key    : "dd0062970415df30ca53059884511f85",
+                                    fir_appid    : "5b5af4c3ca87a82d0c8a1c5c",
+                                    fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
+        }
+        nomistdun {
+            applicationId 'com.yunting.nomisdun'
+            versionCode 2
+            versionName "2.0"
             manifestPlaceholders = [CHANNEL_VALUE: "nomisdun ",
                                     server_url   : "https://d.carbros.cn:4433/Nomisdun/",
                                     gaode_key    : "dd0062970415df30ca53059884511f85",
-                                    fir_appid:"5b520673ca87a831f4b4050f",
-                                    fir_api_token:"dc4f939e27daebe8ede80a1a12fbbee3"]
+                                    fir_appid    : "5b520673ca87a831f4b4050f",
+                                    fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
         }
         shunaite {
             applicationId 'com.yunting.shunaite'
-            versionCode 1
-            versionName "1.0"
+            versionCode 2
+            versionName "2.0"
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
                                     gaode_key    : "17ba8168f054dfc78b40589f26276f0c",
-                                    fir_appid:"5b581216cb2a0f437f2fc0f6",
-                                    fir_api_token:"dc4f939e27daebe8ede80a1a12fbbee3"]
+                                    fir_appid    : "5b581216cb2a0f437f2fc0f6",
+                                    fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
         }
 
     }
@@ -54,6 +64,7 @@ android {
         }
         nomistdun.res.srcDirs = ['src/main/res-nomisdun'] //指定编译的目录
         shunaite.res.srcDirs = ['src/main/res-shunaite']
+        dpfppu.res.srcDirs = ['src/main/res-dpfppu']
     }
 
     buildTypes {
@@ -79,4 +90,5 @@ dependencies {
     implementation project(':yunting-annotations')
     implementation project(':yunting-compiler')
     implementation project(':nomisdun')
+    implementation project(':dpfppu')
 }

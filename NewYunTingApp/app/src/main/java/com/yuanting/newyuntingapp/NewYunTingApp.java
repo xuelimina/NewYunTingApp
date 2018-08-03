@@ -8,8 +8,8 @@ import android.support.multidex.MultiDexApplication;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.yuanting.latte.ec.database.DatabaseManager;
-import com.yuanting.latte.ec.icon.FontEcModule;
 import com.yuanting.yunting_core.app.Latte;
+import com.yuanting.yunting_core.icon.FontYTModule;
 import com.yuanting.yunting_core.net.interceptors.DebugInterceptor;
 
 /**
@@ -39,12 +39,13 @@ public class NewYunTingApp extends MultiDexApplication {
                 .withFirAppID(fir_appid)
                 .withFirApiToken(fir_api_token)
                 .withAppCode(appCode)
-                .withIcons(new FontAwesomeModule())
+                .withIcon(new FontAwesomeModule())
+                .withIcon(new FontYTModule())
                 .withLoaderDelayed(500)
                 .withWeChatAppID("微信AppKey").withWeChatAppSecret("微信AppSecret")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withJavascriptInterface("latte")
-                .withIcons(new FontEcModule()).configure();
+               .configure();
         DatabaseManager.getInstance().init(this);
         initStetho();
     }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/bar_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/delegate_top_bg">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="报价查询"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar_top"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_layout_view"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:scaleType="fitCenter"
+                android:layout_marginRight="80dp"
+                android:src="@drawable/select_product_logo" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/btn_layout_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="80dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_external"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delegate_top_bg"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:text="DPF汽车漆面保护膜"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_interior"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delegate_top_bg"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:text="DPF内饰保护膜"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_color_modification"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delegate_top_bg"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:text="DPF改色膜"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_sunlight"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delegate_top_bg"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:text="DPF太阳膜"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+
+</RelativeLayout>

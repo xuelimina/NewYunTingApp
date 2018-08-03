@@ -1,14 +1,13 @@
-package com.yuanting.latte.ec.icon;
+package com.yuanting.yunting_core.icon;
 
 import com.joanzapata.iconify.Icon;
 import com.joanzapata.iconify.IconFontDescriptor;
 
 /**
- * Created on 2018/4/17 17:02
- * Created by 薛立民
- * TEL 13262933389
+ * Created
  */
-public class FontEcModule implements IconFontDescriptor {
+
+public class FontYTModule implements IconFontDescriptor {
     @Override
     public String ttfFileName() {
         return "iconfont.ttf";
@@ -16,6 +15,6 @@ public class FontEcModule implements IconFontDescriptor {
 
     @Override
     public Icon[] characters() {
-        return EcIcons.values();
+        return YTIcons.values();
     }
 }

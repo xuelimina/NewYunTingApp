@@ -8,4 +8,5 @@ package com.yuanting.newyuntingapp;
 public class PackageType {
     public final static String NOMISDUN ="com.yunting.nomisdun";
     public final static String SHUNAITE ="com.yunting.shunaite";
+    public final static String DPFPPU ="com.yunting.dpfppu";
 }
