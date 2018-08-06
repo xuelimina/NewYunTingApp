@@ -9,9 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.yuanting.latte.ec.main.index.orderQuery.OrderQueryDelegate;
 import com.yuanting.latte.ec.main.personal.list.ListAdapter;
 import com.yuanting.latte.ec.main.personal.list.ListBean;
 import com.yuanting.latte.ec.main.personal.list.ListItemType;
+import com.yuanting.latte.ec.main.personal.profile.AddressDelegate;
+import com.yuanting.latte.ec.main.personal.profile.QADelegate;
 import com.yuanting.latte.ec.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
 import com.yuanting.yunting_core.app.IUserChecker;
@@ -79,52 +82,28 @@ public class PersonalDelegate extends BottomItemDelegate {
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
                 .setImageValue(R.drawable.setting_user_data)
-//                .setDelegate(new AddressDelegate())
+                .setDelegate(new AddressDelegate())
                 .setText("我的资料")
                 .build();
 
-        final ListBean order = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_NORMAL)
-                .setId(2)
-                .setImageValue(R.drawable.setting_order)
-//                .setDelegate(new SettingsDelegate())
-                .setText("我的订单")
-                .build();
-        final ListBean vip = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_NORMAL)
-                .setId(3)
-                .setImageValue(R.drawable.setting_vip)
-//                .setDelegate(new SettingsDelegate())
-                .setText("会员中心")
-                .build();
         final ListBean service = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
-                .setId(4)
+                .setId(2)
                 .setImageValue(R.drawable.setting_service)
-//                .setDelegate(new SettingsDelegate())
+                .setDelegate(new OrderQueryDelegate())
                 .setText("质保服务")
-                .build();
-        final ListBean notification = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_NORMAL)
-                .setId(5)
-                .setImageValue(R.drawable.setting_notification)
-//                .setDelegate(new SettingsDelegate())
-                .setText("消息通知")
                 .build();
         final ListBean QA = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
-                .setId(6)
+                .setId(3)
                 .setImageValue(R.drawable.setting_q_a)
-//                .setDelegate(new SettingsDelegate())
+                .setDelegate(new QADelegate())
                 .setText("问题问答")
                 .build();
 
         final List<ListBean> data = new ArrayList<>();
         data.add(userData);
-        data.add(order);
-        data.add(vip);
         data.add(service);
-        data.add(notification);
         data.add(QA);
 
         //设置RecyclerView
@@ -132,7 +111,7 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
-//        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
     }
 
     @OnClick(R2.id.btn_sign_in)

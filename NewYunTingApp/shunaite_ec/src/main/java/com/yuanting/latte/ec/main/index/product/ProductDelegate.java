@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.yuanting.latte.ec.main.index.product.content.ProductContentDelegate;
@@ -61,9 +62,13 @@ public class ProductDelegate extends LatteDelegate implements ISuccess, IFailure
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mInteriorBtn.setTextColor(getResources().getColor(android.R.color.white));
-        mInteriorBtn.setBackgroundResource(R.color.app_main_background);
+//        mInteriorBtn.setTextColor(getResources().getColor(android.R.color.white));
+//        mInteriorBtn.setBackgroundResource(R.color.app_main_background);
         IsInterior = false;
+        mInteriorBtn.setTextColor(getResources().getColor(android.R.color.black));
+        mInteriorBtn.setBackgroundResource(R.drawable.product_button_bg);
+        mExternalBtn.setTextColor(getResources().getColor(android.R.color.white));
+        mExternalBtn.setBackgroundResource(R.color.app_main_background);
         clientHelp(EXTERNAL);
     }
 
@@ -73,6 +78,7 @@ public class ProductDelegate extends LatteDelegate implements ISuccess, IFailure
     }
 
     private void clientHelp(String url) {
+        Log.i("url",url);
         RestClient.builder()
                 .url(url)
                 .loader(getContext())
@@ -89,6 +95,8 @@ public class ProductDelegate extends LatteDelegate implements ISuccess, IFailure
 
     @OnClick(R2.id.btn_interior)
     void interiorBtnOnClick() {
+        Log.i("btn_interior","btn_interior");
+        mProductRecyclerView.removeAllViews();
         IsInterior = true;
         mInteriorBtn.setTextColor(getResources().getColor(android.R.color.white));
         mInteriorBtn.setBackgroundResource(R.color.app_main_background);
@@ -99,6 +107,7 @@ public class ProductDelegate extends LatteDelegate implements ISuccess, IFailure
 
     @OnClick(R2.id.btn_external)
     void externalBtnOnClick() {
+        mProductRecyclerView.removeAllViews();
         IsInterior = false;
         mInteriorBtn.setTextColor(getResources().getColor(android.R.color.black));
         mInteriorBtn.setBackgroundResource(R.drawable.product_button_bg);
@@ -129,7 +138,6 @@ public class ProductDelegate extends LatteDelegate implements ISuccess, IFailure
 
     @Override
     public void startProductContent(MultipleItemEntity entity) {
-
         final ProductContentDelegate delegate = new ProductContentDelegate();
         final Bundle bundle = new Bundle();
         bundle.putBoolean("IsInterior", IsInterior);

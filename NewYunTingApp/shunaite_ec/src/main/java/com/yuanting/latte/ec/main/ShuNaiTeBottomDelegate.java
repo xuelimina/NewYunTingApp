@@ -21,16 +21,21 @@ public class ShuNaiTeBottomDelegate extends BaseBottomDelegate {
     @Override
     public LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder) {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
-        items.put(new BottomTabBean(R.drawable.index, R.drawable.index_select, "首页"), new IndexDelegate());
-        items.put(new BottomTabBean(R.drawable.service, R.drawable.service_select, "联系我们"), new ContactUsDelegate());
-        items.put(new BottomTabBean(R.drawable.vip, R.drawable.vip_select, "VIP客户"), new PersonalDelegate());
-        items.put(new BottomTabBean(R.drawable.about, R.drawable.about_select, "关于我们"), new AboutDelegate());
+        items.put(new BottomTabBean("{icon-index}","{icon-index-shadow}",  "首页"), new IndexDelegate());
+        items.put(new BottomTabBean("{icon-contact-us}","{icon-contact-us-shadow}",  "联系我们"), new ContactUsDelegate());
+        items.put(new BottomTabBean("{icon-about-us}","{icon-about-us-shadow}",  "关于我们"), new AboutDelegate());
+        items.put(new BottomTabBean("{icon-vip}","{icon-vip-shadow}",  "VIP客户"), new PersonalDelegate());
         return builder.addItems(items).build();
     }
 
     @Override
     public int setIndexDelegate() {
         return 0;
+    }
+
+    @Override
+    public int setBottomBarDelegateLayoutId() {
+        return R.layout.delegate_bottom;
     }
 
 

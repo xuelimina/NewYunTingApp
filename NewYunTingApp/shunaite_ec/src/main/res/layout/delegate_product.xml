@@ -36,17 +36,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:visibility="gone">
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_interior"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/product_button_bg"
-            android:gravity="center"
-            android:text="内饰保护膜"
-            android:textSize="14sp" />
+        android:visibility="visible">
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_external"
@@ -56,6 +46,16 @@
             android:background="@drawable/product_button_bg"
             android:gravity="center"
             android:text="车身透明保护膜"
+            android:textSize="14sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_interior"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/product_button_bg"
+            android:gravity="center"
+            android:text="内饰保护膜"
             android:textSize="14sp" />
     </android.support.v7.widget.LinearLayoutCompat>
 

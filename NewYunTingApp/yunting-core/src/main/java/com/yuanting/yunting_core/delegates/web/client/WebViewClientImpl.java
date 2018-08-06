@@ -9,9 +9,7 @@ import android.webkit.WebViewClient;
 import com.yuanting.yunting_core.app.Latte;
 import com.yuanting.yunting_core.delegates.web.IPageLoadListener;
 import com.yuanting.yunting_core.delegates.web.WebDelegate;
-import com.yuanting.yunting_core.delegates.web.route.Router;
 import com.yuanting.yunting_core.ui.loader.LatteLoader;
-import com.yuanting.yunting_core.util.log.LatteLogger;
 
 
 /**
@@ -37,11 +35,11 @@ public class WebViewClientImpl extends WebViewClient {
         return super.shouldOverrideUrlLoading(view, request);
     }
 
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        LatteLogger.d("shouldOverrideUrlLoading", url);
-        return Router.getInstance().handleWebUrl(DELEGATE, url);
-    }
+//    @Override
+//    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//        LatteLogger.d("shouldOverrideUrlLoading", url);
+//        return Router.getInstance().handleWebUrl(DELEGATE, url);
+//    }
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {

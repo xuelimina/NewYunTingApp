@@ -3,6 +3,7 @@ package com.yuanting.yunting_core.delegates.bottom;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -10,14 +11,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.joanzapata.iconify.widget.IconTextView;
 import com.yuanting.yunting_core.R;
 import com.yuanting.yunting_core.R2;
 import com.yuanting.yunting_core.app.ConfigKeys;
@@ -43,8 +45,8 @@ import me.yokeyword.fragmentation.ISupportFragment;
  */
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
     private final ArrayList<BottomTabBean> TAB_BEANS = new ArrayList<>();
-    private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
-    private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
+    protected final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
+    protected final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
     @BindView(R2.id.bottom_bar)
@@ -52,13 +54,13 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
 
     @Override
     public Object setLayout() {
-        return R.layout.delegate_bottom;
+        return setBottomBarDelegateLayoutId();
     }
 
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
     public abstract int setIndexDelegate();
-
+    public abstract int setBottomBarDelegateLayoutId();
     private FirUpdateUtils firUpdateUtils;
     private JSONObject updateJson;
 
@@ -143,18 +145,20 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
             LayoutInflater.from(getContext()).inflate(R.layout.bottom_item_icon_text_layout, mBottomBar);
-            final LinearLayoutCompat item = (LinearLayoutCompat) mBottomBar.getChildAt(i);
+            final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
             //设置每个item的点击事件
             item.setTag(i);
             item.setOnClickListener(this);
-            final AppCompatImageView itemIcon = (AppCompatImageView) item.getChildAt(0);
+            final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
             final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
             final BottomTabBean bean = TAB_BEANS.get(i);
             //初始化数据
-            itemIcon.setBackgroundResource(bean.getIconId());
+            itemIcon.setText(bean.getIcon());
+            itemIcon.setTextColor(Color.WHITE);
+            itemIcon.setBackgroundColor(Color.TRANSPARENT);
             itemTitle.setText(bean.getTitle());
             if (i == mIndexDelegate) {
-                itemIcon.setBackgroundResource(bean.getIconSelectId());
+                itemIcon.setText(bean.getIconSelect());
             }
         }
         final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
@@ -165,9 +169,11 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final int count = mBottomBar.getChildCount();
         for (int i = 0; i < count; i++) {
             final BottomTabBean bean = TAB_BEANS.get(i);
-            final LinearLayoutCompat item = (LinearLayoutCompat) mBottomBar.getChildAt(i);
-            final AppCompatImageView itemIcon = (AppCompatImageView) item.getChildAt(0);
-            itemIcon.setBackgroundResource(bean.getIconId());
+            final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
+            final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+            itemIcon.setText(bean.getIcon());
+            itemIcon.setTextColor(Color.WHITE);
+            itemIcon.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
@@ -176,9 +182,9 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         final int tag = (int) v.getTag();
         final BottomTabBean bean = TAB_BEANS.get(tag);
         resetColor();
-        final LinearLayoutCompat item = (LinearLayoutCompat) v;
-        final AppCompatImageView itemIcon = (AppCompatImageView) item.getChildAt(0);
-        itemIcon.setBackgroundResource(bean.getIconSelectId());
+        final RelativeLayout item = (RelativeLayout) v;
+        final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+        itemIcon.setText(bean.getIconSelect());
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
     }

@@ -76,26 +76,29 @@
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_video_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/video_2" />
+                android:src="@drawable/video_2" />
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_video_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/video_3" />
+                android:src="@drawable/video_3" />
 
             <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_video_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/video_4" />
+                android:src="@drawable/video_4" />
         </android.support.v7.widget.LinearLayoutCompat>
 
     </android.support.v7.widget.LinearLayoutCompat>

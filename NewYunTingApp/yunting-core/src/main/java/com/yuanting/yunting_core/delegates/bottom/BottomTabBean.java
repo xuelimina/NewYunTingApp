@@ -6,21 +6,21 @@ package com.yuanting.yunting_core.delegates.bottom;
  * TEL 13262933389
  */
 public final class BottomTabBean {
-    private final int ICON_SELECT_ID;
-    private final int ICON_ID;
+    private final CharSequence ICON_SELECT;
+    private final CharSequence ICON;
     private final CharSequence TITLE;
 
-    public BottomTabBean(int iconId, int iconSelectId, CharSequence title) {
-        this.ICON_ID = iconId;
-        this.ICON_SELECT_ID = iconSelectId;
+    public BottomTabBean(CharSequence icon, CharSequence iconSelect, CharSequence title) {
+        this.ICON = icon;
+        this.ICON_SELECT = iconSelect;
         this.TITLE = title;
     }
 
-    public int getIconId() {
-        return ICON_ID;
+    public CharSequence getIcon() {
+        return ICON;
     }
-    public int getIconSelectId() {
-        return ICON_SELECT_ID;
+    public CharSequence getIconSelect() {
+        return ICON_SELECT;
     }
     public CharSequence getTitle() {
         return TITLE;

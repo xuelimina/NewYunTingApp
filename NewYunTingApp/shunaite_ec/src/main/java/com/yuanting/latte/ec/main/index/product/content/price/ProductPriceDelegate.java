@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.yuanting.latte.ec.main.index.product.content.right.ProductRightItemFields;
@@ -84,7 +85,7 @@ public class ProductPriceDelegate extends LatteDelegate implements ISuccess, IEr
 
     @Override
     public void onSuccess(String response) {
-//        Log.i("response", response);
+        Log.i("response", response);
         mConverter = new ProductModelDataConverter();
         mAdapter = new ProductModelAdapter(mConverter.setJsonData(response).convert());
         mAdapter.setItemOnClick(this);

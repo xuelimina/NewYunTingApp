@@ -1,5 +1,6 @@
 package com.yuanting.latte.ec.main.index;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
@@ -8,6 +9,9 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.yuanting.yunting_core.ui.recycler.DataConverter;
@@ -86,11 +90,32 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
                 });
                 break;
             case ItemType.VIDEO:
+                final AppCompatImageView imageViewVideo2 = holder.getView(R.id.iv_video_2);
+                final AppCompatImageView imageViewVideo3 = holder.getView(R.id.iv_video_3);
+                final AppCompatImageView imageViewVideo4 = holder.getView(R.id.iv_video_4);
                 final JZVideoPlayerStandard video = holder.getView(R.id.image_video);
                 video.thumbImageView.setImageResource(R.drawable.video_1);
-                video.fullscreenButton.setVisibility(View.GONE);
+//                video.fullscreenButton.setVisibility(View.GONE);
                 String uri = "http://p8jpjjvcn.bkt.clouddn.com/shunaite.mp4";
                 video.setUp(uri, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "视频案例");
+                imageViewVideo2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        video.thumbImageView.setImageResource(R.drawable.video_2);
+                    }
+                });
+                imageViewVideo3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        video.thumbImageView.setImageResource(R.drawable.video_3);
+                    }
+                });
+                imageViewVideo4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        video.thumbImageView.setImageResource(R.drawable.video_4);
+                    }
+                });
                 break;
             case ItemType.PICTURE:
                 final RecyclerView recyclerView = holder.getView(R.id.ry_picture);
@@ -104,7 +129,22 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
                 break;
         }
     }
+    /**
+     * 根据图片大小按比例适配全屏
+     *
+     * @param imageView
+     * @param picWidth
+     * @param picHeight
+     */
 
+    private void fitImage(Activity activity, ImageView imageView, float picWidth, float picHeight) {
+        WindowManager wm = activity.getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+        float height = (float) width / picWidth * picHeight;
+        ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+        layoutParams.height = (int) height;
+        imageView.setLayoutParams(layoutParams);
+    }
     class PictureAdapter extends MultipleRecyclerAdapter {
 
         PictureAdapter(List<MultipleItemEntity> data) {

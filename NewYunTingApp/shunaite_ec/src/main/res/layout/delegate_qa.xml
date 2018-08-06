@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/bar_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/app_main_background">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/back" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="问题回答"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar_top">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.隐形车衣是什么材质？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.主要的材质有TPU和PVC材质，TPU材质偏软，拉伸性的韧性极好：PVC材质相对TPU较厚，施工不易采用包边处理。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.漆面保护膜是什么样的一个功能？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.TPU材质的膜表面有一层特殊的聚合物涂层，这个透明涂层具有划痕记忆修复，并能增加漆面亮度避免高速石子打伤车漆，并有效隔绝虫胶，树胶，酸雨对车漆的腐蚀，超强的韧性，能有效抵御轻度富人划伤，擦碰。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.多深划痕可以自动修复？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.透明涂层的主要目的是解决汽车在日常清洗过程中发生的表面划伤和普通螺旋纹。如果划痕修复破坏了透明涂层，它就不会愈合。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.多久后都会划痕自动修复？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.划痕修复的时间取决于划痕的严重程度和环境温度。轻微的划痕，在室温（22摄氏度）通常为一个小时。在温度比较高的时候，修复的时间会更短。并可以在任何时候通过浇注热水在划痕处。以加速修复过程。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.如何修复膜面划痕？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.产品加入防腐聚合物和抗划涂层，表面经过硬化处理，长期使用不易黄化和老化，也避免了化学产品，处理漆面的风险，节省大量费用和时间。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.透明涂层能够修复多少次？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.有了这项技术，只有涂层没有破坏，划痕修复就没有次数限制。（只限于TPU材质的透明膜）"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.透明涂层保持多长时间？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.根据膜的保养情况，透明涂层可以无限期地持续下去，定期清洗和打蜡保持透明涂层在最佳状态。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.漆面透明膜如何避免虫胶、树胶、酸雨对车漆的腐蚀？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.漆面透明保护膜具有很强抗污性和耐化学性，它的透明涂层具有非常低的表面附着力，这让各种污渍不能很好的粘在膜的表面，并可以轻松的清洗掉。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.车身贴了漆面保护膜后如何保养？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.漆面保护膜非常容易护理，我们一般保养：施工七天可以正常洗车。可以用虫胶柏油清洗剂去除污渍。如果是非常顽固的污渍，可用99%的异丙醇或油漆稀释剂去除污渍，注意使用时请避免接触汽车漆面。经常打蜡会让膜面保持长久的亮度。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Q.漆面保护膜的质保范围是什么？"
+                android:textColor="#474646 "
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="A.漆面保护膜的质保内容包括：除人为原因的翘边、开裂、气泡、脱层、褪色是质保的。人为原因的划伤或是碰撞以及树枝划伤等均不在质保范围内。"
+                android:textColor="#474646 "
+                android:lineSpacingExtra="3dp"
+                android:textSize="13sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+</RelativeLayout>

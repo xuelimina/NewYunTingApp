@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -69,6 +70,7 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         final Bundle args = getArguments();
         if (args != null) {
+            Log.i("args", args.toString());
             CAR_IMG = args.getString(ProductItemFields.CARIMG.name());
             LOGO_IMG = args.getString(ProductItemFields.LOGOIMG.name());
             BRAND_CN = args.getString(ProductItemFields.BRAND_CN.name());
@@ -121,6 +123,8 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
 
     @Override
     public void onSuccess(String response) {
+        Log.i("IsInterior",""+IsInterior);
+        Log.i("response",response);
         mConverter = new ProductContentDataConverter();
         mConverter.setInterior(IsInterior);
         mRightAdapter = new ProductRightAdapter(mConverter.setJsonData(response).convert());
