@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="200dp"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:paddingBottom="5dp">
+    android:padding="5dp">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/image_view_picture"

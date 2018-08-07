@@ -12,7 +12,9 @@ import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.yuanting.latte.ec.main.ShuNaiTeBottomDelegate;
+import com.yuanting.latte.ec.main.index.gift.GiftDelegate;
 import com.yuanting.latte.ec.main.index.orderQuery.OrderQueryDelegate;
+import com.yuanting.latte.ec.main.index.picture.PictureDelegate;
 import com.yuanting.latte.ec.main.index.product.ProductDelegate;
 import com.yuanting.latte.ec.main.index.shopQuery.ShopQueryDelegate;
 import com.yuanting.latte.ec.main.index.shopWeb.ShopWebDelegate;
@@ -106,10 +108,16 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
     @Override
     public void giftStart() {
 //        Toast.makeText(getContext(), "精彩活动", Toast.LENGTH_SHORT).show();
+        getParentDelegate().getSupportDelegate().start(new GiftDelegate());
     }
 
     @Override
     public void orderQueryStart() {
         getParentDelegate().getSupportDelegate().start(new OrderQueryDelegate());
+    }
+
+    @Override
+    public void pictureQueryStart() {
+        getParentDelegate().getSupportDelegate().start(new PictureDelegate());
     }
 }
