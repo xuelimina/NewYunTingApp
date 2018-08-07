@@ -14,6 +14,7 @@ import com.yuanting.yunting_core.delegates.LatteDelegate;
 import com.yuanting.yunting_core.ui.laucher.ILauncherListener;
 import com.yuanting.yunting_core.ui.laucher.OnLauncherFinishTag;
 
+import cn.jzvd.JZVideoPlayer;
 import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements ILauncherListener {
@@ -54,5 +55,17 @@ public class MainActivity extends ProxyActivity implements ILauncherListener {
             default:
                 break;
         }
+    }
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.releaseAllVideos();
     }
 }

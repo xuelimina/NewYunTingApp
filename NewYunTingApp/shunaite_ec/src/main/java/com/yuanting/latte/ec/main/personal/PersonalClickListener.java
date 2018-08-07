@@ -5,6 +5,9 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.yuanting.latte.ec.main.personal.list.ListBean;
+import com.yuanting.latte.ec.sign.SignInDelegate;
+import com.yuanting.yunting_core.app.AccountManager;
+import com.yuanting.yunting_core.app.IUserChecker;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
 
 /**
@@ -24,7 +27,19 @@ public class PersonalClickListener extends SimpleClickListener {
         int id = bean.getId();
         switch (id) {
             case 1:
-                DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
+                //TODO 检查用户是否已经登录
+                AccountManager.checkAccount(new IUserChecker() {
+                    @Override
+                    public void onSignIn() {
+                        DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());
+                    }
+
+                    @Override
+                    public void onNoSignIn() {
+                        DELEGATE.getParentDelegate().getSupportDelegate().start(new SignInDelegate());
+                    }
+                });
+
                 break;
             case 2:
                 DELEGATE.getParentDelegate().getSupportDelegate().start(bean.getDelegate());

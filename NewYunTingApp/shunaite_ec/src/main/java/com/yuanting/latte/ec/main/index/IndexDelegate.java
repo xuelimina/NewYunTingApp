@@ -26,7 +26,7 @@ import com.yuanting.yunting_ec.R2;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.jzvd.JZVideoPlayerStandard;
+import cn.jzvd.JZVideoPlayer;
 
 /**
  * Created on 2018/5/3 16:35
@@ -43,7 +43,6 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
     private IndexAdapter mAdapter = null;
-    private JZVideoPlayerStandard video;
 
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
@@ -119,5 +118,11 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
     @Override
     public void pictureQueryStart() {
         getParentDelegate().getSupportDelegate().start(new PictureDelegate());
+    }
+
+    @Override
+    public void onSupportInvisible() {
+        super.onSupportInvisible();
+        JZVideoPlayer.releaseAllVideos();
     }
 }

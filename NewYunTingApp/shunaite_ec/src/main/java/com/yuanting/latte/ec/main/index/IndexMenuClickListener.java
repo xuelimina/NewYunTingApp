@@ -17,4 +17,5 @@ public interface IndexMenuClickListener {
     void orderQueryStart();
 
     void pictureQueryStart();
+
 }
