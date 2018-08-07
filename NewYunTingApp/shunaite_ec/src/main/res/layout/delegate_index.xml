@@ -92,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:text="http://www.shunaite.com"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="15sp" />
         </android.support.v7.widget.LinearLayoutCompat>
@@ -114,6 +115,7 @@
                 android:id="@+id/tm_web_link"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:text="https://shop.m.taobao.com/shop/shop_index.htm?shop_id=254549626"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="15sp" />
         </android.support.v7.widget.LinearLayoutCompat>
