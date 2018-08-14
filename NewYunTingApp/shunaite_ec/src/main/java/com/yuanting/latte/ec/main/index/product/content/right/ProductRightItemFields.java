@@ -11,6 +11,7 @@ public enum ProductRightItemFields {
     SUB_MODEL,
     MAKE,
     SERIES,
+    PRICE,
     LAST_NAME,
     LAST_MODEL,
     IS_LAST

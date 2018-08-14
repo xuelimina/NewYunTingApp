@@ -67,6 +67,21 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         PermissionCheckerDelegatePermissionsDispatcher.readFileWithCheck(this);
     }
 
+    @NeedsPermission({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION})
+    void location() {
+    }
+    public void locationWithCheck() {
+        PermissionCheckerDelegatePermissionsDispatcher.locationWithCheck(this);
+    }
+    @OnPermissionDenied({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    void onLocationDenied() {
+        Toast.makeText(getContext(), "不允许获取位置", Toast.LENGTH_LONG).show();
+    }
+
+    @OnNeverAskAgain({Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    void onLocationNever() {
+        Toast.makeText(getContext(), "永久拒绝获取位置权限", Toast.LENGTH_LONG).show();
+    }
     @OnPermissionDenied({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void onReadAndWriteDenied() {
         Toast.makeText(getContext(), "不允许存储", Toast.LENGTH_LONG).show();

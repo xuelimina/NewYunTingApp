@@ -131,7 +131,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center|left"
-                android:text="联系地址:浙江金恒德国际汽配城A区21幢21-22号"
+                android:text="联系地址:浙江省杭州市拱墅区万达广场A座13层"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
 

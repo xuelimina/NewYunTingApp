@@ -223,13 +223,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|left" />
-
-            <android.support.v7.widget.ContentFrameLayout
+            <com.amap.api.maps.MapView
                 android:id="@+id/web_gaode_map"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/tv_shop_address" />
+                android:layout_below="@+id/tv_shop_address">
+
+            </com.amap.api.maps.MapView>
+
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>
 

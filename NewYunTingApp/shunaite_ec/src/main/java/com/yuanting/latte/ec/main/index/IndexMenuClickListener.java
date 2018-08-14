@@ -14,6 +14,8 @@ public interface IndexMenuClickListener {
 
     void giftStart();
 
+    void onlineStar();
+
     void orderQueryStart();
 
     void pictureQueryStart();

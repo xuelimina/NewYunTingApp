@@ -42,6 +42,7 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
                 final LinearLayoutCompat distributionInquiries = holder.getView(R.id.distribution_inquiries_view);
                 final LinearLayoutCompat shunaiteProduct = holder.getView(R.id.shunaite_product_view);
                 final LinearLayoutCompat productPrice = holder.getView(R.id.product_price_view);
+                final LinearLayoutCompat onlineView = holder.getView(R.id.online_view);
                 final LinearLayoutCompat gift = holder.getView(R.id.gift_view);
                 final LinearLayoutCompat identification = holder.getView(R.id.identification_view);
                 distributionInquiries.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +68,12 @@ public class IndexAdapter extends MultipleRecyclerAdapter {
                     @Override
                     public void onClick(View v) {
                         menuClickListener.giftStart();
+                    }
+                });
+                onlineView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        menuClickListener.onlineStar();
                     }
                 });
                 identification.setOnClickListener(new View.OnClickListener() {

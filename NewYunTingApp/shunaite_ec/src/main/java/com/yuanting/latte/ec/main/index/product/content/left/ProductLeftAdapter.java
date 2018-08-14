@@ -37,6 +37,7 @@ public class ProductLeftAdapter extends MultipleRecyclerAdapter {
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
         final AppCompatTextView textView = holder.getView(R.id.item_select_left_content_title);
+        textView.setSelected(true);
         final View itemView = holder.itemView;
         switch (entity.getItemType()) {
             case ProductRightItemType.PRODUCT_RIGHT_MODEL_ITEM:

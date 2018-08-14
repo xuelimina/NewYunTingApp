@@ -1,16 +1,27 @@
 package com.yuanting.latte.ec.main.index.shopQuery;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
-import com.yuanting.yunting_core.delegates.web.WebDelegateImpl;
 import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.RestClientBuilder;
 import com.yuanting.yunting_core.net.callback.IError;
@@ -31,7 +42,8 @@ import butterknife.OnClick;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError, IFailure, ShopItemOnClick {
+public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError, IFailure, ShopItemOnClick
+        , AMapLocationListener, AMap.OnMapClickListener, LocationSource {
     @BindView(R2.id.rv_select)
     RecyclerView mRecyclerViewSelect;
     @BindView(R2.id.linear_layout_select)
@@ -51,6 +63,9 @@ public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError
     @BindView(R2.id.tv_shop_address)
     AppCompatTextView mTVShopAddress;
     private ShopDataConverter mConverter;
+    @BindView(R2.id.web_gaode_map)
+    MapView mapView;
+    private AMap aMap;
     private final static int PROVINCE = 0;
     private final static int CITY = 1;
     private final static int DISTRICT = 2;
@@ -83,9 +98,91 @@ public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
+    @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mConverter = new ShopDataConverter();
+        mapView.onCreate(savedInstanceState);
+        if (aMap == null) {
+            aMap = mapView.getMap();
+        }
+        aMap.setOnMapClickListener(this);
+        aMap.setLocationSource(this);// 设置定位监听
+        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        // 自定义系统定位蓝点
+        MyLocationStyle myLocationStyle = new MyLocationStyle();
+        // 自定义定位蓝点图标
+        myLocationStyle.myLocationIcon(
+                BitmapDescriptorFactory.fromResource(R.drawable.gps_point));
+        // 自定义精度范围的圆形边框颜色
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));
+        // 自定义精度范围的圆形边框宽度
+        myLocationStyle.strokeWidth(0);
+        // 设置圆形的填充颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));
+        // 将自定义的 myLocationStyle 对象添加到地图上
+        aMap.setMyLocationStyle(myLocationStyle);
+        // 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
+        aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        aMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
+    }
+
+    //声明mlocationClient对象
+    private AMapLocationClient mlocationClient;
+    //声明mLocationOption对象
+    private AMapLocationClientOption mLocationOption = null;
+    private OnLocationChangedListener mListener;
+
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (amapLocation != null) {
+            if (amapLocation.getErrorCode() == 0) {
+                //定位成功回调信息，设置相关消息
+                amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                amapLocation.getLatitude();//获取纬度
+                amapLocation.getLongitude();//获取经度
+                amapLocation.getAccuracy();//获取精度信息
+                mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+//                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                Date date = new Date(amapLocation.getTime());
+//                df.format(date);//定位时间
+            } else {
+                //   显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError", "location Error, ErrCode:"
+                        + amapLocation.getErrorCode() + ", errInfo:"
+                        + amapLocation.getErrorInfo());
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mapView != null)
+            mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mapView != null)
+            mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mapView != null)
+            mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 
     @OnClick(R2.id.back)
@@ -174,9 +271,9 @@ public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerViewSelect.setLayoutManager(layoutManager);
-        final WebDelegateImpl delegate = WebDelegateImpl.create("location.html");
-        delegate.setTopDelegate(getParentDelegate());
-        getSupportDelegate().loadRootFragment(R.id.web_gaode_map, delegate);
+//        final WebDelegateImpl delegate = WebDelegateImpl.create("location.html");
+//        delegate.setTopDelegate(getParentDelegate());
+//        getSupportDelegate().loadRootFragment(R.id.web_gaode_map, delegate);
     }
 
     @Override
@@ -226,5 +323,33 @@ public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError
     @Override
     public void onFailure() {
         Toast.makeText(getContext(), "获取数据失败", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public void activate(OnLocationChangedListener listener) {
+        mListener = listener;
+        if (mlocationClient == null) {
+            mlocationClient = new AMapLocationClient(getContext());
+            mLocationOption = new AMapLocationClientOption();
+            // 设置定位监听
+            mlocationClient.setLocationListener(this);
+            // 设置为高精度定位模式
+            mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+            // 只是为了获取当前位置，所以设置为单次定位
+            mLocationOption.setOnceLocation(true);
+            // 设置定位参数
+            mlocationClient.setLocationOption(mLocationOption);
+            mlocationClient.startLocation();
+        }
+    }
+
+    @Override
+    public void deactivate() {
+
     }
 }

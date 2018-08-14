@@ -66,7 +66,7 @@
     <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:gravity="center"
@@ -77,12 +77,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="官网："
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
@@ -97,52 +99,53 @@
                 android:textSize="15sp" />
         </android.support.v7.widget.LinearLayoutCompat>
 
-        <android.support.v7.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="淘宝："
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="淘宝："-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="15sp" />-->
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tm_web_link"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="https://shop.m.taobao.com/shop/shop_index.htm?shop_id=254549626"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="15sp" />
-        </android.support.v7.widget.LinearLayoutCompat>
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/tm_web_link"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="https://shop.m.taobao.com/shop/shop_index.htm?shop_id=254549626"-->
+        <!--android:textColor="@android:color/holo_red_dark"-->
+        <!--android:lines="1"-->
+        <!--android:textSize="15sp" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
 
-        <android.support.v7.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+        <!--<android.support.v7.widget.LinearLayoutCompat-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="horizontal">-->
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="京东："
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="京东："-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="15sp" />-->
 
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/jd_web_link"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="https://mall.jd.com/index-759942.html"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="15sp" />
-        </android.support.v7.widget.LinearLayoutCompat>
+        <!--<android.support.v7.widget.AppCompatTextView-->
+        <!--android:id="@+id/jd_web_link"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center"-->
+        <!--android:text="https://mall.jd.com/index-759942.html"-->
+        <!--android:textColor="@android:color/holo_red_dark"-->
+        <!--android:textSize="15sp" />-->
+        <!--</android.support.v7.widget.LinearLayoutCompat>-->
 
     </android.support.v7.widget.LinearLayoutCompat>
 </RelativeLayout>

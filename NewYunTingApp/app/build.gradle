@@ -25,7 +25,7 @@ android {
             versionName "1.0"
             manifestPlaceholders = [CHANNEL_VALUE: "dpfppu ",
                                     server_url   : "https://d.carbros.cn:4433/Nomisdun/",
-                                    gaode_key    : "dd0062970415df30ca53059884511f85",
+                                    gaode_key    : "01fde163df731a3460794538c6963b70",
                                     fir_appid    : "5b5af4c3ca87a82d0c8a1c5c",
                                     fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
         }

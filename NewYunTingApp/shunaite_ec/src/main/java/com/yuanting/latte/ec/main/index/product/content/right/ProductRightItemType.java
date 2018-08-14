@@ -11,4 +11,5 @@ public class ProductRightItemType {
     public static final int PRODUCT_RIGHT_SUB_MODEL_ITEM = 14;
     public static final int PRODUCT_RIGHT_SERIES_ITEM = 15;
     public static final int PRODUCT_RIGHT_END_ITEM = 16;
+    public static final int PRODUCT_RIGHT_INTERIORT_PRICE_ITEM = 17;
 }

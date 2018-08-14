@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.yuanting.dpfppu.R;
 import com.yuanting.dpfppu.R2;
+import com.yuanting.dpfppu.main.index.orderQuery.OrderQueryDelegate;
+import com.yuanting.dpfppu.main.index.shopQuery.ShopQueryDelegate;
 import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
 
 import butterknife.BindView;
@@ -49,7 +51,7 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
 
     @Override
     public void shopQueryStart() {
-        Toast.makeText(getContext(),"授权网点",Toast.LENGTH_SHORT).show();
+       getParentDelegate().getSupportDelegate().start(new ShopQueryDelegate());
     }
 
     @Override
@@ -59,7 +61,7 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
 
     @Override
     public void orderQueryStart() {
-        Toast.makeText(getContext(),"质保查询",Toast.LENGTH_SHORT).show();
+        getParentDelegate().getSupportDelegate().start(new OrderQueryDelegate());
     }
 
     @Override

@@ -180,7 +180,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="热线电话:400-821-9001"
+                android:text="热线电话:400-600-1827"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
         </android.support.v7.widget.LinearLayoutCompat>
