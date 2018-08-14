@@ -27,6 +27,7 @@ public class ProductRightAdapter extends MultipleRecyclerAdapter {
         addItemType(ProductRightItemType.PRODUCT_RIGHT_MODEL_ITEM, R.layout.item_product_content_right);
         addItemType(ProductRightItemType.PRODUCT_RIGHT_YEAR_ITEM, R.layout.item_product_content_right);
         addItemType(ProductRightItemType.PRODUCT_RIGHT_SUB_MODEL_ITEM, R.layout.item_product_content_right);
+        addItemType(ProductRightItemType.PRODUCT_RIGHT_INTERIORT_PRICE_ITEM, R.layout.item_product_content_right);
         addItemType(ProductRightItemType.PRODUCT_RIGHT_SERIES_ITEM, R.layout.item_product_content_right);
         addItemType(ProductRightItemType.PRODUCT_RIGHT_END_ITEM, R.layout.item_product_content_right);
     }
@@ -36,6 +37,7 @@ public class ProductRightAdapter extends MultipleRecyclerAdapter {
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
         final AppCompatTextView textView = holder.getView(R.id.item_content_title);
+        textView.setSelected(true);
         final View itemView = holder.itemView;
         switch (entity.getItemType()) {
             case ProductRightItemType.PRODUCT_RIGHT_MODEL_ITEM:
@@ -67,6 +69,10 @@ public class ProductRightAdapter extends MultipleRecyclerAdapter {
                         mItemOnClick.subModelItemOnClick(entity);
                     }
                 });
+                break;
+            case ProductRightItemType.PRODUCT_RIGHT_INTERIORT_PRICE_ITEM:
+                final String price = entity.getField(ProductRightItemFields.PRICE);
+                textView.setText("￥:"+price);
                 break;
             case ProductRightItemType.PRODUCT_RIGHT_SERIES_ITEM:
                 final String series = entity.getField(ProductRightItemFields.SERIES);

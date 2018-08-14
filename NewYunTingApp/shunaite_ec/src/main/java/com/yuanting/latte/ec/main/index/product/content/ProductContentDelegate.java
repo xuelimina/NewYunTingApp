@@ -54,27 +54,22 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
     AppCompatImageView mProductLogoImageView;
     @BindView(R2.id.product_select_title_recycler_view)
     RecyclerView mProductLeftRecyclerView;
-    private String CAR_IMG = "";
-    private String LOGO_IMG = "";
-    private String BRAND_CN = "";
-    private String BRAND = "";
     private ProductRightAdapter mRightAdapter = null;
     private ProductLeftAdapter mLeftAdapter = null;
     private ProductContentDataConverter mConverter;
     private ArrayList<MultipleItemEntity> mLeftData = new ArrayList<>();
     private String QueryPackage;
     private boolean IsInterior = false;
-    private boolean IsEnd = false;
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         final Bundle args = getArguments();
         if (args != null) {
             Log.i("args", args.toString());
-            CAR_IMG = args.getString(ProductItemFields.CARIMG.name());
-            LOGO_IMG = args.getString(ProductItemFields.LOGOIMG.name());
-            BRAND_CN = args.getString(ProductItemFields.BRAND_CN.name());
-            BRAND = args.getString(ProductItemFields.BRAND.name());
+            final String CAR_IMG = args.getString(ProductItemFields.CARIMG.name());
+            final String LOGO_IMG = args.getString(ProductItemFields.LOGOIMG.name());
+            final String BRAND_CN = args.getString(ProductItemFields.BRAND_CN.name());
+            final String BRAND = args.getString(ProductItemFields.BRAND.name());
             QueryPackage = args.getString("QueryPackage");
             getProductContent(args.getString("QueryCar"), BRAND);
             IsInterior = args.getBoolean("IsInterior");
@@ -96,10 +91,12 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
                     .into(mProductLogoImageView);
         }
     }
+
     @OnClick(R2.id.back)
     void back() {
         _mActivity.onBackPressed();
     }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_product_content;
@@ -123,8 +120,8 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
 
     @Override
     public void onSuccess(String response) {
-        Log.i("IsInterior",""+IsInterior);
-        Log.i("response",response);
+        Log.i("IsInterior", "" + IsInterior);
+        Log.i("response", response);
         mConverter = new ProductContentDataConverter();
         mConverter.setInterior(IsInterior);
         mRightAdapter = new ProductRightAdapter(mConverter.setJsonData(response).convert());
@@ -143,75 +140,26 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
 
     @Override
     public void modelItemOnClick(MultipleItemEntity entity) {
-        final MultipleItemEntity entity1 = getLeftData(entity);
-        final ArrayList<MultipleItemEntity> entities = mConverter.getYears(entity);
-        IsEnd = entity.getField(ProductRightItemFields.IS_LAST);
-        if (!IsEnd) {
-            mLeftAdapter.getData().add(entity1);
-            mLeftAdapter.notifyDataSetChanged();
-        }
-        if (IsInterior && entities.size() == 0) {
-            endItemOnClick(entity);
-        } else {
-            mRightAdapter.getData().clear();
-            mRightAdapter.addData(entities);
-            mRightAdapter.notifyDataSetChanged();
-        }
+        rightDataUpdate(getLeftData(entity), mConverter.getYears(entity), entity);
     }
 
     @Override
     public void yearItemOnClick(MultipleItemEntity entity) {
-        final MultipleItemEntity entity1 = getLeftData(entity);
-        final ArrayList<MultipleItemEntity> entities = mConverter.getSubModels(entity);
-        IsEnd = entity.getField(ProductRightItemFields.IS_LAST);
-        if (!IsEnd) {
-            mLeftAdapter.getData().add(entity1);
-            mLeftAdapter.notifyDataSetChanged();
-        }
-        if (IsInterior && entities.size() == 0) {
-            endItemOnClick(entity);
+        if (IsInterior) {
+            rightDataUpdate(getLeftData(entity), mConverter.getInteriorPrices(entity), entity);
         } else {
-            mRightAdapter.getData().clear();
-            mRightAdapter.addData(entities);
-            mRightAdapter.notifyDataSetChanged();
+            rightDataUpdate(getLeftData(entity), mConverter.getSubModels(entity), entity);
         }
     }
 
     @Override
     public void subModelItemOnClick(MultipleItemEntity entity) {
-        final MultipleItemEntity entity1 = getLeftData(entity);
-        final ArrayList<MultipleItemEntity> entities = mConverter.getSeries(entity);
-        IsEnd = entity.getField(ProductRightItemFields.IS_LAST);
-        if (!IsEnd) {
-            mLeftAdapter.getData().add(entity1);
-            mLeftAdapter.notifyDataSetChanged();
-        }
-        if (IsInterior && entities.size() == 0) {
-            endItemOnClick(entity);
-        } else {
-            mRightAdapter.getData().clear();
-            mRightAdapter.addData(entities);
-            mRightAdapter.notifyDataSetChanged();
-        }
+        rightDataUpdate(getLeftData(entity), mConverter.getSeries(entity), entity);
     }
 
     @Override
     public void seriesItemOnClick(MultipleItemEntity entity) {
-        final MultipleItemEntity entity1 = getLeftData(entity);
-        final ArrayList<MultipleItemEntity> entities = mConverter.getEndList(entity);
-        IsEnd = entity.getField(ProductRightItemFields.IS_LAST);
-        if (!IsEnd) {
-            mLeftAdapter.getData().add(entity1);
-            mLeftAdapter.notifyDataSetChanged();
-        }
-        if (IsInterior) {
-            endItemOnClick(entity);
-        } else {
-            mRightAdapter.getData().clear();
-            mRightAdapter.addData(entities);
-            mRightAdapter.notifyDataSetChanged();
-        }
-
+        rightDataUpdate(getLeftData(entity), mConverter.getEndList(entity), entity);
     }
 
     @Override
@@ -225,13 +173,8 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
         bundle.putString(ProductRightItemFields.SUB_MODEL.name(), entity.getField(ProductRightItemFields.SUB_MODEL).toString());
         bundle.putString(ProductRightItemFields.SERIES.name(), entity.getField(ProductRightItemFields.SERIES).toString());
         bundle.putString(ProductRightItemFields.YEAR.name(), entity.getField(ProductRightItemFields.YEAR).toString());
-        if (!IsInterior) {
-            bundle.putString(ProductRightItemFields.LAST_NAME.name(), entity.getField(ProductRightItemFields.LAST_NAME).toString());
-            bundle.putString(ProductRightItemFields.LAST_MODEL.name(), entity.getField(ProductRightItemFields.LAST_MODEL).toString());
-        } else {
-            bundle.putString(ProductRightItemFields.LAST_NAME.name(), "");
-            bundle.putString(ProductRightItemFields.LAST_MODEL.name(), "");
-        }
+        bundle.putString(ProductRightItemFields.LAST_NAME.name(), entity.getField(ProductRightItemFields.LAST_NAME).toString());
+        bundle.putString(ProductRightItemFields.LAST_MODEL.name(), entity.getField(ProductRightItemFields.LAST_MODEL).toString());
         delegate.setArguments(bundle);
         getSupportDelegate().start(delegate);
     }
@@ -260,57 +203,47 @@ public class ProductContentDelegate extends LatteDelegate implements ISuccess, I
 
     @Override
     public void leftYearItemOnClick(MultipleItemEntity entity) {
-        final ArrayList<MultipleItemEntity> entities = mConverter.getYears(entity);
-        mRightAdapter.getData().clear();
-        mRightAdapter.addData(entities);
-        mRightAdapter.notifyDataSetChanged();
-        int size = mLeftAdapter.getData().size();
-        if (size == 2) {
-            mLeftAdapter.getData().remove(1);
-        } else if (size > 2) {
-            for (int i = 0; i < size - 1; i++) {
-                mLeftAdapter.getData().remove(1);
-            }
-        }
-        mLeftAdapter.notifyDataSetChanged();
+        leftDataUpdate(mConverter.getYears(entity), 2);
     }
 
     @Override
     public void leftSubModelItemOnClick(MultipleItemEntity entity) {
-        final ArrayList<MultipleItemEntity> entities = mConverter.getSubModels(entity);
-        mRightAdapter.getData().clear();
-        mRightAdapter.addData(entities);
-        mRightAdapter.notifyDataSetChanged();
-        int size = mLeftAdapter.getData().size();
-        if (size == 3) {
-            mLeftAdapter.getData().remove(2);
-        } else if (size > 3) {
-            for (int i = 0; i < size - 2; i++) {
-                mLeftAdapter.getData().remove(2);
-            }
-        }
-        mLeftAdapter.notifyDataSetChanged();
+        leftDataUpdate(mConverter.getSubModels(entity), 3);
     }
 
     @Override
     public void leftSeriesItemOnClick(MultipleItemEntity entity) {
-        final ArrayList<MultipleItemEntity> entities = mConverter.getSeries(entity);
-        mRightAdapter.getData().clear();
-        mRightAdapter.addData(entities);
-        mRightAdapter.notifyDataSetChanged();
-        int size = mLeftAdapter.getData().size();
-        if (size == 4) {
-            mLeftAdapter.getData().remove(3);
-        } else if (size > 4) {
-            for (int i = 0; i < size - 3; i++) {
-                mLeftAdapter.getData().remove(3);
-            }
-        }
-        mLeftAdapter.notifyDataSetChanged();
+        leftDataUpdate(mConverter.getSeries(entity), 4);
     }
 
     @Override
     public void leftEndItemOnClick(MultipleItemEntity entity) {
 
+    }
+
+    private void rightDataUpdate(MultipleItemEntity leftEntity, ArrayList<MultipleItemEntity> entities, MultipleItemEntity entity) {
+        final boolean isEnd = entity.getField(ProductRightItemFields.IS_LAST);
+        if (!isEnd) {
+            mLeftAdapter.getData().add(leftEntity);
+            mLeftAdapter.notifyDataSetChanged();
+        }
+        mRightAdapter.getData().clear();
+        mRightAdapter.addData(entities);
+        mRightAdapter.notifyDataSetChanged();
+    }
+
+    private void leftDataUpdate(ArrayList<MultipleItemEntity> entities, int position) {
+        mRightAdapter.getData().clear();
+        mRightAdapter.addData(entities);
+        mRightAdapter.notifyDataSetChanged();
+        int size = mLeftAdapter.getData().size();
+        if (size == position) {
+            mLeftAdapter.getData().remove(position - 1);
+        } else if (size > position) {
+            for (int i = 0; i < size - position - 1; i++) {
+                mLeftAdapter.getData().remove(position - 1);
+            }
+        }
+        mLeftAdapter.notifyDataSetChanged();
     }
 }
