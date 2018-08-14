@@ -41,8 +41,8 @@ android {
         }
         shunaite {
             applicationId 'com.yunting.shunaite'
-            versionCode 3
-            versionName "3.0"
+            versionCode 4
+            versionName "4.0"
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
                                     gaode_key    : "17ba8168f054dfc78b40589f26276f0c",
