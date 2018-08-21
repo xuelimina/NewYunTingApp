@@ -3,6 +3,8 @@ package com.yuanting.newyuntingapp;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
@@ -18,6 +20,24 @@ import com.yuanting.yunting_core.net.interceptors.DebugInterceptor;
  * TEL 13262933389
  */
 public class NewYunTingApp extends MultiDexApplication {
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.fontScale != 1)//非默认值
+            getResources();
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res.getConfiguration().fontScale != 1) {//非默认值
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,7 +65,7 @@ public class NewYunTingApp extends MultiDexApplication {
                 .withWeChatAppID("微信AppKey").withWeChatAppSecret("微信AppSecret")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withJavascriptInterface("latte")
-               .configure();
+                .configure();
         DatabaseManager.getInstance().init(this);
         initStetho();
     }

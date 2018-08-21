@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +29,6 @@ import com.yuanting.yunting_ec.R;
 import com.yuanting.yunting_ec.R2;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import cn.jzvd.JZVideoPlayer;
 
 /**
@@ -65,17 +63,17 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    @OnClick(R2.id.gw_web_link)
-    void webOnClick(View view) {
-        final ShopWebDelegate delegate = new ShopWebDelegate();
-        final Bundle bundle = new Bundle();
-        final AppCompatTextView view1 = (AppCompatTextView) view;
-        final String url = view1.getText().toString();
-        bundle.putString("Title", "官网");
-        bundle.putString("Url", url);
-        delegate.setArguments(bundle);
-        getParentDelegate().getSupportDelegate().start(delegate);
-    }
+//    @OnClick(R2.id.gw_web_link)
+//    void webOnClick(View view) {
+//        final ShopWebDelegate delegate = new ShopWebDelegate();
+//        final Bundle bundle = new Bundle();
+//        final AppCompatTextView view1 = (AppCompatTextView) view;
+//        final String url = view1.getText().toString();
+//        bundle.putString("Title", "官网");
+//        bundle.putString("Url", url);
+//        delegate.setArguments(bundle);
+//        getParentDelegate().getSupportDelegate().start(delegate);
+//    }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
