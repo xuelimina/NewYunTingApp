@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuanting.latte.ec.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
@@ -74,10 +76,12 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
 
     private void searchOrder(String param) {
         RestClient.builder()
-                .url("Bss/QueryWarrantyInfo")
-                .params("query", param)
+                .url("Car/QueryWarrantyInfoByQuery")
+                .params("Query", param)
                 .loader(getContext())
                 .success(this)
+                .error(this)
+                .failure(this)
                 .build()
                 .post();
     }
@@ -102,51 +106,66 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
 
     @Override
     public void onError(int code, String msg) {
-        Toast.makeText(getContext(), "此二维码未查询到质保单" + msg, Toast.LENGTH_LONG).show();
+        if (mIsScanner) {
+            Toast.makeText(getContext(), "此二维码未查询到质保单" + msg, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "此码未查询到质保单" + msg, Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
     public void onFailure() {
-        Toast.makeText(getContext(), "查询失败", Toast.LENGTH_LONG).show();
+        if (mIsScanner) {
+            Toast.makeText(getContext(), "此二维码未查询到质保单", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "此码未查询到质保单", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void onSuccess(final String response) {
+        Log.i("re", response);
         JSONObject object = JSONObject.parseObject(response);
         if (object != null && object.containsKey("IsSale")) {
-        final boolean IsSale = object.getBoolean("IsSale");
-        //TODO 检查用户是否已经登录
-        AccountManager.checkAccount(new IUserChecker() {
-            @Override
-            public void onSignIn() {
-                startOrderDetailsDelegate(response);
-            }
-
-            @Override
-            public void onNoSignIn() {
-                if (!IsSale) {
-                    new AlertDialog.Builder(getContext())
-                            .setPositiveButton("去登陆", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    getSupportDelegate().start(new SignInDelegate());
-                                }
-                            })
-                            .setNegativeButton("返回", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            })
-                            .setCancelable(false)
-                            .setMessage("账号未登录，是否登录")
-                            .show();
-                } else {
-                    startOrderDetailsDelegate(response);
+            final boolean IsSale = object.getBoolean("IsSale");
+            //TODO 检查用户是否已经登录
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    final JSONObject object = JSON.parseObject(response);
+                    if (!AccountManager.getArea().equals(object.getString("Area"))
+                            && !AccountManager.getPartnerID().equals(object.getString("Agency"))) {
+                        Toast.makeText(getContext(), "运营商或地址不批配！", Toast.LENGTH_SHORT).show();
+                    } else
+                        startOrderDetailsDelegate(response);
                 }
-            }
-        });
-        }else {
-            Toast.makeText(getContext(), "此号未查询到质保单" , Toast.LENGTH_LONG).show();
+
+                @Override
+                public void onNoSignIn() {
+                    if (!IsSale) {
+                        new AlertDialog.Builder(getContext())
+                                .setPositiveButton("去登陆", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        getSupportDelegate().start(new SignInDelegate());
+                                    }
+                                })
+                                .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .setCancelable(false)
+                                .setMessage("账号未登录，是否登录")
+                                .show();
+                    } else {
+                        startOrderDetailsDelegate(response);
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "此号未查询到质保单", Toast.LENGTH_LONG).show();
         }
     }
 

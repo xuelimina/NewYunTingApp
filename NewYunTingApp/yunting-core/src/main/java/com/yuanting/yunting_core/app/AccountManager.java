@@ -17,13 +17,55 @@ public class AccountManager {
         PASSWORD,
         AREA,
         STATUS,
-        CREATE_TIME
+        CREATE_TIME,
+        USER_NAME,
+        OWNER,
+        REGIST_TIME,
+        PERMISSIONS,
+        TEXT_INFO,
+        USER_INFOS,
+        MONY
     }
 
     public static void setSignState(boolean state) {
         LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
     }
-
+    public static void setUserName(String userName) {
+        LattePreference.addCustomAppProfile(SignTag.USER_NAME.name(), userName);
+    }
+    public static String getUserName() {
+        return LattePreference.getCustomAppProfile(SignTag.USER_NAME.name());
+    }
+    public static void setRegistTime(String registTime) {
+        LattePreference.addCustomAppProfile(SignTag.REGIST_TIME.name(), registTime);
+    }
+    public static String getRegistTime() {
+        return LattePreference.getCustomAppProfile(SignTag.REGIST_TIME.name());
+    }
+    public static void setPermissions(String permissions) {
+        LattePreference.addCustomAppProfile(SignTag.PERMISSIONS.name(), permissions);
+    }
+    public static String getPermissions() {
+        return LattePreference.getCustomAppProfile(SignTag.PERMISSIONS.name());
+    }
+    public static void setOwner(String owner) {
+        LattePreference.addCustomAppProfile(SignTag.OWNER.name(), owner);
+    }
+    public static String getOwner() {
+        return LattePreference.getCustomAppProfile(SignTag.OWNER.name());
+    }
+    public static void setMony(String mony) {
+        LattePreference.addCustomAppProfile(SignTag.MONY.name(), mony);
+    }
+    public static String getMony() {
+        return LattePreference.getCustomAppProfile(SignTag.MONY.name());
+    }
+    public static void setTextInfo(String textInfo) {
+        LattePreference.addCustomAppProfile(SignTag.TEXT_INFO.name(), textInfo);
+    }
+    public static String getTextInfo() {
+        return LattePreference.getCustomAppProfile(SignTag.TEXT_INFO.name());
+    }
     public static void setID(String id) {
         LattePreference.addCustomAppProfile(SignTag.ID.name(), id);
     }
@@ -52,7 +94,7 @@ public class AccountManager {
         LattePreference.addCustomAppProfile(SignTag.CREATE_TIME.name(), createTime);
     }
 
-    private static boolean isSignIn() {
+    public static boolean isSignIn() {
         return LattePreference.getAppFlag(SignTag.SIGN_TAG.name());
     }
 

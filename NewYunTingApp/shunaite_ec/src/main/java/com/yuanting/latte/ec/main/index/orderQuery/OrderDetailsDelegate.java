@@ -194,7 +194,7 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
                 mWarrantyID = args.getString("WarrantyID");
                 setScanData(args.getString("response"));
             } else {
-                setSearchData(args.getString("response"));
+                setScanData(args.getString("response"));
             }
             setViewData();
         }

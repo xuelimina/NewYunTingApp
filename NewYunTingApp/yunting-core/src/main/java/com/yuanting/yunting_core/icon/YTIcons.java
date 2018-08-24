@@ -18,10 +18,21 @@ public enum YTIcons implements Icon {
     icon_contact_us('\ue618'),
     icon_contact_us_shadow('\ue559'),
     icon_vip('\ue60c'),
-    icon_vip_shadow('\ue608') ,
-    icon_about_us('\ue607') ,
-    icon_about_us_shadow('\ue63f');
-
+    icon_vip_shadow('\ue608'),
+    icon_about_us('\ue607'),
+    icon_about_us_shadow('\ue63f'),
+    icon_setting('\ue677'),
+    icon_setting_shadow('\ue74d'),
+    icon_information('\ue501'),
+    icon_information_shadow('\ue604'),
+    icon_stock_in('\ue57f'),
+    icon_stock_out('\ue620'),
+    icon_stock_in_data('\ue61b'),
+    icon_stock_out_data('\ue68c'),
+    icon_stock_data('\ue679'),
+    icon_form('\ue653'),
+    icon_entry('\ue6a7'),
+    icon_expect('\ue6c2');
     private char character;
 
     YTIcons(char character) {

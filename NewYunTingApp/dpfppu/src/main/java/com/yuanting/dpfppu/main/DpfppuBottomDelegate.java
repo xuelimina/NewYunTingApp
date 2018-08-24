@@ -1,5 +1,7 @@
 package com.yuanting.dpfppu.main;
 
+import android.graphics.Color;
+
 import com.yuanting.dpfppu.R;
 import com.yuanting.dpfppu.main.index.IndexDelegate;
 import com.yuanting.dpfppu.main.product.SelectProductDelegate;
@@ -30,6 +32,15 @@ public class DpfppuBottomDelegate extends BaseBottomDelegate {
         return 0;
     }
 
+    @Override
+    public int selectTextColor() {
+        return Color.WHITE;
+    }
+
+    @Override
+    public int defaultTextColor() {
+        return Color.WHITE;
+    }
     @Override
     public int setBottomBarDelegateLayoutId() {
         return R.layout.delegate_bottom_dpf;

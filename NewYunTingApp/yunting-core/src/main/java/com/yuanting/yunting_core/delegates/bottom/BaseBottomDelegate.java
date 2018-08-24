@@ -60,7 +60,13 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
     public abstract int setIndexDelegate();
+
+    public abstract int selectTextColor();
+
+    public abstract int defaultTextColor();
+
     public abstract int setBottomBarDelegateLayoutId();
+
     private FirUpdateUtils firUpdateUtils;
     private JSONObject updateJson;
 
@@ -154,11 +160,14 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             final BottomTabBean bean = TAB_BEANS.get(i);
             //初始化数据
             itemIcon.setText(bean.getIcon());
-            itemIcon.setTextColor(Color.WHITE);
+            itemIcon.setTextColor(defaultTextColor());
             itemIcon.setBackgroundColor(Color.TRANSPARENT);
             itemTitle.setText(bean.getTitle());
+            itemTitle.setTextColor(defaultTextColor());
             if (i == mIndexDelegate) {
                 itemIcon.setText(bean.getIconSelect());
+                itemIcon.setTextColor(selectTextColor());
+                itemTitle.setTextColor(selectTextColor());
             }
         }
         final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
@@ -171,8 +180,10 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             final BottomTabBean bean = TAB_BEANS.get(i);
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
             final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+            final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
             itemIcon.setText(bean.getIcon());
-            itemIcon.setTextColor(Color.WHITE);
+            itemIcon.setTextColor(defaultTextColor());
+            itemTitle.setTextColor(defaultTextColor());
             itemIcon.setBackgroundColor(Color.TRANSPARENT);
         }
     }
@@ -184,7 +195,10 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         resetColor();
         final RelativeLayout item = (RelativeLayout) v;
         final IconTextView itemIcon = (IconTextView) item.getChildAt(0);
+        final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemIcon.setText(bean.getIconSelect());
+        itemIcon.setTextColor(selectTextColor());
+        itemTitle.setTextColor(selectTextColor());
         getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         mCurrentDelegate = tag;
     }

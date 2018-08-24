@@ -1,5 +1,7 @@
 package com.yuanting.latte.ec.main;
 
+import android.graphics.Color;
+
 import com.yuanting.latte.ec.main.about.AboutDelegate;
 import com.yuanting.latte.ec.main.contact.ContactUsDelegate;
 import com.yuanting.latte.ec.main.index.IndexDelegate;
@@ -31,6 +33,16 @@ public class ShuNaiTeBottomDelegate extends BaseBottomDelegate {
     @Override
     public int setIndexDelegate() {
         return 0;
+    }
+
+    @Override
+    public int selectTextColor() {
+        return Color.WHITE;
+    }
+
+    @Override
+    public int defaultTextColor() {
+        return Color.WHITE;
     }
 
     @Override

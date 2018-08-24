@@ -6,9 +6,11 @@ import android.support.v7.app.ActionBar;
 
 import com.yuanting.dpfppu.main.DpfppuBottomDelegate;
 import com.yuanting.latte.ec.main.ShuNaiTeBottomDelegate;
-import com.yuanting.latte.ec.sign.SignInDelegate;
+import com.yuanting.n2erp.main.ERPBottomDelegate;
+import com.yuanting.n2erp.sign.SignInDelegate;
 import com.yuanting.nomisdun.main.NoMisDunIndexDelegate;
 import com.yuanting.yunting_core.activites.ProxyActivity;
+import com.yuanting.yunting_core.app.AccountManager;
 import com.yuanting.yunting_core.app.Latte;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
 import com.yuanting.yunting_core.ui.laucher.ILauncherListener;
@@ -39,6 +41,12 @@ public class MainActivity extends ProxyActivity implements ILauncherListener {
                 return new NoMisDunIndexDelegate();
             case PackageType.DPFPPU:
                 return new DpfppuBottomDelegate();
+            case PackageType.ERP:
+                if (AccountManager.isSignIn()) {
+                    return new ERPBottomDelegate();
+                } else {
+                    return new SignInDelegate();
+                }
         }
         return null;
     }
@@ -56,6 +64,7 @@ public class MainActivity extends ProxyActivity implements ILauncherListener {
                 break;
         }
     }
+
     @Override
     public void onBackPressed() {
         if (JZVideoPlayer.backPress()) {
@@ -63,6 +72,7 @@ public class MainActivity extends ProxyActivity implements ILauncherListener {
         }
         super.onBackPressed();
     }
+
     @Override
     protected void onPause() {
         super.onPause();

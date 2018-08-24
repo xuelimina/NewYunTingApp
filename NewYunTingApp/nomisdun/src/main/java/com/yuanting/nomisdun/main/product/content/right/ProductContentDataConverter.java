@@ -20,7 +20,6 @@ public class ProductContentDataConverter extends DataConverter {
     private HashMap<String, ArrayList<MultipleItemEntity>> yearsMap = new HashMap<>();
     private HashMap<String, ArrayList<MultipleItemEntity>> subModelMap = new HashMap<>();
     private HashMap<String, ArrayList<MultipleItemEntity>> seriesMap = new HashMap<>();
-    private ArrayList<MultipleItemEntity> modelEntity = new ArrayList<>();
 
     public void setInterior(boolean interior) {
         IsInterior = interior;
@@ -60,15 +59,11 @@ public class ProductContentDataConverter extends DataConverter {
                 entities1.add(entity);
                 modelMap.put(model, entities1);
                 entities.add(entity);
-                modelEntity.add(entity);
             }
         }
         return entities;
     }
 
-    public ArrayList<MultipleItemEntity> getModelEntity() {
-        return modelEntity;
-    }
 
     public ArrayList<MultipleItemEntity> getYears(MultipleItemEntity entity1) {
         yearsMap.clear();
