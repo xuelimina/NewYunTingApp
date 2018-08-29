@@ -35,8 +35,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tb_index"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
@@ -53,10 +53,10 @@
                 android:layout_weight="1">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_stock_in"
+                    android:id="@+id/icon_stock_in_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_stock_in"
+                    android:layout_above="@+id/tv_stock_in_data"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/index_circle"
                     android:gravity="center"
@@ -65,7 +65,7 @@
                     android:textSize="80sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_stock_in"
+                    android:id="@+id/tv_stock_in_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -83,10 +83,10 @@
                 android:layout_weight="1">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_stock_out"
+                    android:id="@+id/icon_stock_out_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_stock_out"
+                    android:layout_above="@+id/tv_stock_out_data"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/index_circle"
                     android:gravity="center"
@@ -95,7 +95,7 @@
                     android:textSize="80sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_stock_out"
+                    android:id="@+id/tv_stock_out_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -111,7 +111,7 @@
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="2.5"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -121,10 +121,10 @@
                 android:layout_weight="1">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_form"
+                    android:id="@+id/icon_customer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_form"
+                    android:layout_above="@+id/tv_customer"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/index_circle"
@@ -134,7 +134,7 @@
                     android:textSize="40sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_form"
+                    android:id="@+id/tv_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -151,10 +151,10 @@
                 android:layout_weight="1">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_entry"
+                    android:id="@+id/icon_user_info"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_entry"
+                    android:layout_above="@+id/tv_user_info"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/index_circle"
@@ -164,7 +164,7 @@
                     android:textSize="40sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_entry"
+                    android:id="@+id/tv_user_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -182,10 +182,10 @@
                 android:layout_weight="1">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_expect"
+                    android:id="@+id/icon_stock_data_data"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_expect"
+                    android:layout_above="@+id/tv_stock_data_data"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/index_circle"
@@ -195,7 +195,7 @@
                     android:textSize="40sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_expect"
+                    android:id="@+id/tv_stock_data_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -216,10 +216,10 @@
                 android:layout_height="match_parent">
 
                 <com.joanzapata.iconify.widget.IconTextView
-                    android:id="@+id/icon_stock_data"
+                    android:id="@+id/icon_cooperation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/tv_stock_data"
+                    android:layout_above="@+id/tv_cooperation"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/index_circle"
@@ -229,7 +229,7 @@
                     android:textSize="60sp" />
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_stock_data"
+                    android:id="@+id/tv_cooperation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

@@ -15,4 +15,5 @@ public class ItemType {
     public static final int VIDEO = 7;
     public static final int PICTURE = 8;
     public static final int ITEM_PICTURE = 9;
+    public static final int DIALOG_ITEM = 10;
 }

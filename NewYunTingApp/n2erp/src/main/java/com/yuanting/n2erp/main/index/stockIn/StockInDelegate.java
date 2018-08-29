@@ -229,7 +229,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
             }
         } else if (id == R.id.btn_entry_material) {
             if (checkEntryMaterial()) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss//获取当前时间
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");// HH:mm:ss//获取当前时间
                 Date date = new Date(System.currentTimeMillis());
                 entryMaterial(mCategoryNameStr + "/" + mBrandNameStr + "/" + mModelNameStr + "/" + mProductNameStr
                         , mUnitStr, simpleDateFormat.format(date), mCountStr, mInfoStr, mCurrentProductNameEntity.getField(MultipleFields.ID).toString());

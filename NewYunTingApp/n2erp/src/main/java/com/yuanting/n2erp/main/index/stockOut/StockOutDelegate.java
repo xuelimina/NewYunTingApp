@@ -81,13 +81,6 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         GetInventoryAll();
         GetOutPoint();
-        String s = "2sdfsf3e";
-        String s1 = "2";
-        String s2 = "2s";
-        String s3 = "fsf";
-//        Log.i("s1", ""+s.contentEquals());
-//        Log.i("s2", ""+s.contentEquals(s2));
-//        Log.i("s3", ""+s.contentEquals(s3));
     }
 
     @OnClick(R2.id.back)
@@ -125,6 +118,7 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
     }
 
     private void GetOutPoint() {
+        PointEntities.clear();
         RestClient.builder().url("GetOutPoint?").loader(getContext())
                 .params("owner", AccountManager.getOwner())
                 .success(new ISuccess() {
@@ -203,6 +197,7 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
             unitRecyclerData();
             mSelectLayout.setVisibility(View.VISIBLE);
         } else if (id == R.id.layout_select_purpose) {
+            mTvSelectTitle.setText("用途");
             OutPointRecyclerData();
             mSelectLayout.setVisibility(View.VISIBLE);
         }
@@ -233,7 +228,7 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
                 } else {
                     mSourceidStr = mCurrentPurposeEntity.getField(MultipleFields.ID);
                 }
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss//获取当前时间
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");// HH:mm:ss//获取当前时间
                 Date date = new Date(System.currentTimeMillis());
                 OutBound(mNameStr, mSourceidStr, mUnitStr, mNumberStr, simpleDateFormat.format(date), mTextStr, mOtherinfoStr);
             }
@@ -352,8 +347,8 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
             entities.add(0, MultipleItemEntity.builder().setField(MultipleFields.ITEM_TYPE, StockOutProductItemType.STOCK_OUT_PRODUCT_ITEM)
                     .setField(MultipleFields.TEXT, "从整卷拆出")
                     .setField(StockOutProductItemFields.NAME, "从整卷拆出")
-                    .setField(StockOutProductItemFields.ITEM_TYPE, StockOutProductItemType.PRODUCT_POINT_ITEM)
-                    .setField(StockOutProductItemFields.IDX, StockOutProductItemType.PRODUCT_ITEM).build());
+                    .setField(StockOutProductItemFields.ITEM_TYPE, StockOutProductItemType.PRODUCT_UNIT_ITEM)
+                    .setField(StockOutProductItemFields.IDX, StockOutProductItemType.PRODUCT_UNIT_ITEM).build());
         }
         mAdapter = new StockOutProductAdapter(entities);
         mAdapter.setItemOnClick(this);

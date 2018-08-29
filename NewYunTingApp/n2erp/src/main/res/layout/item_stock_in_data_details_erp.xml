@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="2dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_id_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:text="编号"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="10sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_name_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="名称"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_number_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="数量"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_unit_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="单位"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_in_time_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="入库时间"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_user_id_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="操作人"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_text_info_in"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="备注"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray" />
+</RelativeLayout>

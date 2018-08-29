@@ -20,9 +20,30 @@ public class StockDataDelegate extends LatteDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
     }
+
     @OnClick(R2.id.back)
     void back() {
         _mActivity.onBackPressed();
+    }
+
+    @OnClick({R2.id.icon_stock_in_data, R2.id.icon_stock_out_data, R2.id.icon_customer,
+            R2.id.icon_user_info, R2.id.icon_stock_data_data, R2.id.icon_cooperation})
+    void onClick(View view) {
+        final int id = view.getId();
+        if (id == R.id.icon_stock_in_data) {
+            getSupportDelegate().start(new StockInDataDelegate());
+        } else if (id == R.id.icon_stock_out_data) {
+            getSupportDelegate().start(new StockOutDataDelegate());
+        } else if (id == R.id.icon_customer) {
+
+        } else if (id == R.id.icon_user_info) {
+
+        } else if (id == R.id.icon_stock_data_data) {
+            getSupportDelegate().start(new StockDataDataDelegate());
+        } else if (id == R.id.icon_cooperation) {
+
+        }
+
     }
 
     @Override
