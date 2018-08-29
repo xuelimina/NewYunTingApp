@@ -644,7 +644,7 @@
                             android:layout_toLeftOf="@+id/select_unit_layout"
                             android:layout_toRightOf="@+id/tv_count_title"
                             android:background="@drawable/edit_view_circle"
-                            android:inputType="numberDecimal"
+                            android:inputType="number"
                             android:paddingLeft="5dp"
                             android:textColor="@android:color/black"
                             android:textSize="15sp" />
@@ -658,6 +658,7 @@
                             android:orientation="horizontal">
 
                             <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_unit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center"

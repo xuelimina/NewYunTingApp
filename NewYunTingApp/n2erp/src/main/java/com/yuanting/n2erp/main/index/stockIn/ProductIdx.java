@@ -10,4 +10,5 @@ public class ProductIdx {
     public static final String BRAND_IDX = "2";
     public static final String MODEL_IDX = "3";
     public static final String PRODUCT_NAME_IDX = "4";
+    public static final String UNIT = "-2";
 }

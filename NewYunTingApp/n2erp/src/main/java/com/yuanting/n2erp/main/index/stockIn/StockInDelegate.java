@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -24,7 +25,9 @@ import com.yuanting.yunting_core.net.callback.ISuccess;
 import com.yuanting.yunting_core.ui.recycler.MultipleFields;
 import com.yuanting.yunting_core.ui.recycler.MultipleItemEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -55,6 +58,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     AppCompatEditText mEtStandard;
     @BindView(R2.id.et_count)
     AppCompatEditText mEtCount;
+    @BindView(R2.id.et_info)
+    AppCompatEditText mEtInfo;
     @BindView(R2.id.tv_select_category_name)
     AppCompatTextView mTvSelectCategory;
     @BindView(R2.id.tv_select_brand_name)
@@ -63,6 +68,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     AppCompatTextView mTvSelectModel;
     @BindView(R2.id.tv_select_product_name)
     AppCompatTextView mTvSelectProductName;
+    @BindView(R2.id.tv_unit)
+    AppCompatTextView mTvSelectUnit;
     @BindView(R2.id.rv_select)
     RecyclerView mRvSelect;
     @BindView(R2.id.linear_layout_select)
@@ -75,6 +82,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     private String mModelNameStr = "";
     private String mProductNameStr = "";
     private String mCountStr = "";
+    private String mUnitStr = "";
+    private String mInfoStr = "";
     private ProductDataConverter mConverter = new ProductDataConverter();
     private MultipleItemEntity mCurrentCategoryEntity;
     private MultipleItemEntity mCurrentBrandEntity;
@@ -85,6 +94,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         GetProductInfo("-1", "-1");
+        reRecyclerData(null, ProductIdx.UNIT);
         mSelectLayout.setVisibility(View.GONE);
     }
 
@@ -98,7 +108,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         _mActivity.onBackPressed();
     }
 
-    @OnClick({R2.id.select_category_layout, R2.id.select_brand_layout, R2.id.select_model_layout, R2.id.select_product_name_layout})
+    @OnClick({R2.id.select_category_layout, R2.id.select_brand_layout, R2.id.select_model_layout, R2.id.select_product_name_layout, R2.id.select_unit_layout})
     void selectOnClick(View view) {
         mRvSelect.removeAllViews();
         final int id = view.getId();
@@ -114,6 +124,9 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         } else if (id == R.id.select_product_name_layout) {
             mTvSelectTitle.setText("名称");
             reRecyclerData(mCurrentModelEntity, ProductIdx.PRODUCT_NAME_IDX);
+        } else if (id == R.id.select_unit_layout) {
+            mTvSelectTitle.setText("单位");
+            reRecyclerData(null, ProductIdx.UNIT);
         }
         mSelectLayout.setVisibility(View.VISIBLE);
     }
@@ -129,8 +142,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
             mModelLayout.setVisibility(View.VISIBLE);
         } else if (id == R.id.btn_add_product_name) {
             mProductNameLayout.setVisibility(View.VISIBLE);
-        } else {
         }
+        mSelectLayout.setVisibility(View.GONE);
     }
 
     @OnClick({R2.id.btn_add_category_cancel, R2.id.btn_add_brand_cancel, R2.id.btn_add_model_cancel, R2.id.btn_add_product_name_cancel, R2.id.rv_select_cancel})
@@ -147,6 +160,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         } else if (id == R.id.rv_select_cancel) {
             mSelectLayout.setVisibility(View.GONE);
         }
+        mSelectLayout.setVisibility(View.GONE);
     }
 
     @OnClick({R2.id.btn_add_category_ok, R2.id.btn_add_brand_ok, R2.id.btn_add_model_ok, R2.id.btn_add_product_name_ok, R2.id.btn_entry_material})
@@ -211,16 +225,17 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
             }
             if (check) {
                 parent = mCurrentModelEntity.getField(MultipleFields.ID);
-                addMaterialMode(ProductIdx.PRODUCT_NAME_IDX, parent, standardStr, productNameStr + "(" + standardStr + "/卷)");
+                addMaterialMode(ProductIdx.PRODUCT_NAME_IDX, parent, standardStr, productNameStr + "(" + standardStr + "米/卷)");
             }
         } else if (id == R.id.btn_entry_material) {
             if (checkEntryMaterial()) {
-                final StringBuffer name = new StringBuffer();
-                name.append(mCategoryNameStr).append("/").append(mBrandNameStr).append("/").append(mModelNameStr).append("/").append(mProductNameStr);
-                entryMaterial(name.toString(), "卷", mCountStr, "", mCurrentProductNameEntity.getField(MultipleFields.ID).toString());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss//获取当前时间
+                Date date = new Date(System.currentTimeMillis());
+                entryMaterial(mCategoryNameStr + "/" + mBrandNameStr + "/" + mModelNameStr + "/" + mProductNameStr
+                        , mUnitStr, simpleDateFormat.format(date), mCountStr, mInfoStr, mCurrentProductNameEntity.getField(MultipleFields.ID).toString());
             }
-
         }
+        mSelectLayout.setVisibility(View.GONE);
     }
 
     private boolean checkEntryMaterial() {
@@ -230,6 +245,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         mModelNameStr = mTvSelectModel.getText().toString();
         mProductNameStr = mTvSelectProductName.getText().toString();
         mCountStr = mEtCount.getText().toString();
+        mUnitStr = mTvSelectUnit.getText().toString();
+        mInfoStr = mEtInfo.getText().toString();
         if (mCategoryNameStr.isEmpty()) {
             mTvSelectCategory.setError("请选择品类");
             isCheck = false;
@@ -254,8 +271,8 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         } else {
             mTvSelectProductName.setError(null);
         }
-        if (mCountStr.isEmpty()) {
-            mEtCount.setError("请填写录入数量");
+        if (mCountStr.isEmpty() || Double.valueOf(mCountStr) <= 0) {
+            mEtCount.setError("请填写正确录入数量");
             isCheck = false;
         } else {
             mEtCount.setError(null);
@@ -266,10 +283,22 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
 
     private void reRecyclerData(MultipleItemEntity entity, String idx) {
         mRvSelect.removeAllViews();
-        if (entity != null) {
-            mAdapter = new ProductAdapter(mConverter.getListData(entity, idx) == null ? new ArrayList<MultipleItemEntity>() : mConverter.getListData(entity, idx));
+        if (idx.equals(ProductIdx.UNIT)) {
+            final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
+            for (int i = 0; i < 2; i++) {
+                final MultipleItemEntity entity1 = MultipleItemEntity.builder().build();
+                entity1.setField(MultipleFields.ITEM_TYPE, ProductItemType.PRODUCT_ITEM);
+                entity1.setField(ProductItemFields.IDX, idx);
+                entity1.setField(MultipleFields.TEXT, i == 0 ? "卷" : "米");
+                entities.add(entity1);
+            }
+            mAdapter = new ProductAdapter(entities);
         } else {
-            mAdapter = new ProductAdapter(new ArrayList<MultipleItemEntity>());
+            if (entity != null) {
+                mAdapter = new ProductAdapter(mConverter.getListData(entity, idx) == null ? new ArrayList<MultipleItemEntity>() : mConverter.getListData(entity, idx));
+            } else {
+                mAdapter = new ProductAdapter(new ArrayList<MultipleItemEntity>());
+            }
         }
         mAdapter.setItemOnClick(this);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -327,13 +356,13 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
 
     }
 
-    private void entryMaterial(String name, String unit, String number, String info, String typeId) {
+    private void entryMaterial(String name, String unit, String time, String number, String info, String typeId) {
         RestClient.builder().url("EntryMaterial?")
                 .loader(getContext())
                 .params("name", name)
                 .params("unit", unit)
                 .params("number", number)
-                .params("time","2018-8-24 21:21:19")
+                .params("time", time)
                 .params("userid", AccountManager.getID())
                 .params("owner", AccountManager.getOwner())
                 .params("info", info)
@@ -369,13 +398,15 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-
+                        Log.i("onFailure", "onFailure");
+                        Toast.makeText(getContext(), "初始化数据失败", Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-
+                        Log.i("onFailure", msg);
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
                     }
                 })
                 .success(new ISuccess() {
@@ -474,6 +505,20 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                     mBrandNameStr = mCurrentBrandEntity.getField(ProductItemFields.NAME).toString();
                     mModelNameStr = mCurrentModelEntity.getField(ProductItemFields.NAME).toString();
                     mProductNameStr = entity.getField(ProductItemFields.NAME).toString();
+                    break;
+                case ProductIdx.UNIT:
+                    mCategoryNameStr = mCurrentCategoryEntity.getField(ProductItemFields.NAME).toString();
+                    mBrandNameStr = mCurrentBrandEntity.getField(ProductItemFields.NAME).toString();
+                    mModelNameStr = mCurrentModelEntity.getField(ProductItemFields.NAME).toString();
+                    mProductNameStr = mCurrentProductNameEntity.getField(ProductItemFields.NAME).toString();
+                    mUnitStr = entity.getField(MultipleFields.TEXT).toString();
+                    mTvSelectUnit.setText(mUnitStr);
+                    if (mUnitStr.equals("卷")) {
+                        mTvSelectUnit.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    } else
+                        mTvSelectUnit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                    break;
+                default:
                     break;
             }
         mTvSelectCategory.setText(mCategoryNameStr);

@@ -11,6 +11,8 @@ public enum ProductItemFields {
     PARENT,
     IDX,
     OWNER,
+    CONTACT,
+    CONTACT_NAME,
     STATUS,
     CREATE_TIME
 }

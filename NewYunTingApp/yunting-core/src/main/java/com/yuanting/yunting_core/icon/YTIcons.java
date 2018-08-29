@@ -32,7 +32,11 @@ public enum YTIcons implements Icon {
     icon_stock_data('\ue679'),
     icon_form('\ue653'),
     icon_entry('\ue6a7'),
-    icon_expect('\ue6c2');
+    icon_expect('\ue6c2'),
+    icon_stock_data_data('\ue678'),
+    icon_cooperation('\ue504'),
+    icon_customer('\ue601'),
+    icon_user_info('\ue640');
     private char character;
 
     YTIcons(char character) {

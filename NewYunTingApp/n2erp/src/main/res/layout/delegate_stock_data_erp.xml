@@ -30,5 +30,215 @@
             android:textColor="@android:color/white"
             android:textSize="25sp" />
     </android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_index"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_stock_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_stock_in"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-stock-in-data}"
+                    android:textColor="#555555"
+                    android:textSize="80sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_stock_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="入库数据"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_stock_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_stock_out"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-stock-out-data}"
+                    android:textColor="#555555"
+                    android:textSize="80sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_stock_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="出库数据"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_form"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-customer}"
+                    android:textColor="#555555"
+                    android:textSize="40sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="客户管理"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_entry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_entry"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-user-info}"
+                    android:textColor="#555555"
+                    android:textSize="40sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_entry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="账户管理"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_expect"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_expect"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-stock-data-data}"
+                    android:textColor="#555555"
+                    android:textSize="40sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_expect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="库存统计"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_stock_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/tv_stock_data"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/index_circle"
+                    android:gravity="center"
+                    android:text="{icon-cooperation}"
+                    android:textColor="#555555"
+                    android:textSize="60sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_stock_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="合作门店管理"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
 </RelativeLayout>

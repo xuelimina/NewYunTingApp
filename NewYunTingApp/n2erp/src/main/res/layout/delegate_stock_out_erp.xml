@@ -45,14 +45,47 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
+
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center|left"
-                android:text="产品名称："
+                android:text="出库数据录入："
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_view_circle">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_select_product_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center|left"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_select_product_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/app_main_background_erp"
+                    android:gravity="center"
+                    android:text="筛选"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.LinearLayoutCompat
@@ -73,6 +106,7 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/layout_select_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="5dp"
@@ -81,6 +115,7 @@
                 android:background="@drawable/edit_view_circle">
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_select_product_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
@@ -102,6 +137,7 @@
             </android.support.v7.widget.LinearLayoutCompat>
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_surplus_count"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -110,14 +146,17 @@
                 android:textSize="15sp" />
 
             <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/surplus_layout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/edit_view_circle">
+                android:background="@drawable/edit_view_circle"
+                android:visibility="invisible">
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_surplus"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
@@ -151,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center|left"
                 android:text="出库数量"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
@@ -167,7 +207,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
-                    android:layout_toRightOf="@+id/select_unit_layout"
+                    android:layout_toLeftOf="@+id/select_unit_layout"
                     android:background="@drawable/edit_view_circle"
                     android:inputType="numberDecimal"
                     android:paddingLeft="5dp"
@@ -183,6 +223,7 @@
                     android:orientation="horizontal">
 
                     <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_unit_out"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -214,12 +255,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center|left"
                 android:text="用途:   发往客户/门店"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <android.support.v7.widget.LinearLayoutCompat
-                android:id="@+id/select_product_name_layout"
+                android:id="@+id/layout_select_purpose"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="3dp"
@@ -228,7 +270,7 @@
                 android:background="@drawable/edit_view_circle">
 
                 <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tv_select_product_name"
+                    android:id="@+id/tv_select_purpose"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
@@ -262,11 +304,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center|left"
                 android:text="其他用途"
                 android:textColor="@android:color/black"
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/tv_select_other_purpose"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="3dp"
@@ -286,18 +330,73 @@
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_out_bound"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/app_main_background_erp"
                 android:gravity="center"
+                android:paddingBottom="10dp"
                 android:paddingLeft="50dp"
-                android:layout_marginTop="5dp"
                 android:paddingRight="50dp"
+                android:paddingTop="10dp"
                 android:text="确定"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_select"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_select_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/rv_select_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/app_main_background_erp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="取消"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+    </android.support.v7.widget.LinearLayoutCompat>
 </RelativeLayout>
