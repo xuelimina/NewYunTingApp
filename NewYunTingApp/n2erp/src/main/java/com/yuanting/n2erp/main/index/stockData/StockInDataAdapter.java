@@ -26,8 +26,8 @@ public class StockInDataAdapter extends MultipleRecyclerAdapter {
 
     StockInDataAdapter(List<MultipleItemEntity> data) {
         super(data);
-        addItemType(StockOutDataItemType.STOCK_OUT_DATA_DETAILS_ITEM, R.layout.item_stock_in_data_details_erp);
-        addItemType(StockOutDataItemType.STOCK_OUT_DATA_STATISTICS_ITEM, R.layout.item_stock_data_statistics_erp);
+        addItemType(StockDataItemType.STOCK_OUT_DATA_DETAILS_ITEM, R.layout.item_stock_in_data_details_erp);
+        addItemType(StockDataItemType.STOCK_OUT_DATA_STATISTICS_ITEM, R.layout.item_stock_data_statistics_erp);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class StockInDataAdapter extends MultipleRecyclerAdapter {
         super.convert(holder, entity);
         final View itemView = holder.itemView;
         switch (entity.getItemType()) {
-            case StockOutDataItemType.STOCK_OUT_DATA_DETAILS_ITEM:
+            case StockDataItemType.STOCK_OUT_DATA_DETAILS_ITEM:
                 final AppCompatTextView tvId = holder.getView(R.id.tv_id_in);
                 final AppCompatTextView tvName = holder.getView(R.id.tv_name_in);
                 final AppCompatTextView tvNumber = holder.getView(R.id.tv_number_in);
@@ -44,12 +44,12 @@ public class StockInDataAdapter extends MultipleRecyclerAdapter {
                 final AppCompatTextView tvUserId = holder.getView(R.id.tv_user_id_in);
                 final AppCompatTextView tvTextInfo = holder.getView(R.id.tv_text_info_in);
                 final String Id = entity.getField(MultipleFields.ID);
-                final String Name = entity.getField(StockOutDataItemFields.NAME);
-                final String Number = entity.getField(StockOutDataItemFields.NUMBER);
-                final String Unit = entity.getField(StockOutDataItemFields.UNIT);
-                final String Time = entity.getField(StockOutDataItemFields.TIME);
-                final String UserId = entity.getField(StockOutDataItemFields.OPERATION_USER_ID);
-                final String TextInfo = entity.getField(StockOutDataItemFields.INFO);
+                final String Name = entity.getField(StockDataItemFields.NAME);
+                final String Number = entity.getField(StockDataItemFields.NUMBER);
+                final String Unit = entity.getField(StockDataItemFields.UNIT);
+                final String Time = entity.getField(StockDataItemFields.TIME);
+                final String UserId = entity.getField(StockDataItemFields.OPERATION_USER_ID);
+                final String TextInfo = entity.getField(StockDataItemFields.INFO);
                 tvId.setText(Id == null ? "" : Id);
                 tvName.setText(Name == null ? "" : Name);
                 tvNumber.setText(Number == null ? "" : Number);
@@ -58,13 +58,13 @@ public class StockInDataAdapter extends MultipleRecyclerAdapter {
                 tvUserId.setText(UserId == null ? "" : UserId);
                 tvTextInfo.setText(TextInfo == null ? "" : TextInfo);
                 break;
-            case StockOutDataItemType.STOCK_OUT_DATA_STATISTICS_ITEM:
+            case StockDataItemType.STOCK_OUT_DATA_STATISTICS_ITEM:
                 final AppCompatTextView tvStatisticsName = holder.getView(R.id.tv_name);
                 final AppCompatTextView tvStatisticsNumber = holder.getView(R.id.tv_number);
                 final AppCompatTextView tvStatisticsUnit = holder.getView(R.id.tv_unit);
-                tvStatisticsName.setText(entity.getField(StockOutDataItemFields.NAME).toString());
-                tvStatisticsNumber.setText(entity.getField(StockOutDataItemFields.NUMBER).toString());
-                tvStatisticsUnit.setText(entity.getField(StockOutDataItemFields.UNIT).toString());
+                tvStatisticsName.setText(entity.getField(StockDataItemFields.NAME).toString());
+                tvStatisticsNumber.setText(entity.getField(StockDataItemFields.NUMBER).toString());
+                tvStatisticsUnit.setText(entity.getField(StockDataItemFields.UNIT).toString());
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

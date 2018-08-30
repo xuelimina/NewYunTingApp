@@ -5,7 +5,7 @@ package com.yuanting.n2erp.main.index.stockData;
  * Created by 薛立民
  * TEL 13262933389
  */
-public enum StockOutDataItemFields {
+public enum StockDataItemFields {
     NAME,
     SOURCE_ID,
     UNIT,

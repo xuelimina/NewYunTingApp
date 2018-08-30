@@ -205,8 +205,8 @@ public class StockOutDataDelegate extends LatteDelegate implements ProductItemOn
 
     @Override
     public void productContent(MultipleItemEntity entity) {
-        final String name = entity.getField(StockOutDataItemFields.NAME);
-        final String unit = entity.getField(StockOutDataItemFields.UNIT);
+        final String name = entity.getField(StockDataItemFields.NAME);
+        final String unit = entity.getField(StockDataItemFields.UNIT);
         GetEntrySelect(name, unit);
     }
 }
