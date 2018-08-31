@@ -19,14 +19,14 @@ android {
     }
     flavorDimensions "default"
     productFlavors {
-        ntwoerp {
-            applicationId 'com.yunting.ntwoerp'
-            versionCode 1
-            versionName "1.0"
-            manifestPlaceholders = [CHANNEL_VALUE: "ntwoerp ",
+        yterpserver {
+            applicationId 'com.yunting.yterpserver'
+            versionCode 2
+            versionName "2.0"
+            manifestPlaceholders = [CHANNEL_VALUE: "yterpserver ",
                                     server_url   : "https://d.carbros.cn/YTERPServer/api/Base/",
                                     gaode_key    : "01fde163df731a3460794538c6963b70",
-                                    fir_appid    : "5b5af4c3ca87a82d0c8a1c5c",
+                                    fir_appid    : "5b88bfeaca87a85377adf4c1",
                                     fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
         }
         dpfppu {
@@ -72,7 +72,7 @@ android {
             assets.srcDirs = ['src/main/assets']
             jniLibs.srcDir 'src/main/jniLibs'
         }
-        ntwoerp.res.srcDirs = ['src/main/res-ntwoerp']
+        yterpserver.res.srcDirs = ['src/main/res-yterpserver']
         nomistdun.res.srcDirs = ['src/main/res-nomisdun'] //指定编译的目录
         shunaite.res.srcDirs = ['src/main/res-shunaite']
         dpfppu.res.srcDirs = ['src/main/res-dpfppu']

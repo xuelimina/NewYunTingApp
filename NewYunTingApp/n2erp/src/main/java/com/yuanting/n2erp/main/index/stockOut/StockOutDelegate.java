@@ -30,6 +30,7 @@ import com.yuanting.yunting_core.ui.recycler.MultipleItemEntity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -228,7 +229,7 @@ public class StockOutDelegate extends LatteDelegate implements ProductItemOnClic
                 } else {
                     mSourceidStr = mCurrentPurposeEntity.getField(MultipleFields.ID);
                 }
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");// HH:mm:ss//获取当前时间
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());// HH:mm:ss//获取当前时间
                 Date date = new Date(System.currentTimeMillis());
                 OutBound(mNameStr, mSourceidStr, mUnitStr, mNumberStr, simpleDateFormat.format(date), mTextStr, mOtherinfoStr);
             }

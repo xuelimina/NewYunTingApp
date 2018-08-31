@@ -142,7 +142,6 @@
                         android:textSize="20sp" />
 
                     <android.support.v7.widget.LinearLayoutCompat
-                        android:id="@+id/tv_date_end"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
@@ -151,6 +150,7 @@
                         android:background="@drawable/edit_view_circle">
 
                         <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_date_end"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="8"
@@ -243,8 +243,8 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:background="@color/app_main_background_erp"
-                        android:visibility="visible"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="0dp"
@@ -340,14 +340,15 @@
                             android:textSize="13sp" />
 
                     </android.support.v7.widget.LinearLayoutCompat>
+
                     <android.support.v7.widget.LinearLayoutCompat
                         android:id="@+id/layout_statistics_title"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:background="@color/app_main_background_erp"
-                        android:visibility="gone"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <android.support.v7.widget.AppCompatTextView
                             android:layout_width="0dp"
@@ -387,6 +388,7 @@
                             android:textSize="13sp" />
 
                     </android.support.v7.widget.LinearLayoutCompat>
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_stock_out_data"
                         android:layout_width="match_parent"
@@ -401,6 +403,4 @@
 
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>
-
-
 </RelativeLayout>

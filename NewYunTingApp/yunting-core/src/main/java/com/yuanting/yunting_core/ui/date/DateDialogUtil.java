@@ -25,8 +25,9 @@ public class DateDialogUtil {
 
     private IDateListener mDateListener = null;
 
-    public void setDateListener(IDateListener listener) {
+    public DateDialogUtil setDateListener(IDateListener listener) {
         this.mDateListener = listener;
+        return this;
     }
 
     public void showDialog(Context context) {
@@ -37,16 +38,16 @@ public class DateDialogUtil {
                         ViewGroup.LayoutParams.MATCH_PARENT);
 
         picker.setLayoutParams(lp);
-
-        picker.init(1990, 1, 1, new DatePicker.OnDateChangedListener() {
+        final boolean[] is = {true};
+        final Calendar calendar = Calendar.getInstance();
+        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ", Locale.getDefault());
+        picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                final Calendar calendar = Calendar.getInstance();
-                calendar.set(year, monthOfYear, dayOfMonth);
-                final SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日", Locale.getDefault());
-                final String data = format.format(calendar.getTime());
-                if(mDateListener!=null){
-                    mDateListener.onDateChange(data);
+                is[0] = false;
+                calendar.set(year, monthOfYear, dayOfMonth, calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                if (mDateListener != null) {
+                    mDateListener.onDateChange(format.format(calendar.getTime()));
                 }
             }
         });
@@ -59,7 +60,9 @@ public class DateDialogUtil {
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        if (is[0]) {
+                            mDateListener.onDateChange(format.format(calendar.getTime()));
+                        }
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {

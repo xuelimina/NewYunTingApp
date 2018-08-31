@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.callback.IError;
 import com.yuanting.yunting_core.net.callback.IFailure;
 import com.yuanting.yunting_core.net.callback.ISuccess;
+import com.yuanting.yunting_core.ui.date.DateDialogUtil;
 import com.yuanting.yunting_core.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
@@ -48,8 +50,13 @@ public class StockOutDataDelegate extends LatteDelegate implements ProductItemOn
     LinearLayoutCompat mStatisticsTitleLayout;
     @BindView(R2.id.et_select_product_name)
     AppCompatEditText mEtSelectName;
+    @BindView(R2.id.tv_date_start)
+    AppCompatTextView mTvDateStart;
+    @BindView(R2.id.tv_date_end)
+    AppCompatTextView mTvDateEnd;
     private StockOutDataConverter mConverter = new StockOutDataConverter();
     private StockOutDataAdapter mAdapter;
+    private boolean isStatistics = false;
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
@@ -58,6 +65,7 @@ public class StockOutDataDelegate extends LatteDelegate implements ProductItemOn
         mBtnStatisticsDetails.setBackgroundColor(Color.WHITE);
         mBtnDataDetails.setTextColor(Color.WHITE);
         mBtnStatisticsDetails.setTextColor(Color.DKGRAY);
+        isStatistics = false;
     }
 
     @OnClick(R2.id.back)
@@ -75,6 +83,7 @@ public class StockOutDataDelegate extends LatteDelegate implements ProductItemOn
             mBtnStatisticsDetails.setBackgroundColor(Color.WHITE);
             mDetailsTitleLayout.setVisibility(View.VISIBLE);
             mStatisticsTitleLayout.setVisibility(View.GONE);
+            isStatistics = false;
             GetOutBoundInfomation();
         } else if (id == R.id.btn_data_statistics) {
             mBtnStatisticsDetails.setBackgroundResource(R.color.app_main_background_erp);
@@ -84,20 +93,49 @@ public class StockOutDataDelegate extends LatteDelegate implements ProductItemOn
             mBtnDataDetails.setTextColor(Color.DKGRAY);
             mBtnStatisticsDetails.setTextColor(Color.WHITE);
             GetOutBoundGroup();
+            isStatistics = true;
         } else if (id == R.id.layout_date_start) {
-
+            new DateDialogUtil().setDateListener(new DateDialogUtil.IDateListener() {
+                @Override
+                public void onDateChange(String date) {
+                    mTvDateStart.setText(date);
+                }
+            }).showDialog(getContext());
         } else if (id == R.id.layout_date_end) {
-
+            new DateDialogUtil().setDateListener(new DateDialogUtil.IDateListener() {
+                @Override
+                public void onDateChange(String date) {
+                    mTvDateEnd.setText(date);
+                }
+            }).showDialog(getContext());
         } else if (id == R.id.btn_select_product_name) {
             final String selectName = mEtSelectName.getText().toString();
-            if (selectName.isEmpty()) {
-                mEtSelectName.setError("请填写查询名称");
+            if (isStatistics) {
+                if (selectName.isEmpty()) {
+                    mEtSelectName.setError("请填写查询条件");
+                    Toast.makeText(getContext(), "请填写查询条件", Toast.LENGTH_SHORT).show();
+                } else {
+                    mEtSelectName.setError(null);
+                    reDataList(mConverter.getDataByNameStartEnd(selectName, null, null));
+                }
             } else {
-                mEtSelectName.setError(null);
-                reDataList(mConverter.getDataByName(selectName));
+                 String mStartStr = mTvDateStart.getText().toString();
+                 String mEndStr = mTvDateEnd.getText().toString();
+                if (selectName.isEmpty() && mStartStr.isEmpty() && mEndStr.isEmpty()) {
+                    mEtSelectName.setError("请填写查询条件");
+                    Toast.makeText(getContext(), "请填写查询条件", Toast.LENGTH_SHORT).show();
+                } else {
+                    mEtSelectName.setError(null);
+                    if (!mStartStr.isEmpty()) {
+                        mStartStr = mStartStr + " 00:00:00";
+                    }
+                    if (!mEndStr.isEmpty()) {
+                        mEndStr = mEndStr + " 23:59:59";
+                    }
+                    reDataList(mConverter.getDataByNameStartEnd(selectName, mStartStr, mEndStr));
+                }
             }
         }
-
     }
 
     private void GetOutBoundInfomation() {

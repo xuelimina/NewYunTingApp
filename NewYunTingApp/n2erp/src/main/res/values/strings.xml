@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">n2erp</string>
+    <string name="app_name">门店ERP</string>
     <!--注册布局-->
     <string name="sign_up_toolbar">注册</string>
     <string name="tv_link_sign_in">已经注册，请登录</string>
