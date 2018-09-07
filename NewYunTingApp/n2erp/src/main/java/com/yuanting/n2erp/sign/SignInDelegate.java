@@ -16,6 +16,8 @@ import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.callback.IError;
 import com.yuanting.yunting_core.net.callback.IFailure;
 import com.yuanting.yunting_core.net.callback.ISuccess;
+import com.yuanting.yunting_core.wechat.LatteWeChat;
+import com.yuanting.yunting_core.wechat.callbacks.IWeChatSignInCallBack;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -105,6 +107,21 @@ public class SignInDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
+    }
+
+    @OnClick(R2.id.btn_sign_up)
+    void signUp() {
+        getSupportDelegate().startWithPop(new SignUpDelegate());
+    }
+
+    @OnClick(R2.id.tv_sign_in_wechat)
+    void signInWeChat() {
+        LatteWeChat.getInstance().onSignSuccess(new IWeChatSignInCallBack() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+
+            }
+        }).signIn();
     }
 
     @Override

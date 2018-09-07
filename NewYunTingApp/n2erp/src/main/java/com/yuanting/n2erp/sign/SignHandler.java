@@ -1,5 +1,7 @@
 package com.yuanting.n2erp.sign;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuanting.n2erp.jsonUtils.JsonUtils;
@@ -13,20 +15,15 @@ import com.yuanting.yunting_core.app.AccountManager;
 public class SignHandler {
 
     public static void onSignUp(String response, ISignListener signListener) {
-//        final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
-//        final long userId = profileJson.getLong("userId");
-//        final String name = profileJson.getString("name");
-//        final String avatar = profileJson.getString("avatar");
-//        final String gender = profileJson.getString("gender");
-//        final String address = profileJson.getString("address");
-//        final UserProfile profile = new UserProfile(userId, name, avatar, gender, address);
-//        DatabaseManager.getInstance().getDao().insert(profile);
-        AccountManager.setSignState(true);
+        Log.i("response", "" + response);
+        final String companyId = response.substring(response.indexOf("ID") + 3, response.indexOf(" 获得"));
+        Log.i("id", "" + companyId);
+        AccountManager.setSignState(false);
+        AccountManager.setOwner(companyId);
         signListener.onSignUpSuccess();
     }
 
     public static void onSignIn(String response, ISignListener signListener) {
-
         final JSONObject profileJson = JSON.parseArray(JsonUtils.getDecodeJSONStr(response)).getJSONObject(0);
         final String UserID = profileJson.getString("UserID");
         final String UserName = profileJson.getString("UserName");
@@ -43,8 +40,20 @@ public class SignHandler {
         AccountManager.setPermissions(Permissions);
         AccountManager.setTextInfo(TextInfo);
         AccountManager.setCreateTime(UserInfos);
-        AccountManager.setOwner(UserInfos.substring(UserInfos.indexOf("<Owner>") + "<Owner>".length(), UserInfos.indexOf("</Owner>")));
-        AccountManager.setMony(UserInfos.substring(UserInfos.indexOf("<Mony>") + "<Mony>".length(), UserInfos.indexOf("</Mony>")));
+        if (UserInfos.contains("<Number>"))
+            AccountManager.setNumber(UserInfos.substring(UserInfos.indexOf("<Number>") + "<Number>".length(), UserInfos.indexOf("</Number>")));
+        if (UserInfos.contains("<Address>"))
+            AccountManager.setCompanyAddress(UserInfos.substring(UserInfos.indexOf("<Address>") + "<Address>".length(), UserInfos.indexOf("</Address>")));
+        if (UserInfos.contains("<Name>"))
+            AccountManager.setCompanyName(UserInfos.substring(UserInfos.indexOf("<Name>") + "<Name>".length(), UserInfos.indexOf("</Name>")));
+        if (UserInfos.contains("<Owner>"))
+            AccountManager.setOwner(UserInfos.substring(UserInfos.indexOf("<Owner>") + "<Owner>".length(), UserInfos.indexOf("</Owner>")));
+        if (UserInfos.contains("<Lev>"))
+            AccountManager.setLev(UserInfos.substring(UserInfos.indexOf("<Lev>") + "<Lev>".length(), UserInfos.indexOf("</Lev>")));
+        if (UserInfos.contains("<FinnalDate>"))
+            AccountManager.setFinnalDate(UserInfos.substring(UserInfos.indexOf("<FinnalDate>") + "<FinnalDate>".length(), UserInfos.indexOf("</FinnalDate>")));
+        if (UserInfos.contains("<Mony>"))
+            AccountManager.setLev(UserInfos.substring(UserInfos.indexOf("<Mony>") + "<Mony>".length(), UserInfos.indexOf("</Mony>")));
         signListener.onSignInSuccess();
     }
 

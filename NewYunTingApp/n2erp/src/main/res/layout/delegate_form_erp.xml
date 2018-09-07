@@ -26,12 +26,224 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="接车排表"
+            android:text="贴车排表"
             android:textColor="@android:color/white"
             android:textSize="25sp" />
     </android.support.v7.widget.Toolbar>
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_index"
+        android:orientation="vertical">
 
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/app_main_background_erp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="{fa-chevron-left}"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:id="@+id/year_month_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/icon_right"
+                    android:layout_toRightOf="@+id/icon_left"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="10dp"
+                        android:text="八月"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="2018"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp" />
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <com.joanzapata.iconify.widget.IconTextView
+                    android:id="@+id/icon_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="{fa-chevron-right}"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周一"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周二"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周三"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周四"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周五"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周六"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="周日"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_month_matter"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit_view_circle"
+                    android:gravity="center|left"
+                    android:paddingLeft="5dp"
+                    android:text="本月所有事件："
+                    android:textColor="@android:color/black"
+                    android:textSize="13sp" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10" />
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.5"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_day_matter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_day_matter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="5dp"
+                    android:text="sssss"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+
+    </android.support.v7.widget.LinearLayoutCompat>
 
 
 </RelativeLayout>

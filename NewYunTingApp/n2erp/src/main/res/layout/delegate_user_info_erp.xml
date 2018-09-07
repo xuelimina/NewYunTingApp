@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_top"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/app_main_background_erp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/back" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="用户信息管理"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_top"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="我的单位:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center|left"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="注册时间:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_user_info_regist_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center|left"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="到期时间:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_user_info_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center|left"
+                android:inputType="phone"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_subaccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_circle"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="8dp"
+                android:text="子账户管理"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_initialization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_circle_bg"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="8dp"
+                android:text="初始化数据"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <!--注册按钮-->
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_ch_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_view_circle"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="8dp"
+            android:text="修改密码"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_re_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_view_circle"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="8dp"
+            android:text="找回密码"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_contact_us"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/edit_view_circle"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="8dp"
+            android:text="遇到问题？联系客服"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</RelativeLayout>

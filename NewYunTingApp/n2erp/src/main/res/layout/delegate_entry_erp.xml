@@ -26,12 +26,736 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="接车录入"
+            android:text="贴车排表日程录入"
             android:textColor="@android:color/white"
             android:textSize="25sp" />
     </android.support.v7.widget.Toolbar>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_index">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/view_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_receive_cart_date_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="接车日期："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_receive_cart_date_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@+id/tv_receive_cart_date_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_receive_cart_date"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_receive_cart_time_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="接车时间："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_receive_cart_time_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@+id/tv_receive_cart_time_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_receive_cart_time"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_place_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="接车地点："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_place_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@+id/tv_place_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_place_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_product_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="施工材料："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_product_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toRightOf="@+id/tv_product_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_product"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_user_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="负  责  人："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_user_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/btn_add_user"
+                            android:layout_toRightOf="@+id/tv_user_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_user_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="添加"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:id="@+id/user_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.LinearLayoutCompat
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:id="@+id/tv_add_user_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="center"
+                                    android:text="姓名"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="15sp" />
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/et_user_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_toLeftOf="@+id/btn_add_user_name_ok"
+                                    android:layout_toRightOf="@+id/tv_add_user_name_title"
+                                    android:background="@drawable/edit_view_circle"
+                                    android:gravity="center|left"
+                                    android:inputType="text"
+                                    android:padding="5dp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="15sp" />
 
 
+                            </android.support.v7.widget.LinearLayoutCompat>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:id="@+id/tv_user_number_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:gravity="center"
+                                    android:text="联系方式"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="15sp" />
+
+                                <android.support.v7.widget.AppCompatEditText
+                                    android:id="@+id/et_user_number"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_toRightOf="@+id/tv_user_number_title"
+                                    android:background="@drawable/edit_view_circle"
+                                    android:gravity="center|left"
+                                    android:inputType="phone"
+                                    android:padding="5dp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="15sp" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal">
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/btn_add_user_ok"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_toLeftOf="@+id/btn_add_user_cancel"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="确定"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+
+                            <android.support.v7.widget.AppCompatButton
+                                android:id="@+id/btn_add_user_cancel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:text="取消"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_position_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="施工部位："
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_position_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/btn_add_position"
+                            android:layout_toRightOf="@+id/tv_position_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_position_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_position"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="添加"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <RelativeLayout
+                        android:id="@+id/position_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/et_position"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/btn_add_position_ok"
+                            android:background="@drawable/edit_view_circle"
+                            android:gravity="center|left"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_position_ok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/btn_add_position_cancel"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="确定"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_position_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="取消"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.LinearLayoutCompat>
+
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/tv_color_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:gravity="center"
+                            android:text="颜色：        "
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.LinearLayoutCompat
+                            android:id="@+id/select_color_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/btn_add_color"
+                            android:layout_toRightOf="@+id/tv_color_title"
+                            android:background="@drawable/edit_view_circle">
+
+                            <android.support.v7.widget.AppCompatTextView
+                                android:id="@+id/tv_select_color_name"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center|left"
+                                android:paddingLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="15sp" />
+
+                            <com.joanzapata.iconify.widget.IconTextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/app_main_background_erp"
+                                android:gravity="center"
+                                android:text="{fa-chevron-down}"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp" />
+
+                        </android.support.v7.widget.LinearLayoutCompat>
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="添加"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/color_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.AppCompatEditText
+                            android:id="@+id/et_color"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@+id/btn_add_color_ok"
+                            android:background="@drawable/edit_view_circle"
+                            android:gravity="center|left"
+                            android:inputType="text"
+                            android:padding="5dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_color_ok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="10dp"
+                            android:layout_toLeftOf="@+id/btn_add_color_cancel"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="确定"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.AppCompatButton
+                            android:id="@+id/btn_add_color_cancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/app_main_background_erp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="取消"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_add_construction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/view_layout"
+                android:layout_centerHorizontal="true"
+                android:background="@color/app_main_background_erp"
+                android:gravity="center"
+                android:paddingBottom="15dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="15dp"
+                android:text="确定"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_select"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_select_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/rv_select_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/app_main_background_erp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="取消"
+                android:textColor="@android:color/white"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </RelativeLayout>

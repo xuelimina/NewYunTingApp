@@ -21,8 +21,8 @@ android {
     productFlavors {
         yterpserver {
             applicationId 'com.yunting.yterpserver'
-            versionCode 2
-            versionName "2.0"
+            versionCode 3
+            versionName "3.0"
             manifestPlaceholders = [CHANNEL_VALUE: "yterpserver ",
                                     server_url   : "https://d.carbros.cn/YTERPServer/api/Base/",
                                     gaode_key    : "01fde163df731a3460794538c6963b70",
@@ -41,8 +41,8 @@ android {
         }
         nomistdun {
             applicationId 'com.yunting.nomisdun'
-            versionCode 2
-            versionName "2.0"
+            versionCode 3
+            versionName "3.0"
             manifestPlaceholders = [CHANNEL_VALUE: "nomisdun ",
                                     server_url   : "https://d.carbros.cn:4433/Nomisdun/",
                                     gaode_key    : "dd0062970415df30ca53059884511f85",
@@ -99,8 +99,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':shunaite_ec')
     implementation project(':yunting-annotations')
-    implementation project(':yunting-compiler')
     implementation project(':nomisdun')
     implementation project(':dpfppu')
     implementation project(':n2erp')
+    annotationProcessor project(':compiler')
 }

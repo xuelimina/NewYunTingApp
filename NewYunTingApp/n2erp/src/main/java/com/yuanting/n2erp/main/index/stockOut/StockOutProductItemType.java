@@ -6,8 +6,13 @@ package com.yuanting.n2erp.main.index.stockOut;
  * TEL 13262933389
  */
 public class StockOutProductItemType {
-    static final int STOCK_OUT_PRODUCT_ITEM = 11;
-    static final String PRODUCT_ITEM = "1";
-    static final String PRODUCT_UNIT_ITEM = "2";
-    static final String PRODUCT_POINT_ITEM = "3";
+    public static final int STOCK_OUT_PRODUCT_ITEM = 11;
+    public static final String PRODUCT_ITEM = "1";
+    public static final String PRODUCT_UNIT_ITEM = "2";
+    public static final String PRODUCT_POINT_ITEM = "3";
+    public static final String ENTRY_PARTNER_ITEM = "4";
+    public static final String ENTRY_BODY_ITEM = "5";
+    public static final String ENTRY_PARTS_ITEM = "6";
+    public static final String ENTRY_MATERIAL_ITEM = "7";
+    public static final String ENTRY_COLOR_ITEM = "8";
 }

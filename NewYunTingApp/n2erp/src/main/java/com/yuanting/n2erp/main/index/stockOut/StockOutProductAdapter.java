@@ -24,7 +24,7 @@ public class StockOutProductAdapter extends MultipleRecyclerAdapter {
         this.mItemOnClick = itemOnClick;
     }
 
-    StockOutProductAdapter(List<MultipleItemEntity> data) {
+    public StockOutProductAdapter(List<MultipleItemEntity> data) {
         super(data);
         addItemType(StockOutProductItemType.STOCK_OUT_PRODUCT_ITEM, R.layout.item_product_erp);
     }

@@ -77,7 +77,6 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     LinearLayoutCompat mSelectLayout;
     @BindView(R2.id.tv_select_title)
     AppCompatTextView mTvSelectTitle;
-    private String parent = "";
     private String mCategoryNameStr = "";
     private String mBrandNameStr = "";
     private String mModelNameStr = "";
@@ -90,7 +89,6 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
     private MultipleItemEntity mCurrentBrandEntity;
     private MultipleItemEntity mCurrentModelEntity;
     private MultipleItemEntity mCurrentProductNameEntity;
-    private ProductAdapter mAdapter;
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
@@ -164,16 +162,34 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
         mSelectLayout.setVisibility(View.GONE);
     }
 
+    private boolean isCheckByName(String checkName, ArrayList<MultipleItemEntity> entities) {
+        boolean isCheck = false;
+        for (MultipleItemEntity entity : entities) {
+            final String name = entity.getField(ProductItemFields.NAME);
+            if (checkName.equals(name)) {
+                isCheck = true;
+                break;
+            }
+        }
+        return !isCheck;
+
+    }
+
     @OnClick({R2.id.btn_add_category_ok, R2.id.btn_add_brand_ok, R2.id.btn_add_model_ok, R2.id.btn_add_product_name_ok, R2.id.btn_entry_material})
     void okBtnOnClick(View view) {
         final int id = view.getId();
+        String parent = "";
         if (id == R.id.btn_add_category_ok) {
             final String categoryStr = mEtCategory.getText().toString();
             if (categoryStr.isEmpty()) {
                 mEtCategory.setError("请填写添加的品类");
             } else {
                 mEtCategory.setError(null);
-                addMaterialMode(ProductIdx.CATEGORY_IDX, "0", "0", categoryStr);
+                if (isCheckByName(categoryStr, mConverter.getCategoryList())) {
+                    addMaterialMode(ProductIdx.CATEGORY_IDX, "0", "0", categoryStr);
+                } else {
+                    Toast.makeText(getContext(), "品类已存在", Toast.LENGTH_SHORT).show();
+                }
             }
         } else if (id == R.id.btn_add_brand_ok) {
             final String brandStr = mEtBrand.getText().toString();
@@ -186,8 +202,13 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                 mEtBrand.setError("请填写添加的品牌");
             } else {
                 mEtBrand.setError(null);
-                parent = mCurrentCategoryEntity.getField(MultipleFields.ID);
-                addMaterialMode(ProductIdx.BRAND_IDX, parent, "0", brandStr);
+                if (isCheckByName(brandStr, mConverter.getBrandList())) {
+                    parent = mCurrentCategoryEntity.getField(MultipleFields.ID);
+                    addMaterialMode(ProductIdx.BRAND_IDX, parent, "0", brandStr);
+                } else {
+                    Toast.makeText(getContext(), "品牌已存在", Toast.LENGTH_SHORT).show();
+                }
+
             }
         } else if (id == R.id.btn_add_model_ok) {
             final String modelStr = mEtModel.getText().toString();
@@ -200,8 +221,13 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                 mEtModel.setError("请填写添加的型号");
             } else {
                 mEtModel.setError(null);
-                parent = mCurrentBrandEntity.getField(MultipleFields.ID);
-                addMaterialMode(ProductIdx.MODEL_IDX, parent, "0", modelStr);
+                if (isCheckByName(modelStr, mConverter.getModelList())) {
+                    parent = mCurrentBrandEntity.getField(MultipleFields.ID);
+                    addMaterialMode(ProductIdx.MODEL_IDX, parent, "0", modelStr);
+                } else {
+                    Toast.makeText(getContext(), "型号已存在", Toast.LENGTH_SHORT).show();
+                }
+
             }
         } else if (id == R.id.btn_add_product_name_ok) {
             final String productNameStr = mEtProductName.getText().toString();
@@ -225,14 +251,19 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                 mEtStandard.setError(null);
             }
             if (check) {
-                parent = mCurrentModelEntity.getField(MultipleFields.ID);
-                addMaterialMode(ProductIdx.PRODUCT_NAME_IDX, parent, standardStr, productNameStr + "(" + standardStr + "米/卷)");
+                if (isCheckByName(productNameStr + "(" + standardStr + "米/卷)", mConverter.getProductNameList())) {
+                    parent = mCurrentModelEntity.getField(MultipleFields.ID);
+                    addMaterialMode(ProductIdx.PRODUCT_NAME_IDX, parent, standardStr, productNameStr + "(" + standardStr + "米/卷)");
+                } else {
+                    Toast.makeText(getContext(), "名称已存在", Toast.LENGTH_SHORT).show();
+                }
+
             }
         } else if (id == R.id.btn_entry_material) {
             if (checkEntryMaterial()) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());// HH:mm:ss//获取当前时间
                 Date date = new Date(System.currentTimeMillis());
-                Log.i("rerer",simpleDateFormat.format(date));
+                Log.i("rerer", simpleDateFormat.format(date));
                 entryMaterial(mCategoryNameStr + "/" + mBrandNameStr + "/" + mModelNameStr + "/" + mProductNameStr
                         , mUnitStr, simpleDateFormat.format(date), mCountStr, mInfoStr, mCurrentProductNameEntity.getField(MultipleFields.ID).toString());
             }
@@ -285,6 +316,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
 
     private void reRecyclerData(MultipleItemEntity entity, String idx) {
         mRvSelect.removeAllViews();
+        final ProductAdapter mAdapter;
         if (idx.equals(ProductIdx.UNIT)) {
             final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
             for (int i = 0; i < 2; i++) {

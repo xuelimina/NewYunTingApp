@@ -11,12 +11,13 @@
     <string name="edit_sign_up_name">姓名</string>
     <!--注册activity-->
     <string name="sign_up_delegate_success">注册成功</string>
-    <string name="sign_up_delegate_input_name">请输入姓名</string>
-    <string name="sign_up_delegate_email_error">错误的邮箱格式</string>
-    <string name="sign_up_delegate_phone_error">请填写用户名</string>
-    <string name="sign_up_delegate_password_error">请填写密码</string>
+    <string name="sign_up_delegate_input_name_erp">请输入用户名</string>
+    <string name="sign_up_delegate_company_name_error_erp">请输入单位名称</string>
+    <string name="sign_up_delegate_company_address_error_erp">请输入单位地址</string>
+    <string name="sign_up_delegate_phone_error">请填写正确的联系方式</string>
+    <string name="sign_up_delegate_password_error">密码不能少于6位</string>
     <string name="sign_up_delegate_re_password_error">密码验证错误</string>
     <!--登录布局-->
     <string name="btn_sign_in">登录</string>
-    <string name="tv_link_sign_up">还未注册，去注册</string>
+    <string name="tv_link_sign_up">注册</string>
 </resources>

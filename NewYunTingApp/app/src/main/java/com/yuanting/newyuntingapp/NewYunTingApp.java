@@ -62,7 +62,7 @@ public class NewYunTingApp extends MultiDexApplication {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new FontYTModule())
                 .withLoaderDelayed(500)
-                .withWeChatAppID("微信AppKey").withWeChatAppSecret("微信AppSecret")
+                .withWeChatAppID("wxc82e786b61ed760e").withWeChatAppSecret("69ba1237fc0f06d62776671102f19392")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withJavascriptInterface("latte")
                 .configure();

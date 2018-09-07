@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yuanting.newyuntingapp">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".NewYunTingApp"
         android:allowBackup="true"
@@ -18,8 +20,8 @@
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider" />
@@ -52,25 +54,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity-->
-        <!--android:name=".wxapi.WXEntryActivity"-->
-        <!--android:exported="true"-->
-        <!--android:label="微信回调"-->
-        <!--android:launchMode="singleTop"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/Theme.AppCompat.Translucent">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.VIEW" />-->
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name=".wxapi.WXPayEntryActivity"-->
-        <!--android:exported="true"-->
-        <!--android:label="微信支付回调"-->
-        <!--android:launchMode="singleTop"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/Theme.AppCompat.Translucent" />-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="微信回调"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:label="微信支付回调"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
     </application>
 
 </manifest>

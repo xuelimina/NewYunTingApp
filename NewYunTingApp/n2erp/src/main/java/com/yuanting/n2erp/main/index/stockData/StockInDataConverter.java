@@ -7,11 +7,7 @@ import com.yuanting.yunting_core.ui.recycler.DataConverter;
 import com.yuanting.yunting_core.ui.recycler.MultipleFields;
 import com.yuanting.yunting_core.ui.recycler.MultipleItemEntity;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created on 2018/6/22 12:18
@@ -20,7 +16,6 @@ import java.util.Locale;
  */
 public class StockInDataConverter extends DataConverter {
     private ArrayList<MultipleItemEntity> Allentities = new ArrayList<>();
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 
     @Override
     public ArrayList<MultipleItemEntity> convert() {
@@ -84,84 +79,14 @@ public class StockInDataConverter extends DataConverter {
                     .setField(MultipleFields.ITEM_TYPE, StockDataItemType.STOCK_OUT_DATA_STATISTICS_ITEM)
                     .build();
             final JSONObject object = dataArray.getJSONObject(i);
-            final String Name = object.getString("名称");
-            final String Number = object.getString("数量");
-            final String Unit = object.getString("单位");
+            final String Name = object.getString("Name");
+            final String Number = object.getString("Number");
+            final String Unit = object.getString("Unit");
             itemEntity.setField(StockDataItemFields.NAME, Name);
             itemEntity.setField(StockDataItemFields.UNIT, Unit);
             itemEntity.setField(StockDataItemFields.NUMBER, Number);
             entities.add(itemEntity);
             Allentities.add(itemEntity);
-        }
-        return entities;
-    }
-
-    public ArrayList<MultipleItemEntity> getDataByNameStartEnd(String name, String start, String end) {
-        ArrayList<MultipleItemEntity> entities = null;
-        if (name != null && !name.isEmpty()) {
-            if (start != null && !start.isEmpty() && end != null && !end.isEmpty()) {
-                entities = new ArrayList<>();
-                if (getDataByTime(start, end).size() > 0){
-                    for (MultipleItemEntity entity : getDataByTime(start, end)) {
-                        final String Name = entity.getField(StockDataItemFields.NAME);
-                        if (Name.contains(name)) {
-                            entities.add(entity);
-                        }
-                    }
-                }
-            }
-            if (start == null || start.isEmpty() && end != null && !end.isEmpty()) {
-                entities = getDataByStartTime(end, "End");
-            }
-            if (start != null && !start.isEmpty() && (end == null || end.isEmpty())) {
-                entities = getDataByStartTime(start, "Start");
-            }
-            if (start == null || start.isEmpty() && end == null || end.isEmpty()) {
-                entities = getDataByName(name);
-            }
-        } else {
-            if (start != null && !start.isEmpty() && end != null && !end.isEmpty()) {
-                entities = getDataByTime(start, end);
-            }
-            if (start == null || start.isEmpty() && end != null && !end.isEmpty()) {
-                entities = getDataByNameTime(name, end, "End");
-            }
-            if (start != null && !start.isEmpty() && (end == null || end.isEmpty())) {
-                entities = getDataByNameTime(name, start, "Start");
-            }
-        }
-        return entities;
-    }
-
-    private ArrayList<MultipleItemEntity> getDataByNameTime(String name, String times, String tga) {
-        final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
-        try {
-            final Date startDate = sdf.parse(times);
-            for (MultipleItemEntity entity : Allentities) {
-                final String time = entity.getField(StockDataItemFields.TIME);
-                final String Name = entity.getField(StockDataItemFields.NAME);
-                if (time != null && !time.isEmpty()) {
-                    final Date timeData = sdf.parse(time);
-                    if (tga.equals("Start") && startDate.getTime() <= timeData.getTime() && Name.contains(name)) {
-                        entities.add(entity);
-                    } else if (!tga.equals("Start") && timeData.getTime() <= startDate.getTime() && Name.contains(name)) {
-                        entities.add(entity);
-                    }
-                } else {
-                    final Date timeData = sdf.parse(time);
-                    if (tga.equals("Start") && startDate.getTime() <= timeData.getTime() && Name.contains(name)) {
-                        entities.add(entity);
-                    } else if (!tga.equals("Start") && timeData.getTime() <= startDate.getTime() && Name.contains(name)) {
-                        entities.add(entity);
-                    }
-
-                }
-            }
-        } catch (
-                ParseException e)
-
-        {
-            e.printStackTrace();
         }
         return entities;
     }
@@ -173,47 +98,6 @@ public class StockInDataConverter extends DataConverter {
             if (Name.contains(name)) {
                 entities.add(entity);
             }
-        }
-        return entities;
-    }
-
-    private ArrayList<MultipleItemEntity> getDataByTime(String start, String end) {
-        final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
-        try {
-            final Date startDate = sdf.parse(start);
-            final Date endData = sdf.parse(end);
-            for (MultipleItemEntity entity : Allentities) {
-                final String time = entity.getField(StockDataItemFields.TIME);
-                if (time != null && !time.isEmpty()) {
-                    final Date timeData = sdf.parse(time);
-                    if (startDate.getTime() <= timeData.getTime() && timeData.getTime() <= endData.getTime()) {
-                        entities.add(entity);
-                    }
-                }
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return entities;
-    }
-
-    private ArrayList<MultipleItemEntity> getDataByStartTime(String start, String tge) {
-        final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
-        try {
-            final Date startDate = sdf.parse(start);
-            for (MultipleItemEntity entity : Allentities) {
-                final String time = entity.getField(StockDataItemFields.TIME);
-                if (time != null && !time.isEmpty()) {
-                    final Date timeData = sdf.parse(time);
-                    if (tge.equals("Start") && startDate.getTime() <= timeData.getTime()) {
-                        entities.add(entity);
-                    } else if (!tge.equals("Start") && timeData.getTime() <= startDate.getTime()) {
-                        entities.add(entity);
-                    }
-                }
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
         return entities;
     }

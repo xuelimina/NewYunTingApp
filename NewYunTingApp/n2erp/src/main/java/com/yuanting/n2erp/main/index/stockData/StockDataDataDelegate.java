@@ -48,10 +48,29 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
     @BindView(R2.id.et_select_product_name)
     AppCompatEditText mEtSelectName;
     private StockInDataConverter mConverter = new StockInDataConverter();
-    private StockInDataAdapter mAdapter;
+    private boolean isStatistics = false;
+
+    @Override
+    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+        mBtnDataDetails.setBackgroundResource(R.color.app_main_background_erp);
+        mBtnStatisticsDetails.setBackgroundColor(Color.WHITE);
+        mBtnDataDetails.setTextColor(Color.WHITE);
+        mBtnStatisticsDetails.setTextColor(Color.DKGRAY);
+        GetInventoryAllByName("");
+    }
+
+    @OnClick(R2.id.back)
+    void back() {
+        _mActivity.onBackPressed();
+    }
+
     @OnClick({R2.id.btn_data_details, R2.id.btn_data_statistics, R2.id.btn_select_product_name,})
     void onClick(View view) {
         final int id = view.getId();
+        String selectName = mEtSelectName.getText().toString();
+        if (selectName.isEmpty()) {
+            selectName = "";
+        }
         if (id == R.id.btn_data_details) {
             mBtnDataDetails.setBackgroundResource(R.color.app_main_background_erp);
             mBtnDataDetails.setTextColor(Color.WHITE);
@@ -59,7 +78,8 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
             mBtnStatisticsDetails.setBackgroundColor(Color.WHITE);
             mDetailsTitleLayout.setVisibility(View.VISIBLE);
             mStatisticsTitleLayout.setVisibility(View.GONE);
-            GetInventoryAll();
+            isStatistics = false;
+            GetInventoryAllByName(selectName);
         } else if (id == R.id.btn_data_statistics) {
             mBtnStatisticsDetails.setBackgroundResource(R.color.app_main_background_erp);
             mBtnDataDetails.setBackgroundColor(Color.WHITE);
@@ -67,20 +87,62 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
             mStatisticsTitleLayout.setVisibility(View.VISIBLE);
             mBtnDataDetails.setTextColor(Color.DKGRAY);
             mBtnStatisticsDetails.setTextColor(Color.WHITE);
-            GetMaterialGroup();
+            isStatistics = true;
+            GetMaterialGroupByName1(selectName);
         } else if (id == R.id.btn_select_product_name) {
-            final String selectName = mEtSelectName.getText().toString();
-            if (selectName.isEmpty()) {
-                mEtSelectName.setError("请填写查询名称");
+            if (isStatistics) {
+                GetMaterialGroupByName1(selectName);
             } else {
-                mEtSelectName.setError(null);
-                reDataList(mConverter.getDataByName(selectName));
+                GetInventoryAllByName(selectName);
             }
         }
     }
-    private void GetMaterialGroup() {
-        RestClient.builder().url("GetMaterialGroup?")
+
+    private void reDataList(ArrayList<MultipleItemEntity> entities) {
+        mRecyclerView.removeAllViews();
+        final StockInDataAdapter mAdapter = new StockInDataAdapter(entities);
+        mAdapter.setItemOnClick(this);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void productContent(MultipleItemEntity entity) {
+    }
+
+    private void GetInventoryAllByName(String name) {
+        RestClient.builder().url("GetInventoryAllByName?")
                 .params("owner", AccountManager.getOwner())
+                .params("namecontans", name)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Log.i("response", JsonUtils.getDecodeJSONStr(response));
+                        reDataList(mConverter.setJsonData(JsonUtils.getDecodeJSONStr(response)).convert());
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(getContext(), "获取数据信息失败", Toast.LENGTH_SHORT).show();
+                    }
+                }).build().get();
+    }
+
+    private void GetMaterialGroupByName1(String name) {
+        RestClient.builder().url("GetMaterialGroupByName1?")
+                .params("Owner", AccountManager.getOwner())
+                .params("NameContans", name)
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -101,60 +163,6 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
                     public void onFailure() {
                         Toast.makeText(getContext(), "获取数据信息失败", Toast.LENGTH_SHORT).show();
                         reDataList(new ArrayList<MultipleItemEntity>());
-                    }
-                }).build().get();
-    }
-
-    private void reDataList(ArrayList<MultipleItemEntity> entities) {
-        mRecyclerView.removeAllViews();
-        mAdapter = new StockInDataAdapter(entities);
-        mAdapter.setItemOnClick(this);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void productContent(MultipleItemEntity entity) {
-    }
-
-    @Override
-    public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        GetInventoryAll();
-        mBtnDataDetails.setBackgroundResource(R.color.app_main_background_erp);
-        mBtnStatisticsDetails.setBackgroundColor(Color.WHITE);
-        mBtnDataDetails.setTextColor(Color.WHITE);
-        mBtnStatisticsDetails.setTextColor(Color.DKGRAY);
-    }
-
-    @OnClick(R2.id.back)
-    void back() {
-        _mActivity.onBackPressed();
-    }
-
-    private void GetInventoryAll() {
-        RestClient.builder().url("GetInventoryAll?")
-                .params("owner", AccountManager.getOwner())
-                .loader(getContext())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Log.i("response", JsonUtils.getDecodeJSONStr(response));
-                        reDataList(mConverter.setJsonData(JsonUtils.getDecodeJSONStr(response)).convert());
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Toast.makeText(getContext(), "获取数据信息失败", Toast.LENGTH_SHORT).show();
                     }
                 }).build().get();
     }

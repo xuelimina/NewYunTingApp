@@ -24,48 +24,106 @@ public class AccountManager {
         PERMISSIONS,
         TEXT_INFO,
         USER_INFOS,
-        MONY
+        MONY,
+        NUMBER,
+        COMPANY_ADDRESS,
+        COMPANY_NAME,
+        LEV,
+        FINNAL_DATE
+    }
+
+    public static void setNumber(String number) {
+        LattePreference.addCustomAppProfile(SignTag.NUMBER.name(), number);
+    }
+
+    public static String getNumber() {
+        return LattePreference.getCustomAppProfile(SignTag.NUMBER.name());
+    }
+
+    public static void setCompanyAddress(String companyAddress) {
+        LattePreference.addCustomAppProfile(SignTag.COMPANY_ADDRESS.name(), companyAddress);
+    }
+
+    public static String getCompanyAddress() {
+        return LattePreference.getCustomAppProfile(SignTag.COMPANY_ADDRESS.name());
+    }
+
+    public static void setCompanyName(String companyName) {
+        LattePreference.addCustomAppProfile(SignTag.COMPANY_NAME.name(), companyName);
+    }
+
+    public static String getCompanyName() {
+        return LattePreference.getCustomAppProfile(SignTag.COMPANY_NAME.name());
+    }
+
+    public static void setLev(String lev) {
+        LattePreference.addCustomAppProfile(SignTag.LEV.name(), lev);
+    }
+
+    public static String getLev() {
+        return LattePreference.getCustomAppProfile(SignTag.LEV.name());
+    }
+
+    public static void setFinnalDate(String finnalDate) {
+        LattePreference.addCustomAppProfile(SignTag.FINNAL_DATE.name(), finnalDate);
+    }
+
+    public static String getFinnalDate() {
+        return LattePreference.getCustomAppProfile(SignTag.FINNAL_DATE.name());
     }
 
     public static void setSignState(boolean state) {
         LattePreference.setAppFlag(SignTag.SIGN_TAG.name(), state);
     }
+
     public static void setUserName(String userName) {
         LattePreference.addCustomAppProfile(SignTag.USER_NAME.name(), userName);
     }
+
     public static String getUserName() {
         return LattePreference.getCustomAppProfile(SignTag.USER_NAME.name());
     }
+
     public static void setRegistTime(String registTime) {
         LattePreference.addCustomAppProfile(SignTag.REGIST_TIME.name(), registTime);
     }
+
     public static String getRegistTime() {
         return LattePreference.getCustomAppProfile(SignTag.REGIST_TIME.name());
     }
+
     public static void setPermissions(String permissions) {
         LattePreference.addCustomAppProfile(SignTag.PERMISSIONS.name(), permissions);
     }
+
     public static String getPermissions() {
         return LattePreference.getCustomAppProfile(SignTag.PERMISSIONS.name());
     }
+
     public static void setOwner(String owner) {
         LattePreference.addCustomAppProfile(SignTag.OWNER.name(), owner);
     }
+
     public static String getOwner() {
         return LattePreference.getCustomAppProfile(SignTag.OWNER.name());
     }
+
     public static void setMony(String mony) {
         LattePreference.addCustomAppProfile(SignTag.MONY.name(), mony);
     }
+
     public static String getMony() {
         return LattePreference.getCustomAppProfile(SignTag.MONY.name());
     }
+
     public static void setTextInfo(String textInfo) {
         LattePreference.addCustomAppProfile(SignTag.TEXT_INFO.name(), textInfo);
     }
+
     public static String getTextInfo() {
         return LattePreference.getCustomAppProfile(SignTag.TEXT_INFO.name());
     }
+
     public static void setID(String id) {
         LattePreference.addCustomAppProfile(SignTag.ID.name(), id);
     }
@@ -118,7 +176,7 @@ public class AccountManager {
         return LattePreference.getCustomAppProfile(SignTag.AREA.name());
     }
 
-    public  boolean getStatus() {
+    public boolean getStatus() {
         return LattePreference.getAppFlag(SignTag.STATUS.name());
     }
 

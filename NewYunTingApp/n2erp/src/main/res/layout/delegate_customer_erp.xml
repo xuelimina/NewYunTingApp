@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/app_main_background_erp">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/back" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="客户管理"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="客户名称:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_customer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="客户地址:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_customer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="联系方式:"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_customer_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_view_circle"
+                android:gravity="center"
+                android:inputType="phone"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textSize="15sp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+        <!--注册按钮-->
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_add_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/app_main_background_erp"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:paddingTop="8dp"
+            android:text="添加"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

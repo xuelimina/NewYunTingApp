@@ -65,6 +65,22 @@ public class ProductDataConverter extends DataConverter {
         return entities;
     }
 
+    public ArrayList<MultipleItemEntity> getCategoryList() {
+        return CategoryList;
+    }
+
+    public ArrayList<MultipleItemEntity> getBrandList() {
+        return BrandList;
+    }
+
+    public ArrayList<MultipleItemEntity> getModelList() {
+        return ModelList;
+    }
+
+    public ArrayList<MultipleItemEntity> getProductNameList() {
+        return ProductNameList;
+    }
+
     public ArrayList<MultipleItemEntity> getListData(MultipleItemEntity entity, String idx) {
         switch (idx) {
             case ProductIdx.CATEGORY_IDX:

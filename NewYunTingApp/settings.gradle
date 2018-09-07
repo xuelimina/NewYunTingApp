@@ -1,1 +1,1 @@
-include ':app', ':yunting-annotations', ':yunting-compiler', ':shunaite_ec', ':yunting-core', ':nomisdun', ':dpfppu', ':n2erp'
+include ':app', ':yunting-annotations', ':shunaite_ec', ':yunting-core', ':nomisdun', ':dpfppu', ':n2erp', ':compiler'
