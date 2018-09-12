@@ -37,27 +37,37 @@ public class StockDataDelegate extends LatteDelegate {
     void onClick(View view) {
         final int id = view.getId();
         final String lev = AccountManager.getLev();
-        if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
-            if (id == R.id.icon_stock_in_data) {
+        if (id == R.id.icon_stock_in_data) {
+            if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
                 getSupportDelegate().start(new StockInDataDelegate());
-            } else if (id == R.id.icon_stock_out_data) {
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.icon_stock_out_data) {
+            if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
                 getSupportDelegate().start(new StockOutDataDelegate());
-            } else if (id == R.id.icon_stock_data_data) {
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.icon_stock_data_data) {
+            if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
                 getSupportDelegate().start(new StockDataDataDelegate());
-            } else if (id == R.id.icon_customer) {
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.icon_customer) {
+            if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
                 getSupportDelegate().start(new CustomerDelegate());
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
-        }
-        if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
-            if (id == R.id.icon_cooperation) {
+        } else if (id == R.id.icon_cooperation) {
+            if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_2)) {
                 getSupportDelegate().start(new PartnerDelegate());
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.icon_user_info) {
+        } else if (id == R.id.icon_user_info) {
             getSupportDelegate().start(new UserInfoDelegate());
         }
 

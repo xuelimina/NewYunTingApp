@@ -456,7 +456,7 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                                 break;
                             default:
                                 final ArrayList<MultipleItemEntity> entities = mConverter.setJsonData(JsonUtils.getDecodeJSONStr(response)).convert();
-                                reViewData(ProductIdx.CATEGORY_IDX, entities == null ? null : entities.get(0));
+                                reViewData(ProductIdx.CATEGORY_IDX, entities.size() > 0 ? entities.get(0) : null);
                                 break;
                         }
                     }

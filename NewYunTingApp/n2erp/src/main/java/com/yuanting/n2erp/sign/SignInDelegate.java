@@ -1,9 +1,11 @@
 package com.yuanting.n2erp.sign;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.yuanting.n2erp.R;
 import com.yuanting.n2erp.R2;
 import com.yuanting.n2erp.main.ERPBottomDelegate;
+import com.yuanting.yunting_core.app.AccountManager;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
 import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.callback.IError;
@@ -18,6 +21,12 @@ import com.yuanting.yunting_core.net.callback.IFailure;
 import com.yuanting.yunting_core.net.callback.ISuccess;
 import com.yuanting.yunting_core.wechat.LatteWeChat;
 import com.yuanting.yunting_core.wechat.callbacks.IWeChatSignInCallBack;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -94,7 +103,35 @@ public class SignInDelegate extends LatteDelegate {
         mISignListener = new ISignListener() {
             @Override
             public void onSignInSuccess() {
-                getSupportDelegate().startWithPop(new ERPBottomDelegate());
+                final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());// HH:mm:ss//获取当前时间
+                String fiannaDate = AccountManager.getFinnalDate();
+                if (fiannaDate.contains("/"))
+                    fiannaDate = fiannaDate.replace("/", "-") + " 23:59:59";
+                Date date = null;
+                try {
+                    date = simpleDateFormat.parse(fiannaDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Calendar calendar = Calendar.getInstance();
+                Calendar fiannaCalendar = Calendar.getInstance();
+                fiannaCalendar.setTime(date);
+                if (calendar.after(fiannaCalendar)) {
+                    AccountManager.setSignState(false);
+                    new AlertDialog.Builder(getContext())
+                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    _mActivity.finish();
+                                }
+                            })
+                            .setCancelable(false)
+                            .setMessage("账号已过期，请联系管理员续费")
+                            .show();
+                } else {
+                    AccountManager.setSignState(true);
+                    getSupportDelegate().startWithPop(new ERPBottomDelegate());
+                }
             }
 
             @Override

@@ -32,7 +32,6 @@ public class SignHandler {
         final String Permissions = profileJson.getString("Permissions");
         final String TextInfo = profileJson.getString("TextInfo");
         final String UserInfos = profileJson.getString("UserInfos");
-        AccountManager.setSignState(true);
         AccountManager.setID(UserID);
         AccountManager.setUserName(UserName);
         AccountManager.setRegistTime(RegistTime);
@@ -57,8 +56,11 @@ public class SignHandler {
             }
             AccountManager.setLev(Lev);
         }
-        if (UserInfos.contains("<FinnalDate>"))
-            AccountManager.setFinnalDate(UserInfos.substring(UserInfos.indexOf("<FinnalDate>") + "<FinnalDate>".length(), UserInfos.indexOf("</FinnalDate>")));
+        if (UserInfos.contains("<FinnalDate>")) {
+            String fiannaDate = UserInfos.substring(UserInfos.indexOf("<FinnalDate>") + "<FinnalDate>".length(), UserInfos.indexOf("</FinnalDate>"));
+            AccountManager.setFinnalDate(fiannaDate);
+        }
+
         if (UserInfos.contains("<Mony>"))
             AccountManager.setLev(UserInfos.substring(UserInfos.indexOf("<Mony>") + "<Mony>".length(), UserInfos.indexOf("</Mony>")));
         signListener.onSignInSuccess();

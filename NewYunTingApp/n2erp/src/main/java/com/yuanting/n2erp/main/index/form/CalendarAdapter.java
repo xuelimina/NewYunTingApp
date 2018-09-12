@@ -60,7 +60,7 @@ public class CalendarAdapter extends MultipleRecyclerAdapter {
                     if (isCurrenDay && currentDay == Integer.valueOf(text)) {
                         tvIsCalendarDay.setText("今天");
                         tvIsCalendarDay.setBackgroundColor(Color.YELLOW);
-                        tvCalendarDay.setTextColor(Color.WHITE);
+                        tvCalendarDay.setTextColor(Color.BLACK);
                         mItemOnClick.calendarItemOnClick(text + "号", (dayData != null && dayData.size() > 0) ? dayData : new ArrayList<MultipleItemEntity>());
                     }
                     itemView.setOnClickListener(new View.OnClickListener() {

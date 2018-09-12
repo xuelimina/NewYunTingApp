@@ -12,7 +12,7 @@ import com.yuanting.n2erp.R2;
 import com.yuanting.n2erp.main.ERPBottomDelegate;
 import com.yuanting.n2erp.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
-import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
+import com.yuanting.yunting_core.delegates.LatteDelegate;
 import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.callback.IError;
 import com.yuanting.yunting_core.net.callback.IFailure;
@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class ChangePassword extends BottomItemDelegate {
+public class ChangePassword extends LatteDelegate {
     @BindView(R2.id.edit_new_password)
     AppCompatEditText mTvNewPassword;
 

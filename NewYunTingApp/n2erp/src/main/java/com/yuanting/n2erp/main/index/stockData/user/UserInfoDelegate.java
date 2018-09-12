@@ -12,7 +12,7 @@ import com.yuanting.n2erp.R2;
 import com.yuanting.n2erp.main.ERPBottomDelegate;
 import com.yuanting.n2erp.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
-import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
+import com.yuanting.yunting_core.delegates.LatteDelegate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class UserInfoDelegate extends BottomItemDelegate {
+public class UserInfoDelegate extends LatteDelegate {
     @BindView(R2.id.tv_company_name)
     AppCompatTextView mTvCompanyName;
     @BindView(R2.id.tv_user_info_regist_time)
@@ -45,8 +45,8 @@ public class UserInfoDelegate extends BottomItemDelegate {
             String fiannaDate = AccountManager.getFinnalDate();
             if (!resistTime.isEmpty() && resistTime.contains("T")) {
                 resistTime = resistTime.replace("T", " ");
-                if (fiannaDate.contains("\\"))
-                    fiannaDate.replace("\\", "-");
+                if (fiannaDate.contains("/"))
+                    fiannaDate = fiannaDate.replace("/", "-");
                 mTvRegistTime.setText(resistTime);
                 Date date = simpleDateFormat.parse(resistTime);
                 Calendar calendar = Calendar.getInstance();
@@ -64,15 +64,14 @@ public class UserInfoDelegate extends BottomItemDelegate {
     void btnOnClick(View view) {
         final int id = view.getId();
         final String lev = AccountManager.getLev();
-        if (lev.contains(UserInfoItemType.LEVER_0)) {
-            if (id == R.id.btn_subaccount) {
+        if (id == R.id.btn_subaccount) {
+            if (lev.contains(UserInfoItemType.LEVER_0)) {
 //            Toast.makeText(getContext(), "子用户管理", Toast.LENGTH_SHORT).show();
                 getSupportDelegate().start(new SubUserDetailsDelegate());
+            } else {
+                Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.btn_initialization) {
+        } else if (id == R.id.btn_initialization) {
 //            Toast.makeText(getContext(), "注销", Toast.LENGTH_SHORT).show();
             AccountManager.setSignState(false);
             getActivity().getSupportFragmentManager().popBackStackImmediate(ERPBottomDelegate.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
