@@ -48,8 +48,15 @@ public class SignHandler {
             AccountManager.setCompanyName(UserInfos.substring(UserInfos.indexOf("<Name>") + "<Name>".length(), UserInfos.indexOf("</Name>")));
         if (UserInfos.contains("<Owner>"))
             AccountManager.setOwner(UserInfos.substring(UserInfos.indexOf("<Owner>") + "<Owner>".length(), UserInfos.indexOf("</Owner>")));
-        if (UserInfos.contains("<Lev>"))
-            AccountManager.setLev(UserInfos.substring(UserInfos.indexOf("<Lev>") + "<Lev>".length(), UserInfos.indexOf("</Lev>")));
+
+        if (UserInfos.contains("<Lev>")) {
+            String Lev = UserInfos.substring(UserInfos.indexOf("<Lev>") + "<Lev>".length(), UserInfos.indexOf("</Lev>"));
+            String newUserInfo = UserInfos.substring(UserInfos.indexOf("</Lev>") + "<Lev>".length(), UserInfos.length());
+            if (newUserInfo.contains("<Lev>")) {
+                Lev = Lev + "," + newUserInfo.substring(newUserInfo.indexOf("<Lev>") + "<Lev>".length(), newUserInfo.indexOf("</Lev>"));
+            }
+            AccountManager.setLev(Lev);
+        }
         if (UserInfos.contains("<FinnalDate>"))
             AccountManager.setFinnalDate(UserInfos.substring(UserInfos.indexOf("<FinnalDate>") + "<FinnalDate>".length(), UserInfos.indexOf("</FinnalDate>")));
         if (UserInfos.contains("<Mony>"))

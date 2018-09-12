@@ -21,8 +21,8 @@ android {
     productFlavors {
         yterpserver {
             applicationId 'com.yunting.yterpserver'
-            versionCode 3
-            versionName "3.0"
+            versionCode 4
+            versionName "4.0"
             manifestPlaceholders = [CHANNEL_VALUE: "yterpserver ",
                                     server_url   : "https://d.carbros.cn/YTERPServer/api/Base/",
                                     gaode_key    : "01fde163df731a3460794538c6963b70",

@@ -2,14 +2,17 @@ package com.yuanting.n2erp.main.index.stockData.user;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.Toast;
 
 import com.yuanting.n2erp.R;
 import com.yuanting.n2erp.R2;
+import com.yuanting.n2erp.main.ERPBottomDelegate;
+import com.yuanting.n2erp.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
-import com.yuanting.yunting_core.delegates.LatteDelegate;
+import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +28,7 @@ import butterknife.OnClick;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class UserInfoDelegate extends LatteDelegate {
+public class UserInfoDelegate extends BottomItemDelegate {
     @BindView(R2.id.tv_company_name)
     AppCompatTextView mTvCompanyName;
     @BindView(R2.id.tv_user_info_regist_time)
@@ -39,15 +42,17 @@ public class UserInfoDelegate extends LatteDelegate {
         try {
             mTvCompanyName.setText(AccountManager.getCompanyName().isEmpty() ? "无单位信息" : AccountManager.getCompanyName());
             String resistTime = AccountManager.getRegistTime();
+            String fiannaDate = AccountManager.getFinnalDate();
             if (!resistTime.isEmpty() && resistTime.contains("T")) {
                 resistTime = resistTime.replace("T", " ");
+                if (fiannaDate.contains("\\"))
+                    fiannaDate.replace("\\", "-");
                 mTvRegistTime.setText(resistTime);
                 Date date = simpleDateFormat.parse(resistTime);
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
-                calendar.add(Calendar.DATE, 30);
-                String number = simpleDateFormat.format(calendar.getTime());
-                mTvPhone.setText(number);
+                fiannaDate = fiannaDate + " " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+                mTvPhone.setText(fiannaDate);
             }
 
         } catch (ParseException e) {
@@ -55,17 +60,26 @@ public class UserInfoDelegate extends LatteDelegate {
         }
     }
 
-    @OnClick({R2.id.btn_subaccount, R2.id.btn_initialization, R2.id.btn_ch_password, R2.id.btn_re_password, R2.id.btn_contact_us})
+    @OnClick({R2.id.btn_subaccount, R2.id.btn_initialization, R2.id.btn_ch_password, R2.id.btn_contact_us})
     void btnOnClick(View view) {
         final int id = view.getId();
-        if (id == R.id.btn_subaccount) {
-            Toast.makeText(getContext(), "子用户管理", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.btn_initialization) {
-            Toast.makeText(getContext(), "初始化数据", Toast.LENGTH_SHORT).show();
+        final String lev = AccountManager.getLev();
+        if (lev.contains(UserInfoItemType.LEVER_0)) {
+            if (id == R.id.btn_subaccount) {
+//            Toast.makeText(getContext(), "子用户管理", Toast.LENGTH_SHORT).show();
+                getSupportDelegate().start(new SubUserDetailsDelegate());
+            }
+        } else {
+            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+        }
+        if (id == R.id.btn_initialization) {
+//            Toast.makeText(getContext(), "注销", Toast.LENGTH_SHORT).show();
+            AccountManager.setSignState(false);
+            getActivity().getSupportFragmentManager().popBackStackImmediate(ERPBottomDelegate.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportDelegate().startWithPop(new SignInDelegate());
         } else if (id == R.id.btn_ch_password) {
-            Toast.makeText(getContext(), "修改密码", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.btn_re_password) {
-            Toast.makeText(getContext(), "找回密码", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "修改密码", Toast.LENGTH_SHORT).show();
+            getSupportDelegate().start(new ChangePassword());
         } else if (id == R.id.btn_contact_us) {
             Toast.makeText(getContext(), "遇到问题？联系客服", Toast.LENGTH_SHORT).show();
         }

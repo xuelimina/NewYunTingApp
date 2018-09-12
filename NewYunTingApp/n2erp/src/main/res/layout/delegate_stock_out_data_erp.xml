@@ -197,7 +197,7 @@
                         android:inputType="text"
                         android:paddingLeft="5dp"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="10sp" />
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/btn_select_product_name"

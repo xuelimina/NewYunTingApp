@@ -10,8 +10,11 @@ import com.yuanting.n2erp.R2;
 import com.yuanting.n2erp.main.index.entry.EntryDelegate;
 import com.yuanting.n2erp.main.index.form.FormDelegate;
 import com.yuanting.n2erp.main.index.stockData.StockDataDelegate;
+import com.yuanting.n2erp.main.index.stockData.user.UserInfoItemType;
 import com.yuanting.n2erp.main.index.stockIn.StockInDelegate;
 import com.yuanting.n2erp.main.index.stockOut.StockOutDelegate;
+import com.yuanting.yunting_core.app.AccountManager;
+import com.yuanting.yunting_core.delegates.LatteDelegate;
 import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
 
 import butterknife.OnClick;
@@ -30,28 +33,34 @@ public class IndexDelegate extends BottomItemDelegate {
     @OnClick({R2.id.icon_stock_in, R2.id.icon_stock_out, R2.id.icon_stock_data, R2.id.icon_entry, R2.id.icon_expect, R2.id.icon_form})
     void onClickBtn(View view) {
         final int id = view.getId();
-        if (id == R.id.icon_stock_in) {
-            getParentDelegate().getSupportDelegate().start(new StockInDelegate());
-//            Toast.makeText(getContext(), "入库", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.icon_stock_out) {
-            getParentDelegate().getSupportDelegate().start(new StockOutDelegate());
-//            Toast.makeText(getContext(), "出库", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.icon_stock_data) {
+        final String lev = AccountManager.getLev();
+        if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_1)) {
+            if (id == R.id.icon_stock_in) {
+                getParentDelegate().getSupportDelegate().start(new StockInDelegate());
+            } else if (id == R.id.icon_stock_out) {
+                getParentDelegate().getSupportDelegate().start(new StockOutDelegate());
+            }
+        } else {
+            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+        }
+        if (lev.contains(UserInfoItemType.LEVER_0) || lev.contains(UserInfoItemType.LEVER_2)) {
+            if (id == R.id.icon_entry) {
+                getParentDelegate().getSupportDelegate().start(new EntryDelegate());
+//            Toast.makeText(getContext(), "接车录入", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.icon_form) {
+                getParentDelegate().getSupportDelegate().start(new FormDelegate());
+//            Toast.makeText(getContext(), "接车列表", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "此账号无此权限", Toast.LENGTH_SHORT).show();
+        }
+        if (id == R.id.icon_stock_data) {
+            LatteDelegate delegate = getParentDelegate();
             getParentDelegate().getSupportDelegate().start(new StockDataDelegate());
 //            Toast.makeText(getContext(), "数据管理", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.icon_entry) {
-            getParentDelegate().getSupportDelegate().start(new EntryDelegate());
-//            Toast.makeText(getContext(), "接车录入", Toast.LENGTH_SHORT).show();
-
         } else if (id == R.id.icon_expect) {
             Toast.makeText(getContext(), "敬请期待", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.icon_form) {
-            getParentDelegate().getSupportDelegate().start(new FormDelegate());
-//            Toast.makeText(getContext(), "接车列表", Toast.LENGTH_SHORT).show();
         }
     }
 

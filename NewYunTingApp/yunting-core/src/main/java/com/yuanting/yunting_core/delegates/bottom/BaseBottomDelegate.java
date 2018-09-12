@@ -127,7 +127,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
         if (grantResults[0] == 0) {
             firUpdateUtils.updateDialog(updateJson);
         } else if (grantResults[0] == -1) {
-            new AlertDialog.Builder(getActivity())
+            new AlertDialog.Builder(getContext())
                     .setPositiveButton("去应用管理中设置", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

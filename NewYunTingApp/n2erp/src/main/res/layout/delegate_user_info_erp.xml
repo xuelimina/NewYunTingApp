@@ -176,7 +176,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="8dp"
-                android:text="初始化数据"
+                android:text="退出此账号"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
         </RelativeLayout>
@@ -195,8 +195,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:background="@drawable/edit_view_circle"
@@ -209,32 +209,32 @@
             android:textColor="@android:color/black"
             android:textSize="15sp" />
 
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_re_password"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/edit_view_circle"
-            android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="8dp"
-            android:text="找回密码"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
+        <!--<android.support.v7.widget.AppCompatButton-->
+            <!--android:id="@+id/btn_re_password"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/edit_view_circle"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="8dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:text="找回密码"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="15sp" />-->
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_contact_us"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1.5"
             android:background="@drawable/edit_view_circle"
