@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class CalendarAdapter extends MultipleRecyclerAdapter {
     private CalendarItemOnClick mItemOnClick;
+    private CalendarDetailsItemOnClick mDetailsItemOnClick;
     private boolean isCurrenDay = false;
     private int currentDay;
 
@@ -40,12 +41,12 @@ public class CalendarAdapter extends MultipleRecyclerAdapter {
     @Override
     protected void convert(MultipleViewHolder holder, final MultipleItemEntity entity) {
         super.convert(holder, entity);
+        final View itemView = holder.itemView;
         switch (entity.getItemType()) {
             case CalendarItemType.CALENDAR_ITEM:
                 final AppCompatTextView tvIsCalendarDay = holder.getView(R.id.tv_is_calendar_day);
                 final AppCompatTextView tvCalendarDay = holder.getView(R.id.tv_calendar_day);
                 final String text = entity.getField(MultipleFields.TEXT);
-                final View itemView = holder.itemView;
                 final ArrayList<MultipleItemEntity> dayData = entity.getField(CalendarItemFields.DAY_DATA);
                 if (dayData != null && dayData.size() > 0) {
                     tvCalendarDay.setBackgroundResource(R.color.app_main_background_erp);
@@ -97,13 +98,21 @@ public class CalendarAdapter extends MultipleRecyclerAdapter {
                 tvMaterial.setText("使用产品:" + material);
                 tvColor.setText("颜色:" + color);
                 tvIsFinished.setText("状态:" + (is_finished.equals("0") ? "未完成" : "已完成"));
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        mDetailsItemOnClick.calendarDetailsItemOnClick(entity);
+                        return true;
+                    }
+                });
                 break;
             default:
                 break;
         }
     }
 
-    public void setItemOnClick(CalendarItemOnClick itemOnClick) {
+    public void setItemOnClick(CalendarItemOnClick itemOnClick, CalendarDetailsItemOnClick calendarDetailsItemOnClick) {
         mItemOnClick = itemOnClick;
+        mDetailsItemOnClick = calendarDetailsItemOnClick;
     }
 }

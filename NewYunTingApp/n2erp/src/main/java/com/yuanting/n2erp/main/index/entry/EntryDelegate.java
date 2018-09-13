@@ -280,6 +280,7 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     private void AddConstruction(String tim, String address, String user, String color, String position, String material) {
         RestClient.builder().url("AddConstruction?")
+                .loader(getContext())
                 .params("posi", address)
                 .params("manager", user).params("color", color).params("site", position).params("material", material)
                 .params("tim", tim).params("infos", user).params("state", "0")
@@ -309,6 +310,7 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     private void AddColor(String name) {
         RestClient.builder().url("AddColor?")
+                .loader(getContext())
                 .params("color", name)
                 .params("owner", AccountManager.getOwner())
                 .success(new ISuccess() {
@@ -337,6 +339,7 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     private void AddParts(final String name) {
         RestClient.builder().url("AddParts?")
+                .loader(getContext())
                 .params("pt", name)
                 .params("owner", AccountManager.getOwner())
                 .success(new ISuccess() {
@@ -374,6 +377,7 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     private void AddBody(String name, String phoneNumber) {
         RestClient.builder().url("AddBody?")
+                .loader(getContext())
                 .params("name", name)
                 .params("phonenumber", phoneNumber)
                 .params("owner", AccountManager.getOwner())

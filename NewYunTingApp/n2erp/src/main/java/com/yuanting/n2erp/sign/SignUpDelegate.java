@@ -56,7 +56,7 @@ public class SignUpDelegate extends LatteDelegate {
                     .append("</Name>");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());// HH:mm:ss//获取当前时间
             Date date = new Date(System.currentTimeMillis());
-            RestClient.builder().url("AddUser?")
+            RestClient.builder().url("AddUser?").loader(getContext())
                     .params("username", mName.getText().toString())
                     .params("time", simpleDateFormat.format(date))
                     .params("text", "")

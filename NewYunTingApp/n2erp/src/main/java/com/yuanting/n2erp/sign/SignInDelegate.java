@@ -47,7 +47,7 @@ public class SignInDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if (checkForm()) {
-            RestClient.builder().url("Landing?")
+            RestClient.builder().url("Landing?") .loader(getContext())
                     .params("username", mPhone.getText().toString())
                     .params("pwd", mPassword.getText().toString())
                     .success(new ISuccess() {

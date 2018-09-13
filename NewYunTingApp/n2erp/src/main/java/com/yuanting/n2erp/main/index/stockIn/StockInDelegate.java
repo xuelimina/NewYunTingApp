@@ -452,13 +452,15 @@ public class StockInDelegate extends LatteDelegate implements ProductItemOnClick
                             case ProductIdx.BRAND_IDX:
                             case ProductIdx.MODEL_IDX:
                             case ProductIdx.PRODUCT_NAME_IDX:
-                                mConverter.reListData(idx, JsonUtils.getDecodeJSONStr(response));
+                                final ArrayList<MultipleItemEntity> entities = mConverter.reListData(idx, JsonUtils.getDecodeJSONStr(response));
+                                reViewData(idx, entities.size() > 0 ? entities.get(0) : null);
                                 break;
                             default:
-                                final ArrayList<MultipleItemEntity> entities = mConverter.setJsonData(JsonUtils.getDecodeJSONStr(response)).convert();
-                                reViewData(ProductIdx.CATEGORY_IDX, entities.size() > 0 ? entities.get(0) : null);
+                                final ArrayList<MultipleItemEntity> entities1 = mConverter.setJsonData(JsonUtils.getDecodeJSONStr(response)).convert();
+                                reViewData(ProductIdx.CATEGORY_IDX, entities1.size() > 0 ? entities1.get(0) : null);
                                 break;
                         }
+
                     }
                 }).build().get();
     }

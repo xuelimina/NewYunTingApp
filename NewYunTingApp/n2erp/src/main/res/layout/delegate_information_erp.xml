@@ -22,11 +22,41 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/layout_information_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_index"
+        android:background="@color/app_main_background_erp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="内容"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:text="发布时间"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_system_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tb_index">
+        android:layout_below="@+id/layout_information_title">
 
     </android.support.v7.widget.RecyclerView>
 

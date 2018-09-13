@@ -1,13 +1,16 @@
 package com.yuanting.n2erp.main.index.form;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -40,7 +43,7 @@ import butterknife.OnClick;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
+public class FormDelegate extends LatteDelegate implements CalendarItemOnClick, CalendarDetailsItemOnClick {
     @BindView(R2.id.tv_month)
     AppCompatTextView mTvMonth;
     @BindView(R2.id.tv_year)
@@ -84,7 +87,7 @@ public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
         mTvYear.setText(String.valueOf(mYear));
         mTvMonth.setText(mMonth + "月");
         isCurrentDay = true;
-        GetConstructionByDate("" + mYear, "" + mMonth);
+        GetConstructionByDate(String.valueOf(mYear), String.valueOf(mMonth));
     }
 
     @OnClick({R2.id.icon_left, R2.id.icon_right})
@@ -108,16 +111,15 @@ public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
         mTvYear.setText(String.valueOf(mYear));
         mTvMonth.setText(mMonth + "月");
         isCurrentDay = mYear == mCurrentYear && mMonth == mCurrentMonth;
-        GetConstructionByDate("" + mYear, "" + mMonth);
+        GetConstructionByDate(String.valueOf(mYear), String.valueOf(mMonth));
         mRvDayMatter.setVisibility(View.VISIBLE);
         mTvDayMatter.setVisibility(View.GONE);
         reRecyclerCalendarDataDetail(new ArrayList<MultipleItemEntity>());
     }
 
     private void GetConstructionByDate(final String year, final String month) {
-        RestClient.builder().url("GetConstructionByDate?")
+        RestClient.builder().url("GetConstructionByDate?").loader(getContext())
                 .params("year", year).params("month", month).params("owner", AccountManager.getOwner())
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -206,7 +208,7 @@ public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
     private void reRecyclerCalendarData(ArrayList<MultipleItemEntity> entities) {
         mRvCalendar.removeAllViews();
         final CalendarAdapter mCalendarAdapter = new CalendarAdapter(entities);
-        mCalendarAdapter.setItemOnClick(this);
+        mCalendarAdapter.setItemOnClick(this, this);
         mCalendarAdapter.setCurrentDay(mCurrentDay);
         mCalendarAdapter.setIsCurrentDay(isCurrentDay);
         final StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(7, StaggeredGridLayoutManager.VERTICAL);
@@ -218,7 +220,7 @@ public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
     private void reRecyclerCalendarDataDetail(ArrayList<MultipleItemEntity> entities) {
         mRvDayMatter.removeAllViews();
         final CalendarAdapter mCalendarAdapter = new CalendarAdapter(entities);
-        mCalendarAdapter.setItemOnClick(this);
+        mCalendarAdapter.setItemOnClick(this, this);
         final LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvDayMatter.setLayoutManager(manager);
@@ -325,6 +327,52 @@ public class FormDelegate extends LatteDelegate implements CalendarItemOnClick {
             mTvDayMatter.setVisibility(View.VISIBLE);
             mTvDayMatter.setText(time + "没有要处理事件");
         }
+
+    }
+
+    @Override
+    public void calendarDetailsItemOnClick(final MultipleItemEntity entity) {
+        new AlertDialog.Builder(getContext())
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final String id = entity.getField(MultipleFields.ID);
+                        DeleteConstruction(id);
+                    }
+                })
+                .setNegativeButton("返回", null)
+                .setCancelable(false)
+                .setMessage("是否删除此条信息？")
+                .show();
+    }
+
+    private void DeleteConstruction(String id) {
+        RestClient.builder().loader(getContext()).url("DeleteConstruction?")
+                .params("id", id)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Log.i("Deres", response);
+                        if (response.equals("1")) {
+                            GetConstructionByDate(String.valueOf(mYear), String.valueOf(mMonth));
+                        } else
+                            Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Log.i("onError", msg);
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Log.i("onFailure", "onFailure");
+                        Toast.makeText(getContext(), "删除失败", Toast.LENGTH_SHORT).show();
+                    }
+                }).build().get();
 
     }
 }

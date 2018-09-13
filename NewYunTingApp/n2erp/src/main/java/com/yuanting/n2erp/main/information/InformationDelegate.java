@@ -2,17 +2,26 @@ package com.yuanting.n2erp.main.information;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.yuanting.n2erp.R;
 import com.yuanting.n2erp.R2;
+import com.yuanting.n2erp.jsonUtils.JsonUtils;
+import com.yuanting.yunting_core.app.AccountManager;
 import com.yuanting.yunting_core.delegates.bottom.BottomItemDelegate;
 import com.yuanting.yunting_core.net.RestClient;
 import com.yuanting.yunting_core.net.callback.IError;
 import com.yuanting.yunting_core.net.callback.IFailure;
 import com.yuanting.yunting_core.net.callback.ISuccess;
+import com.yuanting.yunting_core.ui.recycler.MultipleFields;
+import com.yuanting.yunting_core.ui.recycler.MultipleItemEntity;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -32,11 +41,12 @@ public class InformationDelegate extends BottomItemDelegate {
     @Override
     public void onSupportVisible() {
         super.onSupportVisible();
-        GetSystemNews();
+        GetSystemNewsByMaxID(AccountManager.getReadId().isEmpty() ? "0" : AccountManager.getReadId());
     }
 
-    private void GetSystemNews() {
-        RestClient.builder().url("GetSystemNews")
+    private void GetSystemNewsByMaxID(final String id) {
+        RestClient.builder().url("GetSystemNewsByMaxID")
+                .params("id", id)
                 .loader(getContext())
                 .error(new IError() {
                     @Override
@@ -47,7 +57,24 @@ public class InformationDelegate extends BottomItemDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Log.i("response", response);
+                        Log.i("response", JsonUtils.getDecodeJSONStr(response));
+                        int max = Integer.valueOf(id);
+                        final JSONArray jsonArray = JSON.parseArray(JsonUtils.getDecodeJSONStr(response));
+                        final int size = jsonArray.size();
+                        final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
+                        for (int i = 0; i < size; i++) {
+                            final int Id = jsonArray.getJSONObject(i).getInteger("Id");
+                            if (Id > max) {
+                                max = Id;
+                                final String SystenNews = jsonArray.getJSONObject(i).getString("SystenNews");
+                                final String Time = jsonArray.getJSONObject(i).getString("Time");
+                                final MultipleItemEntity entity = MultipleItemEntity.builder().setItemType(InformationAdapter.INFORMATION_TYPE)
+                                        .setField(MultipleFields.TITLE, SystenNews).setField(MultipleFields.TEXT, Time).build();
+                                entities.add(entity);
+                            }
+                        }
+                        AccountManager.setReadId(String.valueOf(max >= 3 ? max - 3 : 0));
+                        reRecyclerCalendarData(entities);
                     }
                 })
                 .failure(new IFailure() {
@@ -56,6 +83,16 @@ public class InformationDelegate extends BottomItemDelegate {
                         Log.i("response", "onFailure");
                     }
                 }).build().get();
+    }
+
+    private void reRecyclerCalendarData(ArrayList<MultipleItemEntity> entities) {
+        mRvSystemNews.removeAllViews();
+        final InformationAdapter adapter = new InformationAdapter(entities);
+        final LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRvSystemNews.setLayoutManager(manager);
+        mRvSystemNews.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

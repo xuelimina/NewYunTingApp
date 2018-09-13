@@ -141,11 +141,10 @@ public class StockInDataDelegate extends LatteDelegate implements ProductItemOnC
     }
 
     private void GetEntryGroup1ByTime(final String name, String StartTime, String EndTime) {
-        RestClient.builder().url("GetEntryGroup1ByTime?")
+        RestClient.builder().url("GetEntryGroup1ByTime?") .loader(getContext())
                 .params("owner", AccountManager.getOwner())
                 .params("from", StartTime)
                 .params("to", EndTime)
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -186,13 +185,12 @@ public class StockInDataDelegate extends LatteDelegate implements ProductItemOnC
     }
 
     private void GetEntrySelect1ByTime(String name, String StartTime, String EndTime, String Unit) {
-        RestClient.builder().url("GetEntrySelect1ByTime?")
+        RestClient.builder().url("GetEntrySelect1ByTime?") .loader(getContext())
                 .params("Owner", AccountManager.getOwner())
                 .params("from", StartTime)
                 .params("to", EndTime)
                 .params("Name", name)
                 .params("Unit", Unit)
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -220,12 +218,11 @@ public class StockInDataDelegate extends LatteDelegate implements ProductItemOnC
     }
 
     private void GetEntryGroupByTime(String name, String StartTime, String EndTime) {
-        RestClient.builder().url("GetEntryInfomationByTime?")
+        RestClient.builder().url("GetEntryInfomationByTime?") .loader(getContext())
                 .params("owner", AccountManager.getOwner())
                 .params("from", StartTime)
                 .params("to", EndTime)
                 .params("contansname", name)
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

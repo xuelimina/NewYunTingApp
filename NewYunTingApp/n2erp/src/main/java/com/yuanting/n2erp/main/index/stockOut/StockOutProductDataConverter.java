@@ -90,13 +90,13 @@ public class StockOutProductDataConverter extends DataConverter {
         final ArrayList<MultipleItemEntity> entities = new ArrayList<>();
         final HashMap<String, ArrayList<MultipleItemEntity>> EntityHashMap = new HashMap<>();
         for (MultipleItemEntity entity : Allentities) {
-            final String TypeID = entity.getField(StockOutProductItemFields.TYPE_ID);
-            if (EntityHashMap.containsKey(TypeID)) {
-                EntityHashMap.get(TypeID).add(entity);
+            final String NAME = entity.getField(StockOutProductItemFields.NAME);
+            if (EntityHashMap.containsKey(NAME)) {
+                EntityHashMap.get(NAME).add(entity);
             } else {
                 final ArrayList<MultipleItemEntity> list = new ArrayList<>();
                 list.add(entity);
-                EntityHashMap.put(TypeID, list);
+                EntityHashMap.put(NAME, list);
             }
         }
         final ArrayList<String> NameArrayList = new ArrayList<>();

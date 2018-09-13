@@ -114,10 +114,9 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
     }
 
     private void GetInventoryAllByName(String name) {
-        RestClient.builder().url("GetInventoryAllByName?")
+        RestClient.builder().url("GetInventoryAllByName?") .loader(getContext())
                 .params("owner", AccountManager.getOwner())
                 .params("namecontans", name)
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -140,10 +139,9 @@ public class StockDataDataDelegate extends LatteDelegate implements ProductItemO
     }
 
     private void GetMaterialGroupByName1(String name) {
-        RestClient.builder().url("GetMaterialGroupByName1?")
+        RestClient.builder().url("GetMaterialGroupByName1?") .loader(getContext())
                 .params("Owner", AccountManager.getOwner())
                 .params("NameContans", name)
-                .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

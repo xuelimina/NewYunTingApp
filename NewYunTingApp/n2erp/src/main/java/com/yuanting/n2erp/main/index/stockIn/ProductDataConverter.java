@@ -106,7 +106,8 @@ public class ProductDataConverter extends DataConverter {
         return entities1;
     }
 
-    public void reListData(String idx, String response) {
+    public ArrayList<MultipleItemEntity> reListData(String idx, String response) {
+        ArrayList<MultipleItemEntity> entities = new ArrayList<>();
         switch (idx) {
             case ProductIdx.CATEGORY_IDX:
                 CategoryList.clear();
@@ -155,5 +156,20 @@ public class ProductDataConverter extends DataConverter {
                     break;
             }
         }
+        switch (idx) {
+            case ProductIdx.CATEGORY_IDX:
+                entities = CategoryList;
+                break;
+            case ProductIdx.BRAND_IDX:
+                entities = BrandList;
+                break;
+            case ProductIdx.MODEL_IDX:
+                entities = ModelList;
+                break;
+            case ProductIdx.PRODUCT_NAME_IDX:
+                entities = ProductNameList;
+                break;
+        }
+        return entities;
     }
 }

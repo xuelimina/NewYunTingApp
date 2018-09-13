@@ -29,9 +29,15 @@ public class AccountManager {
         COMPANY_ADDRESS,
         COMPANY_NAME,
         LEV,
-        FINNAL_DATE
+        FINNAL_DATE,
+        READ_ID
     }
-
+    public static void setReadId(String id){
+        LattePreference.addCustomAppProfile(SignTag.READ_ID.name(), id);
+    }
+    public static String getReadId() {
+        return LattePreference.getCustomAppProfile(SignTag.READ_ID.name());
+    }
     public static void setNumber(String number) {
         LattePreference.addCustomAppProfile(SignTag.NUMBER.name(), number);
     }
