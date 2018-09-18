@@ -80,13 +80,7 @@ dependencies {
     //    //二维码扫描
     api 'me.dm7.barcodescanner:zbar:1.9.3'
     api 'cn.jzvd:jiaozivideoplayer:6.2.3'
-    //    api 'com.amap.api:3dmap:latest.integration'
-    //    // 2D地图
-    //    api 'com.amap.api:map2d:latest.integration'
-    //  导航
-    api 'com.amap.api:navi-3dmap:6.2.0_3dmap6.3.1'
-    // 搜索
+    api 'com.amap.api:map2d:5.2.0'
     api 'com.amap.api:search:6.1.0'
-    //  定位
     api 'com.amap.api:location:4.2.0'
 }

@@ -1,12 +1,10 @@
 package com.yuanting.latte.ec.main.index;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -129,29 +127,35 @@ public class IndexDelegate extends BottomItemDelegate implements IndexMenuClickL
 
     @Override
     public void onlineStar() {
-        new AlertDialog.Builder(getContext())
-                .setTitle("请选择订购平台")
-                .setPositiveButton("淘宝", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        final ShopWebDelegate delegate = new ShopWebDelegate();
-                        final Bundle bundle = new Bundle();
-                        bundle.putString("Title", "淘宝");
-                        bundle.putString("Url", "https://shop.m.taobao.com/shop/shop_index.htm?shop_id=254549626");
-                        delegate.setArguments(bundle);
-                        getParentDelegate().getSupportDelegate().start(delegate);
-                    }
-                }).setNegativeButton("京东", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                final ShopWebDelegate delegate = new ShopWebDelegate();
-                final Bundle bundle = new Bundle();
-                bundle.putString("Title", "京东");
-                bundle.putString("Url", "https://mall.jd.com/index-759942.html");
-                delegate.setArguments(bundle);
-                getParentDelegate().getSupportDelegate().start(delegate);
-            }
-        }).create().show();
+        final ShopWebDelegate delegate = new ShopWebDelegate();
+        final Bundle bundle = new Bundle();
+        bundle.putString("Title", "京东");
+        bundle.putString("Url", "https://mall.jd.com/index-759942.html");
+        delegate.setArguments(bundle);
+        getParentDelegate().getSupportDelegate().start(delegate);
+//        new AlertDialog.Builder(getContext())
+//                .setTitle("请选择订购平台")
+//                .setPositiveButton("淘宝", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        final ShopWebDelegate delegate = new ShopWebDelegate();
+//                        final Bundle bundle = new Bundle();
+//                        bundle.putString("Title", "淘宝");
+//                        bundle.putString("Url", "https://shop.m.taobao.com/shop/shop_index.htm?shop_id=254549626");
+//                        delegate.setArguments(bundle);
+//                        getParentDelegate().getSupportDelegate().start(delegate);
+//                    }
+//                }).setNegativeButton("京东", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                final ShopWebDelegate delegate = new ShopWebDelegate();
+//                final Bundle bundle = new Bundle();
+//                bundle.putString("Title", "京东");
+//                bundle.putString("Url", "https://mall.jd.com/index-759942.html");
+//                delegate.setArguments(bundle);
+//                getParentDelegate().getSupportDelegate().start(delegate);
+//            }
+//        }).create().show();
     }
 
     @Override

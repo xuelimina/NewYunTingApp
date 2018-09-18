@@ -39,7 +39,9 @@
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="2"
             android:orientation="vertical">
 
@@ -214,7 +216,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="4"
             android:paddingLeft="10dp">
 
@@ -222,15 +225,18 @@
                 android:id="@+id/tv_shop_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:textSize="15sp"
+                android:textColor="@android:color/black"
                 android:gravity="center|left" />
-            <com.amap.api.maps.MapView
+            <com.amap.api.maps2d.MapView
                 android:id="@+id/web_gaode_map"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/tv_shop_address">
 
-            </com.amap.api.maps.MapView>
+            </com.amap.api.maps2d.MapView>
 
         </RelativeLayout>
     </android.support.v7.widget.LinearLayoutCompat>

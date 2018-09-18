@@ -7,30 +7,51 @@ android {
 
     defaultConfig {
         applicationId "com.yuanting.n2share"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        manifestPlaceholders = [CHANNEL_VALUE: "n2share ",
+                                server_url   : "https://d.carbros.cn:4433/N2Share/",
+                                gaode_key    : "01fde163df731a3460794538c6963b70",
+                                fir_appid    : "5b88bfeaca87a85377adf4c1",
+                                fir_api_token: "dc4f939e27daebe8ede80a1a12fbbee3"]
     }
-
+    signingConfigs {
+        release {
+            storeFile file('F:\\MyAppKey\\key.store')
+            storePassword 'asd666'
+            keyAlias 'key'
+            keyPassword 'asd666'
+        }
+    }
+    flavorDimensions "default"
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    annotationProcessor project(':compiler')
+    implementation project(':yunting-annotations')
+    implementation project(':yunting-core')
+    //数据库抽象化显示
+    api 'com.facebook.stetho:stetho:1.5.0'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    //圆形图片
+    api 'de.hdodenhof:circleimageview:2.2.0'
 }

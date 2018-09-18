@@ -212,6 +212,16 @@ public class ShopQueryDelegate extends LatteDelegate implements ISuccess, IError
                 mCounty = text;
                 mTVDistrictSelect.setText(text);
                 break;
+            case SHOP:
+                final String address = entity.getField(ShopItemFields.ADDRESS);
+                final String city = entity.getField(ShopItemFields.CITY);
+                final ShowMapDelegate delegate = new ShowMapDelegate();
+                final Bundle bundle = new Bundle();
+                bundle.putString("address", address);
+                bundle.putString("city", city);
+                delegate.setArguments(bundle);
+                getSupportDelegate().start(delegate);
+                break;
             default:
                 break;
         }

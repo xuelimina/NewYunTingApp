@@ -61,6 +61,8 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
     AppCompatEditText mETStoreName;
     @BindView(R2.id.et_store_contact)
     AppCompatEditText mETStoreContact;
+    @BindView(R2.id.et_film_number)
+    AppCompatEditText mETFilmNumber;
     /**
      * 整车
      */
@@ -183,6 +185,7 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
     private String mStrEXP;
     private String mStrSaleTime;
     private String mWarrantyID;
+    private String mFilmNumber;
     private ArrayList<AppCompatCheckedTextView> mAllChecked;
     private boolean mIsSale = false;
 
@@ -404,6 +407,7 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
                     .params("VIN", mStrVIN)
                     .params("Price", mStrPrice)
                     .params("Remarks", mStrRemarks)
+                    .params("FilmNumber", mFilmNumber)
                     .loader(getContext())
                     .success(this)
                     .error(this)
@@ -500,21 +504,28 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
         } else {
             mETPrice.setError(null);
         }
+        mFilmNumber = mETFilmNumber.getText().toString();
+        if (mFilmNumber.isEmpty()) {
+            mETFilmNumber.setError("请填写膜卷号");
+            isCheck = false;
+        } else {
+            mETFilmNumber.setError(null);
+        }
         mStrRemarks = mETRemarks.getText().toString();
         return isCheck;
     }
 
-    private void setSearchData(String response) {
-        final JSONObject object = JSON.parseObject(response);
-        final JSONObject queryWarrantyListObject = JSON.parseArray(object.getString("QueryWarrantyList")).getJSONObject(0);
-        mIsSale = queryWarrantyListObject.getBoolean("IsSale");
-        mStrArea = queryWarrantyListObject.getString("Area");
-        mStrAgency = queryWarrantyListObject.getString("Agency");
-        mStrProductName = queryWarrantyListObject.getString("ProductName");
-        mStrGP = queryWarrantyListObject.getString("GP");
-        mStrProductNumber = queryWarrantyListObject.getString("PN");
-        setStringData(queryWarrantyListObject);
-    }
+//    private void setSearchData(String response) {
+//        final JSONObject object = JSON.parseObject(response);
+//        final JSONObject queryWarrantyListObject = JSON.parseArray(object.getString("QueryWarrantyList")).getJSONObject(0);
+//        mIsSale = queryWarrantyListObject.getBoolean("IsSale");
+//        mStrArea = queryWarrantyListObject.getString("Area");
+//        mStrAgency = queryWarrantyListObject.getString("Agency");
+//        mStrProductName = queryWarrantyListObject.getString("ProductName");
+//        mStrGP = queryWarrantyListObject.getString("GP");
+//        mStrProductNumber = queryWarrantyListObject.getString("PN");
+//        setStringData(queryWarrantyListObject);
+//    }
 
     private void setStringData(JSONObject object) {
         mStrCustomerName = object.getString("CustomerName");
@@ -531,6 +542,7 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
         mStrPrice = object.getString("Price");
         mStrRemarks = object.getString("Remarks");
         mStrSalePart = object.getString("SalePart");
+        mFilmNumber = object.getString("FilmNumber");
         final String[] split = mStrSalePart.split(",");
         for (String sp : split) {
             setChecked(sp);
@@ -555,6 +567,7 @@ public class OrderDetailsDelegate extends LatteDelegate implements ISuccess, IEr
             mETStoreContact.setText(mStrStoreContact);
             mTVExp.setText(mStrEXP);
             mTVSaleTime.setText(mStrSaleTime);
+            mETFilmNumber.setText(mFilmNumber);
             mETPrice.setText(mStrPrice);
             mETRemarks.setText(mStrRemarks);
         } else {

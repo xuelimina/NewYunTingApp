@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuanting.latte.ec.sign.SignInDelegate;
 import com.yuanting.yunting_core.app.AccountManager;
@@ -133,11 +132,11 @@ public class OrderQueryDelegate extends LatteDelegate implements ISuccess, IErro
             AccountManager.checkAccount(new IUserChecker() {
                 @Override
                 public void onSignIn() {
-                    final JSONObject object = JSON.parseObject(response);
-                    if (!AccountManager.getArea().equals(object.getString("Area"))
-                            && !AccountManager.getPartnerID().equals(object.getString("Agency"))) {
-                        Toast.makeText(getContext(), "运营商或地址不批配！", Toast.LENGTH_SHORT).show();
-                    } else
+//                    final JSONObject object = JSON.parseObject(response);
+//                    if (!AccountManager.getArea().equals(object.getString("Area"))
+//                            && !AccountManager.getPartnerID().equals(object.getString("Agency"))) {
+//                        Toast.makeText(getContext(), "运营商或地址不批配！", Toast.LENGTH_SHORT).show();
+//                    } else
                         startOrderDetailsDelegate(response);
                 }
 
