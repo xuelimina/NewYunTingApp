@@ -36,7 +36,16 @@ public enum YTIcons implements Icon {
     icon_stock_data_data('\ue678'),
     icon_cooperation('\ue504'),
     icon_customer('\ue601'),
+    icon_eye('\ue610'),
+    icon_delete('\ue75b'),
+    icon_release('\ue609'),
+    icon_add('\ue627'),
+    icon_home('\ue67b'),
+    icon_follow('\ue639'),
+    icon_news('\ue6cb'),
+    icon_my('\ue660'),
     icon_user_info('\ue640');
+
     private char character;
 
     YTIcons(char character) {

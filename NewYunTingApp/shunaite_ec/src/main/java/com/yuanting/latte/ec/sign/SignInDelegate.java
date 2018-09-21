@@ -67,8 +67,8 @@ public class SignInDelegate extends LatteDelegate {
         final String phone = mPhone.getText().toString();
         final String password = mPassword.getText().toString();
         boolean isPass = true;
-        if (phone.isEmpty() || phone.length() != 11) {
-            mPhone.setError(getString(R.string.sign_up_delegate_phone_error));
+        if (phone.isEmpty() ) {
+            mPhone.setError("请填写账号");
             isPass = false;
         } else {
             mPhone.setError(null);

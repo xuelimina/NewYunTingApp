@@ -67,16 +67,10 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
     AppCompatTextView mTvSelectTitle;
     @BindView(R2.id.tv_select_position_name)
     AppCompatTextView mTvSelectPositionName;
-    @BindView(R2.id.user_layout)
-    LinearLayoutCompat mAddUserLayout;
     @BindView(R2.id.position_layout)
     RelativeLayout mAddPositionLayout;
     @BindView(R2.id.color_layout)
     RelativeLayout mAddColorLayout;
-    @BindView(R2.id.et_user_name)
-    AppCompatEditText mEtUserName;
-    @BindView(R2.id.et_user_number)
-    AppCompatEditText mEtUserNumber;
     @BindView(R2.id.et_position)
     AppCompatEditText mEtPosition;
     @BindView(R2.id.et_color)
@@ -92,7 +86,7 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         GetPartner();
         GetParts();
-        GetBodys();
+        GetAllGroup();
         GetColors();
         GetInventoryName();
     }
@@ -146,50 +140,22 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
     }
 
 
-    @OnClick({R2.id.btn_add_user, R2.id.btn_add_position, R2.id.btn_add_color
-            , R2.id.btn_add_user_cancel, R2.id.btn_add_position_cancel, R2.id.btn_add_color_cancel
-            , R2.id.btn_add_user_ok, R2.id.btn_add_position_ok, R2.id.btn_add_color_ok
+    @OnClick({R2.id.btn_add_position, R2.id.btn_add_color
+            , R2.id.btn_add_position_cancel, R2.id.btn_add_color_cancel
+            , R2.id.btn_add_position_ok, R2.id.btn_add_color_ok
             , R2.id.rv_select_cancel})
     void btnOnClick(View view) {
         final int id = view.getId();
         if (id == R.id.rv_select_cancel) {
             mSelectLayout.setVisibility(View.GONE);
-        } else if (id == R.id.btn_add_user) {
-            mAddUserLayout.setVisibility(View.VISIBLE);
         } else if (id == R.id.btn_add_position) {
             mAddPositionLayout.setVisibility(View.VISIBLE);
         } else if (id == R.id.btn_add_color) {
             mAddColorLayout.setVisibility(View.VISIBLE);
-        } else if (id == R.id.btn_add_user_cancel) {
-            mAddUserLayout.setVisibility(View.GONE);
         } else if (id == R.id.btn_add_position_cancel) {
             mAddPositionLayout.setVisibility(View.GONE);
         } else if (id == R.id.btn_add_color_cancel) {
             mAddColorLayout.setVisibility(View.GONE);
-        } else if (id == R.id.btn_add_user_ok) {
-            boolean isCheckUser = true;
-            final String mUserNameStr = mEtUserName.getText().toString();
-            final String mUserNumberStr = mEtUserNumber.getText().toString();
-            if (mUserNameStr.isEmpty()) {
-                isCheckUser = false;
-                mEtUserName.setError("请填写负责人姓名");
-            } else
-                mEtUserName.setError(null);
-            if (mUserNumberStr.isEmpty() || mUserNumberStr.length() < 11) {
-                isCheckUser = false;
-                mEtUserNumber.setError("请填写正确的联系方式");
-            } else
-                mEtUserNumber.setError(null);
-            if (isCheckUser) {
-                if (isCheckByName(mUserNameStr, mBodyEntities)) {
-                    mAddUserLayout.setVisibility(View.GONE);
-                    AddBody(mUserNameStr, mUserNumberStr);
-                } else {
-                    Toast.makeText(getContext(), "负责人已存在", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
         } else if (id == R.id.btn_add_position_ok) {
             final String mPositionNameStr = mEtPosition.getText().toString();
             if (mPositionNameStr.isEmpty()) {
@@ -375,36 +341,6 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     }
 
-    private void AddBody(String name, String phoneNumber) {
-        RestClient.builder().url("AddBody?")
-                .loader(getContext())
-                .params("name", name)
-                .params("phonenumber", phoneNumber)
-                .params("owner", AccountManager.getOwner())
-                .success(new ISuccess() {
-                    @Override
-                    public void onSuccess(String response) {
-                        Log.i("addBody", response);
-                        if (response.equals("1")) {
-                            GetBodys();
-                        }
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String msg) {
-                        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Toast.makeText(getContext(), "添加负责人失败", Toast.LENGTH_SHORT).show();
-                    }
-                }).build().get();
-
-    }
-
     private void GetPartner() {
         PointEntities.clear();
         RestClient.builder().url("GetPartner?").loader(getContext())
@@ -454,14 +390,14 @@ public class EntryDelegate extends LatteDelegate implements ProductItemOnClick, 
 
     }
 
-    private void GetBodys() {
+    private void GetAllGroup() {
         mBodyEntities.clear();
-        RestClient.builder().url("GetBodys?").loader(getContext())
+        RestClient.builder().url("GetAllGroup?").loader(getContext())
                 .params("owner", AccountManager.getOwner())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Log.i("GetBodys", JsonUtils.getDecodeJSONStr(response));
+                        Log.i("GetAllGroup", JsonUtils.getDecodeJSONStr(response));
                         final JSONArray dataArray = JSON.parseArray(JsonUtils.getDecodeJSONStr(response));
                         final int size = dataArray.size();
                         for (int i = 0; i < size; i++) {

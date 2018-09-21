@@ -291,7 +291,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_toLeftOf="@+id/btn_add_user"
                             android:layout_toRightOf="@+id/tv_user_title"
                             android:background="@drawable/edit_view_circle">
 
@@ -317,138 +316,8 @@
 
                         </android.support.v7.widget.LinearLayoutCompat>
 
-                        <android.support.v7.widget.AppCompatButton
-                            android:id="@+id/btn_add_user"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentRight="true"
-                            android:background="@color/app_main_background_erp"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:text="添加"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
                     </RelativeLayout>
 
-                    <android.support.v7.widget.LinearLayoutCompat
-                        android:id="@+id/user_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="10dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <android.support.v7.widget.LinearLayoutCompat
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:orientation="horizontal">
-
-                            <android.support.v7.widget.LinearLayoutCompat
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatTextView
-                                    android:id="@+id/tv_add_user_title"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_centerVertical="true"
-                                    android:gravity="center"
-                                    android:text="姓名"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="15sp" />
-
-                                <android.support.v7.widget.AppCompatEditText
-                                    android:id="@+id/et_user_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_toLeftOf="@+id/btn_add_user_name_ok"
-                                    android:layout_toRightOf="@+id/tv_add_user_name_title"
-                                    android:background="@drawable/edit_view_circle"
-                                    android:gravity="center|left"
-                                    android:inputType="text"
-                                    android:padding="5dp"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="15sp" />
-
-
-                            </android.support.v7.widget.LinearLayoutCompat>
-
-                            <RelativeLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:orientation="horizontal">
-
-                                <android.support.v7.widget.AppCompatTextView
-                                    android:id="@+id/tv_user_number_title"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_alignParentLeft="true"
-                                    android:layout_centerVertical="true"
-                                    android:gravity="center"
-                                    android:text="联系方式"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="15sp" />
-
-                                <android.support.v7.widget.AppCompatEditText
-                                    android:id="@+id/et_user_number"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginRight="5dp"
-                                    android:layout_toRightOf="@+id/tv_user_number_title"
-                                    android:background="@drawable/edit_view_circle"
-                                    android:gravity="center|left"
-                                    android:inputType="phone"
-                                    android:padding="5dp"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="15sp" />
-
-                            </RelativeLayout>
-
-                        </android.support.v7.widget.LinearLayoutCompat>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:orientation="horizontal">
-
-                            <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/btn_add_user_ok"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="10dp"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@+id/btn_add_user_cancel"
-                                android:background="@color/app_main_background_erp"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="确定"
-                                android:textColor="@android:color/white"
-                                android:textSize="15sp" />
-
-                            <android.support.v7.widget.AppCompatButton
-                                android:id="@+id/btn_add_user_cancel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentRight="true"
-                                android:layout_marginTop="5dp"
-                                android:background="@color/app_main_background_erp"
-                                android:gravity="center"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:text="取消"
-                                android:textColor="@android:color/white"
-                                android:textSize="15sp" />
-
-                        </RelativeLayout>
-
-                    </android.support.v7.widget.LinearLayoutCompat>
                 </android.support.v7.widget.LinearLayoutCompat>
 
                 <android.support.v7.widget.LinearLayoutCompat

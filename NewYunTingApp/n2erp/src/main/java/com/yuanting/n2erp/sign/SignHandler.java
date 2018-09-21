@@ -60,9 +60,8 @@ public class SignHandler {
             String fiannaDate = UserInfos.substring(UserInfos.indexOf("<FinnalDate>") + "<FinnalDate>".length(), UserInfos.indexOf("</FinnalDate>"));
             AccountManager.setFinnalDate(fiannaDate);
         }
-
         if (UserInfos.contains("<Mony>"))
-            AccountManager.setLev(UserInfos.substring(UserInfos.indexOf("<Mony>") + "<Mony>".length(), UserInfos.indexOf("</Mony>")));
+            AccountManager.setMony(UserInfos.substring(UserInfos.indexOf("<Mony>") + "<Mony>".length(), UserInfos.indexOf("</Mony>")));
         signListener.onSignInSuccess();
     }
 

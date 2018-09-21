@@ -68,8 +68,8 @@
                     android:id="@+id/edit_sign_in_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/edit_sign_up_phone"
-                    android:inputType="phone"
+                    android:hint="账号"
+                    android:inputType="text"
                     android:textColor="@android:color/white"
                     android:textColorHint="@android:color/white" />
 

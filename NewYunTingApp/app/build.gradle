@@ -21,8 +21,8 @@ android {
     productFlavors {
         yterpserver {
             applicationId 'com.yunting.yterpserver'
-            versionCode 6
-            versionName "6.0"
+            versionCode 7
+            versionName "7.0"
             manifestPlaceholders = [CHANNEL_VALUE: "yterpserver ",
                                     server_url   : "https://d.carbros.cn/YTERPServer/api/Base/",
                                     gaode_key    : "01fde163df731a3460794538c6963b70",
@@ -51,8 +51,8 @@ android {
         }
         shunaite {
             applicationId 'com.yunting.shunaite'
-            versionCode 7
-            versionName "7.0"
+            versionCode 8
+            versionName "8.0"
             manifestPlaceholders = [CHANNEL_VALUE: "shunaite ",
                                     server_url   : "https://d.carbros.cn:4433/ShuNaite/",
                                     gaode_key    : "17ba8168f054dfc78b40589f26276f0c",

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.yuanting.n2share.R;
 import com.yuanting.yunting_core.delegates.LatteDelegate;
 
 /**
@@ -11,7 +12,7 @@ import com.yuanting.yunting_core.delegates.LatteDelegate;
  * Created by 薛立民
  * TEL 13262933389
  */
-public class SignInDelegate  extends LatteDelegate {
+public class SignInDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
@@ -19,6 +20,6 @@ public class SignInDelegate  extends LatteDelegate {
 
     @Override
     public Object setLayout() {
-        return null;
+        return R.layout.delegate_sign_in;
     }
 }

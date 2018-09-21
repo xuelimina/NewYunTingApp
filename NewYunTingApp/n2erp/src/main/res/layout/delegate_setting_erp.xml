@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:background="@color/app_main_background_erp">
 
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="6dp"
+            android:text="设置"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/re_layout_ground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tb_index"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_view_circle"
+        android:padding="20dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_arrow_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="施工小组管理"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_arrow_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/icon_arrow"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/icon_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="{fa-chevron-right}"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 
 </RelativeLayout>
