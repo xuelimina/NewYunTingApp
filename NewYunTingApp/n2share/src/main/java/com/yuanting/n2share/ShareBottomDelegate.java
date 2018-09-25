@@ -1,4 +1,4 @@
-package com.yuanting.n2share.delegate;
+package com.yuanting.n2share;
 
 import android.graphics.Color;
 

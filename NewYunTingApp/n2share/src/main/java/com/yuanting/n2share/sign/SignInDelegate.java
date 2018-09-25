@@ -1,4 +1,4 @@
-package com.yuanting.n2share.delegate.sign;
+package com.yuanting.n2share.sign;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

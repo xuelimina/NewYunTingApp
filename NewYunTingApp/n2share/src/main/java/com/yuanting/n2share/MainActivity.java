@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.widget.TextView;
 
-import com.yuanting.n2share.delegate.sign.SignInDelegate;
+import com.yuanting.n2share.sign.SignInDelegate;
 import com.yuanting.yunting_core.activites.ProxyActivity;
 import com.yuanting.yunting_core.app.Latte;
 import com.yuanting.yunting_core.delegates.LatteDelegate;

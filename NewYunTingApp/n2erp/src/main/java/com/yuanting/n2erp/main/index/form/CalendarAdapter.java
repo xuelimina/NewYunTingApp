@@ -93,7 +93,7 @@ public class CalendarAdapter extends MultipleRecyclerAdapter {
                 final String is_finished = entity.getField(CalendarItemFields.IS_FINISHED);
                 tvTime.setText("时间:" + time);
                 tvPosition.setText("接车地点:" + position);
-                tvBody.setText("接车人:" + body);
+                tvBody.setText("负责小组:" + body);
                 tvSite.setText("施工部位:" + site);
                 tvMaterial.setText("使用产品:" + material);
                 tvColor.setText("颜色:" + color);
