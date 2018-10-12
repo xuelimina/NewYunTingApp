@@ -11,7 +11,7 @@
         android:layout_height="80dp">
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_sign_up"
+            android:id="@+id/btn_go_sign_up"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -87,9 +87,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="icon-delete"
-                    android:textColor="#1A1A1A"
-                    android:textColorHint="#B3B3B3"
+                    android:text="{icon-delete}"
+                    android:textColor="@color/colorBtnEnabledFalse"
                     android:textSize="20sp"
                     android:visibility="gone" />
 
@@ -121,9 +120,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
-                    android:text="icon-eye"
-                    android:textColor="#1A1A1A"
-                    android:textColorHint="#B3B3B3"
+                    android:text="{icon-eye}"
+                    android:textColor="@color/colorBtnEnabledFalse"
                     android:textSize="20sp"
                     android:visibility="gone" />
 
@@ -138,7 +136,7 @@
             android:layout_weight="1">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/tv_sign_error"
+                android:id="@+id/tv_sign_in_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
